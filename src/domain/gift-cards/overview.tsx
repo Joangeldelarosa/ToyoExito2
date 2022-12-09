@@ -63,7 +63,7 @@ const Overview = () => {
 
   const actionables = [
     {
-      label: "Custom Gift Card",
+      label: "Gift Card Personalizada",
       onClick: () => setShowCreateCustom(true),
       icon: <PlusIcon size={20} />,
     },
@@ -109,7 +109,7 @@ const Overview = () => {
             </div>
             <div className="w-full flex flex-col grow">
               <BodyCard
-                title="History"
+                title="Historial"
                 subtitle="Ver el historial de tarjetas de regalo compradas"
                 actionables={actionables}
                 className="h-fit"

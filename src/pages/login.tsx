@@ -13,7 +13,7 @@ const LoginPage = () => {
   return (
     <LoginLayout>
       <SEO title="Login" />
-      <div className="flex h-full w-full items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center drop-shadow-2xl">
         <div
           className={clsx(
             "flex min-h-[600px] w-[640px] bg-grey-0 rounded-rounded justify-center transition-['min-height'] duration-300",
@@ -23,7 +23,7 @@ const LoginPage = () => {
           )}
         >
           <div className="flex flex-col pt-12 w-full px-[120px] items-center">
-            <img src={logo} alt="Medusa Commerce" className="w-[200px]" />
+            <img src={logo} alt="Toyo Exito" className="w-[200px]" />
             {resetPassword ? (
               <ResetTokenCard goBack={() => setResetPassword(false)} />
             ) : (

@@ -48,7 +48,7 @@ const Users: React.FC = () => {
       <div className="w-full flex flex-col grow">
         <BreadCrumb
           previousRoute="/a/settings"
-          previousBreadcrumb="Settings"
+          previousBreadcrumb="Ajustes"
           currentPage="El equipo"
         />
         <BodyCard

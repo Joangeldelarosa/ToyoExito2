@@ -70,7 +70,7 @@ const AccountDetails = () => {
       <div className="max-w-[632px]">
         <BreadCrumb
           previousRoute="/a/settings/"
-          previousBreadcrumb="Settings"
+          previousBreadcrumb="Ajustes"
           currentPage="Detalles de la tienda"
         />
         <BodyCard
