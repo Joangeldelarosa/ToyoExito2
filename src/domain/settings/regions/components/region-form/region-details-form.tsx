@@ -36,11 +36,11 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
     <div>
       <div className="grid grid-cols-2 gap-large">
         <InputField
-          label="Title"
+          label="Titulo"
           placeholder="Europe"
           required
           {...register(path("name"), {
-            required: "Title is required",
+            required: "Se requiere título",
             minLength: FormValidator.minOneCharRule("Title"),
             pattern: FormValidator.whiteSpaceRule("Title"),
           })}
@@ -50,13 +50,13 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
           control={control}
           name={path("currency_code")}
           rules={{
-            required: "Currency code is required",
+            required: "Codigo de moneda es requerido",
           }}
           render={({ field }) => {
             return (
               <NextSelect
-                label="Currency"
-                placeholder="Choose currency"
+                label="Moneda"
+                placeholder="Seleccionar moneda"
                 required
                 {...field}
                 options={currencyOptions}
@@ -69,7 +69,7 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
         {isCreate && (
           <>
             <InputField
-              label="Default Tax Rate"
+              label="Tasa de impuesto"
               required
               placeholder="25"
               prefix="%"
@@ -79,7 +79,7 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
                 required: isCreate ? "Tax rate is required" : undefined,
                 max: {
                   value: 100,
-                  message: "Tax rate must be equal to or less than 100",
+                  message: "La tasa de impuesto no puede ser mayor a 100",
                 },
                 min: FormValidator.nonNegativeNumberRule("Tax rate"),
                 valueAsNumber: true,
@@ -87,7 +87,7 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
               errors={errors}
             />
             <InputField
-              label="Default Tax Code"
+              label="Codigo de impuesto"
               placeholder="1000"
               {...register(path("tax_code"))}
               errors={errors}
@@ -100,8 +100,8 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
           render={({ field }) => {
             return (
               <NextSelect
-                label="Countries"
-                placeholder="Choose countries"
+                label="Paises"
+                placeholder="Seleccionar paises"
                 isMulti
                 selectAll
                 {...field}
@@ -116,9 +116,10 @@ const RegionDetailsForm = ({ form, isCreate = false }: Props) => {
       <FeatureToggle featureFlag="tax_inclusive_pricing">
         <div className="flex items-start justify-between mt-xlarge">
           <div className="flex flex-col gap-y-2xsmall">
-            <h3 className="inter-base-semibold">Tax inclusive prices</h3>
+            <h3 className="inter-base-semibold">Tax incluidas en precios</h3>
             <p className="inter-base-regular text-grey-50">
-              When enabled region prices will be tax inclusive.
+              Cuando está habilitado, los precios de la región incluirán
+              impuestos.
             </p>
           </div>
           <Controller

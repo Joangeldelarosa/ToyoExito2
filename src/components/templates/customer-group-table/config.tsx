@@ -13,7 +13,7 @@ export const CUSTOMER_GROUPS_TABLE_COLUMNS: Column<CustomerGroup>[] = [
   {
     Header: () => (
       <div className="flex items-center gap-1">
-        Title <SortingIcon size={16} />
+        Titulo <SortingIcon size={16} />
       </div>
     ),
     accessor: "name",
@@ -21,7 +21,7 @@ export const CUSTOMER_GROUPS_TABLE_COLUMNS: Column<CustomerGroup>[] = [
   {
     Header: () => (
       <div className="flex items-center gap-1">
-        Members <SortingIcon size={16} />
+        Miembros <SortingIcon size={16} />
       </div>
     ),
     id: "members",
@@ -46,7 +46,7 @@ export const CUSTOMER_GROUPS_CUSTOMERS_TABLE_COLUMNS: Column<Customer>[] = [
   {
     Header: () => (
       <div className="flex items-center gap-1">
-        Name <SortingIcon size={16} />
+        Nombre <SortingIcon size={16} />
       </div>
     ),
     id: "avatar",
@@ -64,41 +64,43 @@ export const CUSTOMER_GROUPS_CUSTOMERS_TABLE_COLUMNS: Column<Customer>[] = [
   },
   {
     accessor: "groups",
-    Header: () => <div className="text-left">Segments</div>,
+    Header: () => <div className="text-left">Segmentos</div>,
     Cell: ({ cell: { value } }) => <CustomersGroupsSummary groups={value} />,
   },
 ]
 
-export const CUSTOMER_GROUPS_CUSTOMERS_LIST_TABLE_COLUMNS: Column<
-  Customer
->[] = [
-  {
-    Header: () => (
-      <div className="flex items-center gap-1">
-        Name <SortingIcon size={16} />
-      </div>
-    ),
-    id: "avatar",
-    Cell: ({ row }) => (
-      <CustomerAvatarItem customer={row.original} color={getColor(row.index)} />
-    ),
-  },
-  {
-    Header: () => (
-      <div className="flex items-center gap-1">
-        Email <SortingIcon size={16} />
-      </div>
-    ),
-    accessor: "email",
-  },
-  {
-    accessor: "groups",
-    disableSortBy: true,
-    Header: "Groups",
-    Cell: ({ cell: { value } }) => <CustomersGroupsSummary groups={value} />,
-  },
-  {
-    Header: "",
-    id: "settings-col",
-  },
-]
+export const CUSTOMER_GROUPS_CUSTOMERS_LIST_TABLE_COLUMNS: Column<Customer>[] =
+  [
+    {
+      Header: () => (
+        <div className="flex items-center gap-1">
+          Nombre <SortingIcon size={16} />
+        </div>
+      ),
+      id: "avatar",
+      Cell: ({ row }) => (
+        <CustomerAvatarItem
+          customer={row.original}
+          color={getColor(row.index)}
+        />
+      ),
+    },
+    {
+      Header: () => (
+        <div className="flex items-center gap-1">
+          Email <SortingIcon size={16} />
+        </div>
+      ),
+      accessor: "email",
+    },
+    {
+      accessor: "groups",
+      disableSortBy: true,
+      Header: "Groups",
+      Cell: ({ cell: { value } }) => <CustomersGroupsSummary groups={value} />,
+    },
+    {
+      Header: "",
+      id: "settings-col",
+    },
+  ]

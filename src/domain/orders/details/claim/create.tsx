@@ -74,19 +74,19 @@ export type AddressPayload =
 
 const reasonOptions = [
   {
-    label: "Missing Item",
+    label: "Item perdido",
     value: "missing_item",
   },
   {
-    label: "Wrong Item",
+    label: "Item incorrecto",
     value: "wrong_item",
   },
   {
-    label: "Production Failure",
+    label: "Daño de fabrica",
     value: "production_failure",
   },
   {
-    label: "Other",
+    label: "Otro",
     value: "other",
   },
 ]
@@ -94,19 +94,16 @@ const reasonOptions = [
 const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
   const { mutate, isLoading } = useAdminCreateClaim(order.id)
   const { refetch } = useAdminOrder(order.id)
-  const [shippingAddress, setShippingAddress] = useState<AddressPayload>(
-    undefined
-  )
+  const [shippingAddress, setShippingAddress] =
+    useState<AddressPayload>(undefined)
 
   const [isReplace, toggleReplace] = useState(false)
   const [noNotification, setNoNotification] = useState(order.no_notification)
   const [toReturn, setToReturn] = useState<ReturnRecord>({})
 
   const [itemsToAdd, setItemsToAdd] = useState<SelectProduct[]>([])
-  const [
-    returnShippingMethod,
-    setReturnShippingMethod,
-  ] = useState<ShippingOption | null>(null)
+  const [returnShippingMethod, setReturnShippingMethod] =
+    useState<ShippingOption | null>(null)
   const [returnShippingPrice, setReturnShippingPrice] = useState<
     number | undefined
   >(undefined)
@@ -242,7 +239,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
     mutate(data, {
       onSuccess: () => {
         refetch()
-        notification("Success", "Successfully created claim", "success")
+        notification("Éxito", "Reclamo creado exitosamente ", "success")
         onDismiss()
       },
       onError: (error) => {
@@ -309,11 +306,11 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
     <LayeredModal context={layeredModalContext} handleClose={onDismiss}>
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Create Claim</h2>
+          <h2 className="inter-xlarge-semibold">Crear reclamo</h2>
         </Modal.Header>
         <Modal.Content>
           <div>
-            <h3 className="inter-base-semibold">Items to claim</h3>
+            <h3 className="inter-base-semibold">Productos a reclamar</h3>
             <RMASelectProductTable
               order={order}
               allItems={allItems}
@@ -325,7 +322,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
           </div>
           <div className="mt-4">
             <h3 className="inter-base-semibold">
-              Shipping Return
+              Envio de devolución
               {returnShippingMethod && (
                 <span className="text-grey-40 inter-base-regular">
                   ({returnShippingMethod.region.name})
@@ -334,9 +331,9 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
             </h3>
             <Select
               clearSelected
-              label="Shipping Method"
+              label="Método de envío"
               className="mt-2"
-              placeholder="Add a shipping method"
+              placeholder="Agrega un método de envío"
               value={
                 returnShippingMethod
                   ? {
@@ -389,16 +386,16 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 className={clsx(
                   "rounded-full w-5 h-5 flex mr-3 items-center justify-center",
                   {
-                    "border-violet-60 border-2": isReplace,
+                    "border-green-60 border-2": isReplace,
                     "border-grey-40 border": !isReplace,
                   }
                 )}
               >
                 {isReplace && (
-                  <div className="w-3 h-3 bg-violet-60 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-60 rounded-full"></div>
                 )}
               </div>
-              Replace
+              Reemplazar
             </div>
             <div
               className="cursor-pointer items-center flex"
@@ -410,22 +407,22 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 className={clsx(
                   "rounded-full w-5 h-5 flex mr-3 items-center justify-center",
                   {
-                    "border-violet-60 border-2": !isReplace,
+                    "border-green-60 border-2": !isReplace,
                     "border-grey-40 border": isReplace,
                   }
                 )}
               >
                 {!isReplace && (
-                  <div className="w-3 h-3 bg-violet-60 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-60 rounded-full"></div>
                 )}
               </div>
-              Refund
+              Reembolsar
             </div>
           </div>
           {isReplace && (
             <div className="mt-8">
               <div className="flex justify-between items-center">
-                <h3 className="inter-base-semibold ">Items to send</h3>
+                <h3 className="inter-base-semibold ">Productos a enviar</h3>
                 {itemsToAdd.length === 0 ? (
                   <Button
                     variant="ghost"
@@ -441,7 +438,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                       )
                     }}
                   >
-                    Add Product
+                    Agregar producto
                   </Button>
                 ) : (
                   <></>
@@ -471,13 +468,13 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                         )
                       }}
                     >
-                      Add Product
+                      Agregar producto
                     </Button>
                   </div>
                 </>
               )}
               <div className="mt-8">
-                <span className="inter-base-semibold">Shipping Address</span>
+                <span className="inter-base-semibold">Dirección de envío</span>
                 {shippingAddress ? (
                   <>
                     <div className="flex w-full inter-small-regular text-grey-50">
@@ -499,7 +496,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                         size="small"
                         className="border border-grey-20"
                       >
-                        Edit
+                        Editar
                       </Button>
                     </div>
                   </>
@@ -524,22 +521,22 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                         size="small"
                         className="border border-grey-20"
                       >
-                        Ship to a different address
+                        Enviar a una dirección diferente
                       </Button>
                     </div>
                   </div>
                 )}
               </div>
               <div>
-                <h3 className="inter-base-semibold mt-8">Shipping new</h3>
+                <h3 className="inter-base-semibold mt-8">Enviar Nuevo</h3>
                 <span className="inter-small-regular text-grey-50">
-                  Shipping new items is free by default. Use custom price, if
-                  this is not the case
+                  El envío de artículos nuevos es gratuito por defecto. Utiliza
+                  un precio personalizado si este no es el caso.
                 </span>
                 <Select
-                  label="Shipping Method"
+                  label="Método de envío"
                   className="mt-2"
-                  placeholder="Add a shipping method"
+                  placeholder="Agregue un método de envío"
                   value={
                     shippingMethod
                       ? {
@@ -574,8 +571,8 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                             }
                           >
                             {showCustomPrice.standard
-                              ? "Submit"
-                              : "Set custom price"}
+                              ? "Enviar"
+                              : "Colocar precio personalizado"}
                           </Button>
                         )}
                         {showCustomPrice.standard && (
@@ -587,7 +584,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                               currentCurrency={order.currency_code}
                             >
                               <CurrencyInput.Amount
-                                label={"Amount"}
+                                label={"Cantidad"}
                                 amount={customOptionPrice.standard}
                                 onChange={(value) =>
                                   setCustomOptionPrice({
@@ -628,7 +625,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
             >
               <div
                 className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                  !noNotification && "bg-violet-60"
+                  !noNotification && "bg-green-60"
                 }`}
               >
                 <span className="self-center">
@@ -644,8 +641,8 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 type="checkbox"
               />
               <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                Send notifications
-                <IconTooltip content="Notify customer of created return" />
+                Enviar notificaciones
+                <IconTooltip content="Notificar al cliente del reembolso" />
               </span>
             </div>
             <div className="flex gap-x-xsmall">
@@ -656,7 +653,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 size="small"
                 variant="ghost"
               >
-                Back
+                Volver
               </Button>
               <Button
                 onClick={onSubmit}
@@ -666,7 +663,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 size="small"
                 variant="primary"
               >
-                Complete
+                Completar
               </Button>
             </div>
           </div>
@@ -678,7 +675,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
 
 const SelectProductsScreen = (pop, itemsToAdd, setSelectedItems) => {
   return {
-    title: "Add Products",
+    title: "Agregar productos",
     onBack: () => pop(),
     view: (
       <RMASelectProductSubModal

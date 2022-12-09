@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { difference } from "lodash"
-import { navigate } from "gatsby"
 import { CustomerGroup } from "@medusajs/medusa"
 import {
   useAdminAddCustomersToCustomerGroup,
@@ -10,7 +9,6 @@ import {
   useAdminRemoveCustomersFromCustomerGroup,
 } from "medusa-react"
 
-import Breadcrumb from "../../../components/molecules/breadcrumb"
 import BodyCard from "../../../components/organisms/body-card"
 import EditIcon from "../../../components/fundamentals/icons/edit-icon"
 import TrashIcon from "../../../components/fundamentals/icons/trash-icon"
@@ -22,6 +20,8 @@ import CustomerGroupContext, {
 } from "./context/customer-group-context"
 import useQueryFilters from "../../../hooks/use-query-filters"
 import DeletePrompt from "../../../components/organisms/delete-prompt"
+import { useNavigate, useParams } from "react-router-dom"
+import BackButton from "../../../components/atoms/back-button"
 
 /**
  * Default filtering config for querying customer group customers list endpoint.
@@ -39,7 +39,7 @@ function CustomersListPlaceholder() {
   return (
     <div className="h-full flex center justify-center items-center min-h-[756px]">
       <span className="text-xs text-gray-400">
-        No customers in this group yet
+        No hay clientes en este grupo todavía
       </span>
     </div>
   )
@@ -56,22 +56,20 @@ function CustomerGroupCustomersList(props: CustomerGroupCustomersListProps) {
   // toggle to show/hide "edit customers" modal
   const [showCustomersModal, setShowCustomersModal] = useState(false)
 
-  const { q, queryObject, paginate, setQuery } = useQueryFilters(
-    defaultQueryProps
-  )
+  const { q, queryObject, paginate, setQuery } =
+    useQueryFilters(defaultQueryProps)
 
-  const { customers = [], isLoading, count } = useAdminCustomerGroupCustomers(
-    groupId,
-    queryObject,
-    {
-      keepPreviousData: true,
-    }
-  )
+  const {
+    customers = [],
+    isLoading,
+    count,
+  } = useAdminCustomerGroupCustomers(groupId, queryObject, {
+    keepPreviousData: true,
+  })
 
   const { mutate: addCustomers } = useAdminAddCustomersToCustomerGroup(groupId)
-  const { mutate: removeCustomers } = useAdminRemoveCustomersFromCustomerGroup(
-    groupId
-  )
+  const { mutate: removeCustomers } =
+    useAdminRemoveCustomersFromCustomerGroup(groupId)
 
   // list of currently selected customers of a group
   const [selectedCustomerIds, setSelectedCustomerIds] = useState(
@@ -88,7 +86,7 @@ function CustomerGroupCustomersList(props: CustomerGroupCustomersListProps) {
 
   const actions = [
     {
-      label: "Edit customers",
+      label: "Editar clientes",
       onClick: () => setShowCustomersModal(true),
       icon: (
         <span className="text-grey-90">
@@ -127,7 +125,7 @@ function CustomerGroupCustomersList(props: CustomerGroupCustomersListProps) {
 
   return (
     <BodyCard
-      title="Customers"
+      title="Clientes"
       actionables={actions}
       className="w-full my-4 min-h-[756px]"
     >
@@ -169,18 +167,20 @@ function CustomerGroupDetailsHeader(props: CustomerGroupDetailsHeaderProps) {
   const { showModal } = useContext(CustomerGroupContext)
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
 
+  const navigate = useNavigate()
+
   const { mutate: deleteGroup } = useAdminDeleteCustomerGroup(
     props.customerGroup.id
   )
 
   const actions = [
     {
-      label: "Edit",
+      label: "Editar",
       onClick: showModal,
       icon: <EditIcon size={20} />,
     },
     {
-      label: "Delete",
+      label: "Eliminar",
       onClick: () => {
         setShowDeleteConfirmation(true)
       },
@@ -208,23 +208,23 @@ function CustomerGroupDetailsHeader(props: CustomerGroupDetailsHeaderProps) {
         <DeletePrompt
           onDelete={onDeleteConfirmed}
           handleClose={handleConfirmDialogClose}
-          confirmText="Yes, delete"
-          heading="Delete the group"
-          successText="Group deleted"
-          text="Are you sure you want to delete this customer group?"
+          confirmText="Si, eliminar"
+          heading="Eliminar grupo de clientes"
+          successText="Grupo de clientes eliminado"
+          text="¿Está seguro de que desea eliminar este grupo de clientes?"
         />
       )}
     </>
   )
 }
 
-type CustomerGroupDetailsProps = { id: string }
-
 /*
  * Customer groups details page
  */
-function CustomerGroupDetails(p: CustomerGroupDetailsProps) {
-  const { customer_group } = useAdminCustomerGroup(p.id)
+function CustomerGroupDetails() {
+  const { id } = useParams()
+
+  const { customer_group } = useAdminCustomerGroup(id!)
 
   if (!customer_group) {
     return null
@@ -233,10 +233,10 @@ function CustomerGroupDetails(p: CustomerGroupDetailsProps) {
   return (
     <CustomerGroupContextContainer group={customer_group}>
       <div className="-mt-4 pb-4">
-        <Breadcrumb
-          currentPage={customer_group ? customer_group.name : "Customer Group"}
-          previousBreadcrumb="Groups"
-          previousRoute="/a/customers/groups"
+        <BackButton
+          path="/a/customers/groups"
+          label="Volver a grupos de clientes"
+          className="mb-4"
         />
         <CustomerGroupDetailsHeader customerGroup={customer_group} />
         <CustomerGroupCustomersList group={customer_group} />

@@ -147,7 +147,7 @@ const ShippingDetails = () => {
     <div className="min-h-[705px] flex flex-col gap-y-8">
       <div>
         <span className="inter-base-semibold">
-          Customer and shipping details
+          Detalles del cliente y envío
         </span>
         <Controller
           control={form.control}
@@ -196,7 +196,9 @@ const ShippingDetails = () => {
         </div>
       ) : validAddresses.length && !addNew ? (
         <div>
-          <span className="inter-base-semibold">Choose existing addresses</span>
+          <span className="inter-base-semibold">
+            Seleccionar direcciones existentes
+          </span>
           <Controller
             control={form.control}
             name="shipping_address_id"
@@ -232,7 +234,7 @@ const ShippingDetails = () => {
               className="border border-grey-20 w-[112px]"
               onClick={onCreateNew}
             >
-              Create new
+              Crear nueva
             </Button>
           </div>
         </div>

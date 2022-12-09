@@ -50,7 +50,11 @@ export const GiftCardFormProvider = ({
 
     update(payload, {
       onSuccess: () => {
-        notification("Success", "Product updated successfully", "success")
+        notification(
+          "Éxito",
+          "El producto ha sido actualizado con éxito",
+          "success"
+        )
       },
     })
   }, handleFormError)

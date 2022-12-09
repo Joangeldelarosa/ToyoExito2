@@ -60,8 +60,8 @@ const AnalyticsPreferencesModal = () => {
     mutate(config, {
       onSuccess: () => {
         notification(
-          "Success",
-          "Your preferences were successfully updated",
+          "Éxito",
+          "Tus preferencias se actualizaron con éxito",
           "success"
         )
 
@@ -96,7 +96,7 @@ const AnalyticsPreferencesModal = () => {
                 href="https://docs.medusajs.com/usage"
                 rel="noreferrer noopener"
                 target="_blank"
-                className="text-violet-60"
+                className="text-green-60"
               >
                 documentation
               </a>
@@ -127,7 +127,7 @@ const AnalyticsPreferencesModal = () => {
                 loading={isLoading}
                 onClick={onSubmit}
               >
-                Continue
+                Continuar
               </Button>
             </div>
           </div>

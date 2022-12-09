@@ -130,8 +130,8 @@ export const ConditionsProvider = ({
       {
         onSuccess: () => {
           notification(
-            "Condtions were succesfully added",
-            "Discount conditions updated",
+            "Las condiciones fueron agregadas correctamente",
+            "Las condiciones fueron actualizadas",
             "success"
           )
         },

@@ -158,7 +158,7 @@ const TagInput: React.FC<TagInputProps> = ({
     <div className={className}>
       {showLabel && (
         <InputHeader
-          label={label || "Tags (comma separated)"}
+          label={label || "Tags (separados por coma)"}
           {...{ required, tooltipContent, tooltip }}
           className="mb-2"
         />
@@ -175,9 +175,10 @@ const TagInput: React.FC<TagInputProps> = ({
       >
         <div
           className={clsx(
-            "h-auto min-h-[40px] bg-grey-5 shadow-border focus-within:outline-4 focus-within:outline focus-within:outline-violet-60/10 transition-colors focus-within:shadow-focus-border rounded-rounded flex items-center px-3 box-border",
+            "h-auto min-h-[40px] bg-grey-5 shadow-border focus-within:outline-4 focus-within:outline focus-within:outline-green-60/10 transition-colors focus-within:shadow-focus-border rounded-rounded flex items-center px-3 box-border",
             {
-              "shadow-error-border focus-within:shadow-error-border focus-within:outline-rose-60/10": invalid,
+              "shadow-error-border focus-within:shadow-error-border focus-within:outline-rose-60/10":
+                invalid,
             }
           )}
         >

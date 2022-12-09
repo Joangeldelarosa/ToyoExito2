@@ -172,10 +172,8 @@ function OrderEditModal(props: OrderEditModalProps) {
     isLoading: isRequestingConfirmation,
   } = useAdminRequestOrderEditConfirmation(orderEdit.id)
 
-  const {
-    mutateAsync: updateOrderEdit,
-    isLoading: isUpdating,
-  } = useAdminUpdateOrderEdit(orderEdit.id)
+  const { mutateAsync: updateOrderEdit, isLoading: isUpdating } =
+    useAdminUpdateOrderEdit(orderEdit.id)
 
   const { mutateAsync: deleteOrderEdit } = useAdminDeleteOrderEdit(orderEdit.id)
 
@@ -192,7 +190,7 @@ function OrderEditModal(props: OrderEditModalProps) {
         await updateOrderEdit({ internal_note: note })
       }
 
-      notification("Success", "Order edit set as requested", "success")
+      notification("Éxito", "Order edit set as requested", "success")
     } catch (e) {
       notification("Error", "Failed to request confirmation", "error")
     }
@@ -213,7 +211,7 @@ function OrderEditModal(props: OrderEditModalProps) {
 
       await Promise.all(promises)
 
-      notification("Success", "Added successfully", "success")
+      notification("Éxito", "Added successfully", "success")
     } catch (e) {
       notification("Error", "Error occurred", "error")
     }
@@ -240,7 +238,7 @@ function OrderEditModal(props: OrderEditModalProps) {
   }
 
   const addProductVariantScreen = {
-    title: "Add Product Variants",
+    title: "Agrega variantes del producto",
     onBack: layeredModalContext.pop,
     view: (
       <AddProductVariant
@@ -261,11 +259,11 @@ function OrderEditModal(props: OrderEditModalProps) {
     >
       <Modal.Body>
         <Modal.Header handleClose={onCancel}>
-          <h1 className="inter-xlarge-semibold">Edit Order</h1>
+          <h1 className="inter-xlarge-semibold">Editar pedido</h1>
         </Modal.Header>
         <Modal.Content>
           <div className="flex justify-between mb-6">
-            <span className="text-gray-900 font-semibold">Items</span>
+            <span className="text-gray-900 font-semibold">Productos</span>
             <div className="flex gap-2 items-center justify-between">
               <Button
                 size="small"
@@ -275,12 +273,12 @@ function OrderEditModal(props: OrderEditModalProps) {
                   layeredModalContext.push(addProductVariantScreen)
                 }
               >
-                Add items
+                Agregar productos
               </Button>
               {showFilter && (
                 <InputField
                   value={filterTerm}
-                  placeholder="Filter items..."
+                  placeholder="Filtrar productos..."
                   onChange={(e) => setFilterTerm(e.target.value)}
                 />
               )}
@@ -327,7 +325,7 @@ function OrderEditModal(props: OrderEditModalProps) {
 
           {/* NOTE */}
           <div className="flex items-center justify-between">
-            <span className="text-gray-500">Note</span>
+            <span className="text-gray-500">Nota</span>
             <InputField
               className="max-w-[455px]"
               placeholder="Add a note..."
@@ -344,7 +342,7 @@ function OrderEditModal(props: OrderEditModalProps) {
               type="button"
               onClick={onCancel}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -354,7 +352,7 @@ function OrderEditModal(props: OrderEditModalProps) {
               loading={isUpdating || isRequestingConfirmation}
               onClick={onSave}
             >
-              Save and close
+              Guardar y cerrar
             </Button>
           </div>
         </Modal.Footer>
@@ -371,12 +369,8 @@ function OrderEditModalContainer(props: OrderEditModalContainerProps) {
   const { order } = props
   const notification = useNotification()
 
-  const {
-    hideModal,
-    orderEdits,
-    activeOrderEditId,
-    setActiveOrderEdit,
-  } = useContext(OrderEditContext)
+  const { hideModal, orderEdits, activeOrderEditId, setActiveOrderEdit } =
+    useContext(OrderEditContext)
 
   const { mutate: createOrderEdit } = useAdminCreateOrderEdit()
 
@@ -396,7 +390,7 @@ function OrderEditModalContainer(props: OrderEditModalContainerProps) {
         onError: () => {
           notification(
             "Error",
-            "There is already active order edit on this order",
+            "Ya existe una edición de pedido en curso para este pedido.",
             "error"
           )
           hideModal()

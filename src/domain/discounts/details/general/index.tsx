@@ -1,7 +1,7 @@
 import { Discount } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import { useAdminDeleteDiscount, useAdminUpdateDiscount } from "medusa-react"
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Badge from "../../../../components/fundamentals/badge"
 import EditIcon from "../../../../components/fundamentals/icons/edit-icon"
 import TrashIcon from "../../../../components/fundamentals/icons/trash-icon"
@@ -20,6 +20,7 @@ type GeneralProps = {
 
 const General: React.FC<GeneralProps> = ({ discount }) => {
   const dialog = useImperativeDialog()
+  const navigate = useNavigate()
   const notification = useNotification()
   const updateDiscount = useAdminUpdateDiscount(discount.id)
   const deletediscount = useAdminDeleteDiscount(discount.id)
@@ -33,7 +34,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
     if (shouldDelete) {
       deletediscount.mutate(undefined, {
         onSuccess: () => {
-          notification("Success", "Promotion deleted successfully", "success")
+          notification("Éxito", "Promción eliminada con éxito", "success")
           navigate("/a/discounts/")
         },
         onError: (err) => {
@@ -50,10 +51,10 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
       },
       {
         onSuccess: () => {
-          const pastTense = !discount.is_disabled ? "published" : "drafted"
+          const pastTense = !discount.is_disabled ? "publicado" : "ocultado"
           notification(
-            "Success",
-            `Discount ${pastTense} successfully`,
+            "Éxito",
+            `Descuento ${pastTense} exitosamente`,
             "success"
           )
         },
@@ -66,12 +67,12 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
 
   const actionables: ActionType[] = [
     {
-      label: "Edit general information",
+      label: "Editar información general",
       onClick: () => setShowModal(true),
       icon: <EditIcon size={20} />,
     },
     {
-      label: "Delete discount",
+      label: "Eliminar descuento",
       onClick: onDelete,
       variant: "danger",
       icon: <TrashIcon size={20} />,
@@ -110,7 +111,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
           <div className="border-l border-grey-20 pl-6">
             {getPromotionDescription(discount)}
             <span className="inter-small-regular text-grey-50">
-              Discount Amount
+              Cantidad de descuento
             </span>
           </div>
           <div className="border-l border-grey-20 pl-6 ml-12">
@@ -118,7 +119,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
               {discount.regions.length.toLocaleString("en-US")}
             </h2>
             <span className="inter-small-regular text-grey-50">
-              Valid Regions
+              Regiones aplicables
             </span>
           </div>
           <div className="border-l border-grey-20 pl-6 ml-12">
@@ -126,7 +127,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
               {discount.usage_count.toLocaleString("en-US")}
             </h2>
             <span className="inter-small-regular text-grey-50">
-              Total Redemptions
+              Total de usos
             </span>
           </div>
         </div>
@@ -165,10 +166,10 @@ const getPromotionDescription = (discount: Discount) => {
       )
     case "free_shipping":
       return (
-        <h2 className="inter-xlarge-regular text-grey-90">{`FREE SHIPPING`}</h2>
+        <h2 className="inter-xlarge-regular text-grey-90">{`ENVIO GRATIS`}</h2>
       )
     default:
-      return "Unknown discount type"
+      return "Descuento desconocido"
   }
 }
 

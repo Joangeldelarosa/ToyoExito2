@@ -49,9 +49,9 @@ const EditProductConditionSelector = ({ onClose }) => {
           options={{
             enableSearch: true,
             immediateSearchFocus: true,
-            searchPlaceholder: "Search products...",
+            searchPlaceholder: "Buscar productos...",
           }}
-          resourceName="Products"
+          resourceName="Productos"
           totalCount={count || 0}
           selectedIds={items.map((i) => i.id)}
           data={products as Product[] | undefined}

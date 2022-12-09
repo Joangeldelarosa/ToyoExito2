@@ -63,9 +63,9 @@ const CreateFulfillmentItemsTable = ({
   return (
     <Table>
       <Table.HeadRow className="text-grey-50 inter-small-semibold border-t border-t-grey-20">
-        <Table.HeadCell>Details</Table.HeadCell>
+        <Table.HeadCell>Detalles</Table.HeadCell>
         <Table.HeadCell />
-        <Table.HeadCell className="text-right pr-8">Quantity</Table.HeadCell>
+        <Table.HeadCell className="text-right pr-8">Cantidad</Table.HeadCell>
       </Table.HeadRow>
       <Table.Body>
         {items
@@ -80,7 +80,7 @@ const CreateFulfillmentItemsTable = ({
                       <div
                         onClick={() => handleFulfillmentItemToggle(item)}
                         className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border cursor-pointer rounded-base ${
-                          checked && "bg-violet-60"
+                          checked && "bg-green-60"
                         }`}
                       >
                         <span className="self-center">

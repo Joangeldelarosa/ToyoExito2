@@ -70,26 +70,21 @@ const TaxDetails = ({ id }) => {
 
   const [columns] = useTaxRateColumns()
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data: tableEntries || [],
-    manualPagination: true,
-    autoResetPage: false,
-  })
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns,
+      data: tableEntries || [],
+      manualPagination: true,
+      autoResetPage: false,
+    })
 
   return (
     <>
       <BodyCard
-        title="Details"
+        title="Detalles"
         actionables={[
           {
-            label: "New Tax Rate",
+            label: "Nueva tasa de impuesto",
             onClick: () => setShowNew(true),
             icon: <PlusIcon />,
           },
@@ -132,7 +127,7 @@ const TaxDetails = ({ id }) => {
           )}
         </Table>
         <h3 className="inter-large-semibold mt-2xlarge mb-base">
-          Tax Calculation Settings
+          Ajustes de calculo de impuestos
         </h3>
         <div className="flex flex-1">
           {!regionIsLoading && <RegionTaxForm region={region} />}

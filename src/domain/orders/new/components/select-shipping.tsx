@@ -53,9 +53,9 @@ const SelectShippingMethod = () => {
   return (
     <div className="min-h-[705px]">
       <span className="inter-base-semibold">
-        Shipping method{" "}
+        Metodo de envío
         <span className="inter-base-regular text-grey-50">
-          (To {region!.name})
+          (A {region!.name})
         </span>
       </span>
 
@@ -66,10 +66,10 @@ const SelectShippingMethod = () => {
               <AlertIcon size={20} />
             </div>
             <div className="flex flex-col">
-              <span className="inter-small-semibold">Attention!</span>
-              You don't have any options for orders without shipping. Please add
-              one (e.g. "In-store fulfillment") with "Show on website" unchecked
-              in region settings and continue.
+              <span className="inter-small-semibold">¡Atención!</span>
+              No tienes ninguna opción para pedidos sin envío. Por favor añadir
+              uno (por ejemplo, "Cumplimiento en la tienda") con "Mostrar en el
+              sitio web" sin marcar en la configuración regional y continuar.
             </div>
           </div>
         ) : (
@@ -80,7 +80,7 @@ const SelectShippingMethod = () => {
               render={({ field: { value, onChange } }) => {
                 return (
                   <Select
-                    label="Choose a shipping method"
+                    label="Selecciona un método de envío"
                     onChange={onChange}
                     value={value}
                     options={
@@ -106,7 +106,7 @@ const SelectShippingMethod = () => {
                     disabled={!selectedShippingOption}
                     onClick={() => setShowCustomPrice(true)}
                   >
-                    Set custom price
+                    Coloca un precio personalizado
                   </Button>
                 </div>
               )}
@@ -124,7 +124,7 @@ const SelectShippingMethod = () => {
                             currentCurrency={region.currency_code}
                           >
                             <CurrencyInput.Amount
-                              label="Custom Price"
+                              label="Precio personalizado"
                               amount={value}
                               onChange={onChange}
                             />

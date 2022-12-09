@@ -42,7 +42,7 @@ const PaymentRequired: React.FC<RequestedProps> = ({ event }) => {
 
   return (
     <EventContainer
-      title={"Customer payment required"}
+      title={"Se requiere el pago del cliente"}
       icon={<AlertIcon size={20} />}
       iconColor={EventIconColor.VIOLET}
       time={event.time}
@@ -62,7 +62,7 @@ const PaymentRequired: React.FC<RequestedProps> = ({ event }) => {
         variant="ghost"
         onClick={onCopyPaymentLinkClicked}
       >
-        Copy Payment Link
+        Copiar link de pago
       </Button>
       <Button
         size="small"
@@ -70,7 +70,7 @@ const PaymentRequired: React.FC<RequestedProps> = ({ event }) => {
         variant="ghost"
         onClick={onMarkAsPaidClicked}
       >
-        Mark as Paid
+        Marcar como pagado
       </Button>
     </EventContainer>
   )

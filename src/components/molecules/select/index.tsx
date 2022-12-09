@@ -66,7 +66,7 @@ const SSelect = React.forwardRef(
       clearSelected = false,
       isCreatable,
       filterOptions,
-      placeholder = "Search...",
+      placeholder = "Buscar...",
       options,
       onCreateOption,
     }: MultiSelectProps,
@@ -148,7 +148,7 @@ const SSelect = React.forwardRef(
               searchBackend={filterOptions}
               options={
                 hasSelectAll && isMultiSelect
-                  ? [{ value: "all", label: "Select All" }, ...options]
+                  ? [{ value: "all", label: "Seleccionar Todos" }, ...options]
                   : options
               }
               ref={selectRef}

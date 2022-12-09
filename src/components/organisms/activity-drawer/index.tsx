@@ -20,7 +20,7 @@ const ActivityDrawer = ({ onDismiss }) => {
       ref={ref}
       className="bg-grey-0 w-[400px] shadow-dropdown rounded-rounded top-[64px] bottom-2 right-3 rounded overflow-x-hidden fixed flex flex-col"
     >
-      <div className="inter-large-semibold pt-7 pl-8 pb-1">Activity</div>
+      <div className="inter-large-semibold pt-7 pl-8 pb-1">Actividad</div>
 
       {!hasPollingError ? (
         batchJobs ? (
@@ -40,11 +40,11 @@ const EmptyActivityDrawer = () => {
     <div className="p-4 h-full w-full flex flex-col justify-center items-center">
       <SidedMouthFaceIcon size={36} />
       <span className={"mt-4 inter-large-semibold text-grey-90"}>
-        It's quite in here...
+        Esta bastante solo esto...
       </span>
       <span className={"mt-4 text-grey-60 text-center inter-base-regular"}>
-        You don't have any notifications at the moment, but once you do they
-        will live here.
+        No tienes ninguna notificación en este momento, pero una vez que las
+        tengas vivirá aquí.
       </span>
     </div>
   )
@@ -56,13 +56,13 @@ const ErrorActivityDrawer = () => {
       <SadFaceIcon size={36} />
       <span className={"mt-4 inter-large-semibold text-grey-90"}>Oh no...</span>
       <span className={"mt-2 text-grey-60 text-center inter-base-regular"}>
-        Something went wrong while trying to fetch your notifications - We will
-        keep trying!
+        Algo salió mal al intentar obtener tus notificaciones. ¡Seguiremos
+        intentándolo!
       </span>
 
       <div className="flex items-center mt-4">
         <Spinner size={"small"} variant={"secondary"} />
-        <span className="ml-2.5">Processing...</span>
+        <span className="ml-2.5">Procesando...</span>
       </div>
     </div>
   )

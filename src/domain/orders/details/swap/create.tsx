@@ -73,13 +73,11 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
     return []
   }, [order])
 
-  const {
-    shipping_options: shippingOptions,
-    isLoading: shippingLoading,
-  } = useAdminShippingOptions({
-    is_return: true,
-    region_id: order.region_id,
-  })
+  const { shipping_options: shippingOptions, isLoading: shippingLoading } =
+    useAdminShippingOptions({
+      is_return: true,
+      region_id: order.region_id,
+    })
 
   const returnTotal = useMemo(() => {
     const items = Object.keys(toReturn).map((t) =>
@@ -103,8 +101,9 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
 
   const additionalTotal = useMemo(() => {
     return itemsToAdd.reduce((acc, next) => {
-      let amount = next.prices.find((ma) => ma.region_id === order.region_id)
-        ?.amount
+      let amount = next.prices.find(
+        (ma) => ma.region_id === order.region_id
+      )?.amount
 
       if (!amount) {
         amount = next.prices.find(
@@ -206,7 +205,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
     return mutate(data, {
       onSuccess: () => {
         refetch()
-        notification("Success", "Successfully created exchange", "success")
+        notification("Éxito", "Se creo el cambio correctamente", "success")
         onDismiss()
       },
       onError: (err) => {
@@ -219,11 +218,11 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
     <LayeredModal context={layeredModalContext} handleClose={onDismiss}>
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Register Exchange</h2>
+          <h2 className="inter-xlarge-semibold">Registrar cambio</h2>
         </Modal.Header>
         <Modal.Content>
           <div className="mb-7">
-            <h3 className="inter-base-semibold">Items to return</h3>
+            <h3 className="inter-base-semibold">Productos a retornar</h3>
             <RMASelectProductTable
               order={order}
               allItems={allItems}
@@ -233,7 +232,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
           </div>
 
           <div>
-            <h3 className="inter-base-semibold ">Shipping</h3>
+            <h3 className="inter-base-semibold ">Envio</h3>
             {shippingLoading ? (
               <div className="flex justify-center">
                 <Spinner size="medium" variant="secondary" />
@@ -265,7 +264,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
             )}
           </div>
           <div className="flex justify-between mt-8 items-center">
-            <h3 className="inter-base-semibold ">Items to send</h3>
+            <h3 className="inter-base-semibold ">Productos a enviar</h3>
             {itemsToAdd.length === 0 ? (
               <Button
                 variant="ghost"
@@ -281,7 +280,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
                   )
                 }}
               >
-                Add Product
+                Agregar producto
               </Button>
             ) : (
               <></>
@@ -312,13 +311,13 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
                     )
                   }}
                 >
-                  Add Product
+                  Agregar producto
                 </Button>
               </div>
             </>
           )}
           <div className="flex text-grey-90 justify-between items-center inter-small-regular mt-8">
-            <span>Return Total</span>
+            <span>Retorno total</span>
             <span>
               {formatAmountWithSymbol({
                 currency: order.currency_code,
@@ -327,7 +326,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
             </span>
           </div>
           <div className="flex text-grey-90 justify-between items-center inter-small-regular mt-2">
-            <span>Additional Total</span>
+            <span>Total adicional</span>
             <span>
               {formatAmountWithSymbol({
                 currency: order.currency_code,
@@ -338,11 +337,11 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
             </span>
           </div>
           <div className="flex text-grey-90 justify-between items-center inter-small-regular mt-2">
-            <span>Outbond Shipping</span>
-            <span>Calculated at checkout</span>
+            <span>Pago en destino</span>
+            <span>Calculado a la salida</span>
           </div>
           <div className="flex justify-between items-center inter-base-semibold mt-4">
-            <span>Estimated difference</span>
+            <span>Diferencia estimada</span>
             <span className="inter-large-semibold">
               {formatAmountWithSymbol({
                 currency: order.currency_code,
@@ -361,7 +360,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
             >
               <div
                 className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                  !noNotification && "bg-violet-60"
+                  !noNotification && "bg-green-60"
                 }`}
               >
                 <span className="self-center">
@@ -376,8 +375,8 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
                 type="checkbox"
               />
               <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                Send notifications
-                <IconTooltip content="If unchecked the customer will not receive communication about this exchange" />
+                Enviar notificaciones
+                <IconTooltip content="Si no está marcado, el cliente no recibirá comunicación sobre este cambio." />
               </span>
             </div>
 
@@ -390,7 +389,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
               type="submit"
               variant="primary"
             >
-              Complete
+              Completar
             </Button>
           </div>
         </Modal.Footer>
@@ -401,7 +400,7 @@ const SwapMenu: React.FC<SwapMenuProps> = ({ order, onDismiss }) => {
 
 const SelectProductsScreen = (pop, itemsToAdd, setSelectedItems) => {
   return {
-    title: "Add Products",
+    title: "Agregar produtos",
     onBack: () => pop(),
     view: (
       <RMASelectProductSubModal

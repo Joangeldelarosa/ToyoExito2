@@ -1,4 +1,4 @@
-import { useAdminStore, useAdminUsers } from "medusa-react"
+import { useAdminStore } from "medusa-react"
 import React, { useState } from "react"
 import CashIcon from "../../fundamentals/icons/cash-icon"
 import CustomerIcon from "../../fundamentals/icons/customer-icon"
@@ -9,7 +9,6 @@ import SaleIcon from "../../fundamentals/icons/sale-icon"
 import TagIcon from "../../fundamentals/icons/tag-icon"
 import SidebarCompanyLogo from "../../molecules/sidebar-company-logo"
 import SidebarMenuItem from "../../molecules/sidebar-menu-item"
-import SidebarTeam from "../sidebar-team"
 
 const ICON_SIZE = 18
 
@@ -39,25 +38,25 @@ const Sidebar: React.FC = () => {
             pageLink={"/a/orders"}
             icon={<DollarSignIcon size={ICON_SIZE} />}
             triggerHandler={triggerHandler}
-            text={"Orders"}
+            text={"Pedidos"}
           />
           <SidebarMenuItem
             pageLink={"/a/products"}
             icon={<TagIcon size={ICON_SIZE} />}
-            text={"Products"}
+            text={"Productos"}
             triggerHandler={triggerHandler}
           />
           <SidebarMenuItem
             pageLink={"/a/customers"}
             icon={<CustomerIcon size={ICON_SIZE} />}
             triggerHandler={triggerHandler}
-            text={"Customers"}
+            text={"Clientes"}
           />
           <SidebarMenuItem
             pageLink={"/a/discounts"}
             icon={<SaleIcon size={ICON_SIZE} />}
             triggerHandler={triggerHandler}
-            text={"Discounts"}
+            text={"Descuentos"}
           />
           <SidebarMenuItem
             pageLink={"/a/gift-cards"}
@@ -69,18 +68,14 @@ const Sidebar: React.FC = () => {
             pageLink={"/a/pricing"}
             icon={<CashIcon size={ICON_SIZE} />}
             triggerHandler={triggerHandler}
-            text={"Pricing"}
+            text={"Precios"}
           />
           <SidebarMenuItem
             pageLink={"/a/settings"}
             icon={<GearIcon size={ICON_SIZE} />}
             triggerHandler={triggerHandler}
-            text={"Settings"}
+            text={"Ajustes"}
           />
-        </div>
-
-        <div className="font-semibold mt-5 flex flex-col text-small">
-          <SidebarTeam />
         </div>
       </div>
     </div>

@@ -1,17 +1,15 @@
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
 import {
   useAdminCollection,
   useAdminDeleteCollection,
   useAdminUpdateCollection,
 } from "medusa-react"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import BackButton from "../../../components/atoms/back-button"
 import Spinner from "../../../components/atoms/spinner"
 import EditIcon from "../../../components/fundamentals/icons/edit-icon"
 import TrashIcon from "../../../components/fundamentals/icons/trash-icon"
 import Actionables from "../../../components/molecules/actionables"
-import Breadcrumb from "../../../components/molecules/breadcrumb"
 import ViewRaw from "../../../components/molecules/view-raw"
 import DeletePrompt from "../../../components/organisms/delete-prompt"
 import { MetadataField } from "../../../components/organisms/metadata"
@@ -23,14 +21,16 @@ import useNotification from "../../../hooks/use-notification"
 import Medusa from "../../../services/api"
 import { getErrorMessage } from "../../../utils/error-messages"
 
-const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
-  const ensuredPath = location!.pathname.replace("/a/collections/", ``)
-  const { collection, isLoading, refetch } = useAdminCollection(ensuredPath)
-  const deleteCollection = useAdminDeleteCollection(ensuredPath)
-  const updateCollection = useAdminUpdateCollection(ensuredPath)
+const CollectionDetails = () => {
+  const { id } = useParams()
+
+  const { collection, isLoading, refetch } = useAdminCollection(id!)
+  const deleteCollection = useAdminDeleteCollection(id!)
+  const updateCollection = useAdminUpdateCollection(id!)
   const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [showAddProducts, setShowAddProducts] = useState(false)
+  const navigate = useNavigate()
   const notification = useNotification()
   const [updates, setUpdates] = useState(0)
 
@@ -92,7 +92,11 @@ const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
       }
 
       setShowAddProducts(false)
-      notification("Success", "Updated products in collection", "success")
+      notification(
+        "Success",
+        "Productos actualizados en la colección.",
+        "success"
+      )
       refetch()
     } catch (error) {
       notification("Error", getErrorMessage(error), "error")
@@ -111,7 +115,7 @@ const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
         <BackButton
           className="mb-xsmall"
           path="/a/products?view=collections"
-          label="Back to Collections"
+          label="Volver a Colecciones"
         />
         <div className="rounded-rounded py-large px-xlarge border border-grey-20 bg-grey-0 mb-large">
           {isLoading || !collection ? (
@@ -129,12 +133,12 @@ const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
                     forceDropdown
                     actions={[
                       {
-                        label: "Edit Collection",
+                        label: "Editar colección",
                         onClick: () => setShowEdit(true),
                         icon: <EditIcon size="20" />,
                       },
                       {
-                        label: "Delete",
+                        label: "Eliminar",
                         onClick: () => setShowDelete(!showDelete),
                         variant: "danger",
                         icon: <TrashIcon size="20" />,
@@ -158,17 +162,18 @@ const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
           )}
         </div>
         <Section
-          title="Products"
+          title="Productos"
           actions={[
             {
-              label: "Edit Products",
+              label: "Editar productos",
               icon: <EditIcon size="20" />,
               onClick: () => setShowAddProducts(!showAddProducts),
             },
           ]}
         >
           <p className="text-grey-50 inter-base-regular mt-xsmall mb-base">
-            To start selling, all you need is a name, price, and image.
+            Para empezar a vender, todo lo que necesitas es un nombre, precio e
+            imagen.
           </p>
           {collection && (
             <ViewProductsTable
@@ -190,10 +195,10 @@ const CollectionDetails: React.FC<RouteComponentProps> = ({ location }) => {
       {showDelete && (
         <DeletePrompt
           handleClose={() => setShowDelete(!showDelete)}
-          heading="Delete collection"
-          successText="Successfully deleted collection"
+          heading="Eliminar colección"
+          successText="Colección eliminada con éxito"
           onDelete={async () => handleDelete()}
-          confirmText="Yes, delete"
+          confirmText="Si, eliminar"
         />
       )}
       {showAddProducts && (

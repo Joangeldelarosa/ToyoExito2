@@ -27,10 +27,11 @@ type PricesTableProps = {
 
 const PricesTable = ({ id, selectProduct }: PricesTableProps) => {
   const params = useQueryFilters(defaultQueryProps)
-  const { products, isLoading, count = 0 } = useAdminPriceListProducts(
-    id,
-    params.queryObject
-  )
+  const {
+    products,
+    isLoading,
+    count = 0,
+  } = useAdminPriceListProducts(id, params.queryObject)
   const columns = usePricesColumns()
 
   return (
@@ -66,7 +67,7 @@ const PricesTable = ({ id, selectProduct }: PricesTableProps) => {
         totalCount={count}
         options={{
           enableSearch: false,
-          searchPlaceholder: "Search by name or SKU...",
+          searchPlaceholder: "Buscar por nombre o codigo SKU...",
         }}
         {...params}
       />
@@ -105,20 +106,20 @@ const PricesTableRow = ({
 
   const actions = [
     {
-      label: "Edit prices",
+      label: "Editar precios",
       icon: <EditIcon size={20} />,
       onClick: onClick,
     },
     {
-      label: "Remove product",
+      label: "Eliminar producto",
       icon: <CancelIcon size={20} />,
       variant: "danger" as const,
       onClick: () => {
         deleteProductPrices.mutate(undefined, {
           onSuccess: () => {
             notification(
-              "Success",
-              `Deleted prices of product: ${product.title}`,
+              "Éxito",
+              `Han sido eliminados los precios del producto: ${product.title}`,
               "success"
             )
           },

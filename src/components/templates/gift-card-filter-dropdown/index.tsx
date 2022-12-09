@@ -111,13 +111,13 @@ const OrderFilters = ({
         triggerElement={
           <button
             className={clsx(
-              "flex rounded-rounded items-center space-x-1 focus-visible:outline-none focus-visible:shadow-input focus-visible:border-violet-60"
+              "flex rounded-rounded items-center space-x-1 focus-visible:outline-none focus-visible:shadow-input focus-visible:border-green-60"
             )}
           >
             <div className="flex rounded-rounded items-center bg-grey-5 border border-grey-20 inter-small-semibold px-2 h-6">
-              Filters
+              Filtros
               <div className="text-grey-40 ml-1 flex items-center rounded">
-                <span className="text-violet-60 inter-small-semibold">
+                <span className="text-green-60 inter-small-semibold">
                   {numberOfFilters ? numberOfFilters : "0"}
                 </span>
               </div>
@@ -129,28 +129,28 @@ const OrderFilters = ({
         }
       >
         <FilterDropdownItem
-          filterTitle="Status"
+          filterTitle="Estado"
           options={statusFilters}
           filters={tempState.status.filter}
           open={tempState.status.open}
           setFilter={(val) => setSingleFilter("status", val)}
         />
         <FilterDropdownItem
-          filterTitle="Payment Status"
+          filterTitle="Estado del pago"
           options={paymentFilters}
           filters={tempState.payment.filter}
           open={tempState.payment.open}
           setFilter={(val) => setSingleFilter("payment", val)}
         />
         <FilterDropdownItem
-          filterTitle="Fulfillment Status"
+          filterTitle="Estado de la entrega"
           options={fulfillmentFilters}
           filters={tempState.fulfillment.filter}
           open={tempState.fulfillment.open}
           setFilter={(val) => setSingleFilter("fulfillment", val)}
         />
         <FilterDropdownItem
-          filterTitle="Date"
+          filterTitle="Fecha"
           options={dateFilters}
           filters={tempState.date.filter}
           open={tempState.date.open}

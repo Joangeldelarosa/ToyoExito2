@@ -80,7 +80,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
       | typeof markClaimShipped
 
     let action: actionType = markOrderShipped
-    let successText = "Successfully marked order as shipped"
+    let successText = "Pedido marcado como enviado con éxito"
     let requestObj
 
     switch (type) {
@@ -92,7 +92,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
           tracking_numbers,
           no_notification: noNotis,
         }
-        successText = "Successfully marked swap as shipped"
+        successText = "El envio de la devolución se ha marcado como enviado"
         break
 
       case "claim":
@@ -102,7 +102,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
           claim_id: resourceId,
           tracking_numbers,
         }
-        successText = "Successfully marked claim as shipped"
+        successText = "El envio del reclamo se ha marcado como enviado"
         break
 
       default:
@@ -116,7 +116,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
 
     action.mutate(requestObj, {
       onSuccess: () => {
-        notification("Success", successText, "success")
+        notification("Éxito", successText, "success")
         handleCancel()
       },
       onError: (err) => notification("Error", getErrorMessage(err), "error"),
@@ -132,9 +132,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
       >
         <Modal.Body>
           <Modal.Header handleClose={handleCancel}>
-            <span className="inter-xlarge-semibold">
-              Mark Fulfillment Shipped
-            </span>
+            <span className="inter-xlarge-semibold">Marcar como enviado</span>
           </Modal.Header>
           <Modal.Content>
             <div className="flex flex-col">
@@ -171,7 +169,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
                 variant="secondary"
                 disabled={trackingNumbers.some((tn) => !tn.value)}
               >
-                + Add Additional Tracking Number
+                + Agregar otro tracking
               </Button>
             </div>
           </Modal.Content>
@@ -183,7 +181,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
               >
                 <div
                   className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                    !noNotis && "bg-violet-60"
+                    !noNotis && "bg-green-60"
                   }`}
                 >
                   <span className="self-center">
@@ -198,7 +196,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
                   type="checkbox"
                 />
                 <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                  Send notifications
+                  Enviar notificaciones
                   <IconTooltip content="" />
                 </span>
               </div>
@@ -210,7 +208,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
                   onClick={handleCancel}
                   type="button"
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button
                   size="large"
@@ -220,7 +218,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
                   loading={isSubmitting}
                   disabled={isSubmitting}
                 >
-                  Complete
+                  Completar
                 </Button>
               </div>
             </div>

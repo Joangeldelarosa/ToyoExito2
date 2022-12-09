@@ -92,11 +92,11 @@ const PriceOverrides = ({
           >
             <RadioGroup.SimpleItem
               value={MODES.SELECTED_ONLY}
-              label="Apply overrides on selected variants"
+              label="Aplicar nuevos valores en variantes seleccionadas"
             />
             <RadioGroup.SimpleItem
               value={MODES.APPLY_ALL}
-              label="Apply on all variants"
+              label="Aplicar en todas las variantes"
             />
           </RadioGroup.Root>
         )}
@@ -120,7 +120,7 @@ const PriceOverrides = ({
           </div>
         )}
         <div className="pt-8">
-          <h6 className="inter-base-semibold">Prices</h6>
+          <h6 className="inter-base-semibold">Precios</h6>
           <div className="pt-4">
             {prices.map((price, idx) => (
               <Controller
@@ -154,7 +154,7 @@ const PriceOverrides = ({
             size="large"
             onClick={onClose}
           >
-            Cancel
+            Cancelar
           </Button>
           <Button
             size="large"
@@ -163,7 +163,7 @@ const PriceOverrides = ({
             onClick={onClick}
             loading={isSubmitting}
           >
-            Save and close
+            Guardar y cerrar
           </Button>
         </div>
       </Modal.Footer>

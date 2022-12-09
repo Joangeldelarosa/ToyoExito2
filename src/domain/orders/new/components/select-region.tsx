@@ -38,7 +38,7 @@ const SelectRegionScreen = () => {
 
   return (
     <div className="flex flex-col min-h-[705px]">
-      <span className="inter-base-semibold mb-4">Choose region</span>
+      <span className="inter-base-semibold mb-4">Selecciona una región</span>
       <Controller
         control={control}
         name="region"

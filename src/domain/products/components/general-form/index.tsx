@@ -28,21 +28,21 @@ const GeneralForm = ({ form, requireHandle = true }: Props) => {
     <div>
       <div className="grid grid-cols-2 gap-x-large mb-small">
         <InputField
-          label="Title"
+          label="Titulo"
           placeholder="Winter Jacket"
           required
           {...register(path("title"), {
-            required: "Title is required",
+            required: "El titulo es requerido",
             minLength: {
               value: 1,
-              message: "Title must be at least 1 character",
+              message: "El titulo debe tener al menos 1 caracter",
             },
             pattern: FormValidator.whiteSpaceRule("Title"),
           })}
           errors={errors}
         />
         <InputField
-          label="Subtitle"
+          label="Subtitulo"
           placeholder="Warm and cozy..."
           {...register(path("subtitle"), {
             pattern: FormValidator.whiteSpaceRule("Subtitle"),
@@ -51,22 +51,25 @@ const GeneralForm = ({ form, requireHandle = true }: Props) => {
         />
       </div>
       <p className="inter-base-regular text-grey-50 mb-large">
-        Give your product a short and clear title.
+        Dale a tu producto un título breve y claro.
         <br />
-        50-60 characters is the recommended length for search engines.
+        50-60 caracteres es la longitud recomendada para los motores de
+        búsqueda.
       </p>
       <div className="grid grid-cols-2 gap-x-large mb-large">
         <InputField
-          label="Handle"
+          label="Identificador"
           tooltipContent={
             !requireHandle
-              ? "The handle is the part of the URL that identifies the product. If not specified, it will be generated from the title."
+              ? "El identificador es la parte de la URL que identifica el producto. Si no se especifica, se generará a partir del título."
               : undefined
           }
           placeholder="winter-jacket"
           required={requireHandle}
           {...register(path("handle"), {
-            required: requireHandle ? "Handle is required" : undefined,
+            required: requireHandle
+              ? "El identificador es requerido"
+              : undefined,
             minLength: FormValidator.minOneCharRule("Handle"),
             pattern: FormValidator.whiteSpaceRule("Handle"),
           })}
@@ -84,7 +87,7 @@ const GeneralForm = ({ form, requireHandle = true }: Props) => {
         />
       </div>
       <TextArea
-        label="Description"
+        label="Descripción"
         placeholder="A warm and cozy jacket..."
         rows={3}
         className="mb-small"
@@ -92,9 +95,10 @@ const GeneralForm = ({ form, requireHandle = true }: Props) => {
         errors={errors}
       />
       <p className="inter-base-regular text-grey-50">
-        Give your product a short and clear description.
+        Dé a su producto una descripción breve y clara.
         <br />
-        120-160 characters is the recommended length for search engines.
+        120-160 caracteres es la longitud recomendada para los motores de
+        búsqueda.
       </p>
     </div>
   )

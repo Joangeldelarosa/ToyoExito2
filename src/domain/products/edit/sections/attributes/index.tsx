@@ -15,7 +15,7 @@ const AttributesSection = ({ product }: Props) => {
 
   const actions: ActionType[] = [
     {
-      label: "Edit Attributes",
+      label: "Editar atributos",
       onClick: toggle,
       icon: <EditIcon size={20} />,
     },
@@ -23,23 +23,23 @@ const AttributesSection = ({ product }: Props) => {
 
   return (
     <>
-      <Section title="Attributes" actions={actions} forceDropdown>
+      <Section title="Attributos" actions={actions} forceDropdown>
         <div className="flex flex-col gap-y-xsmall mb-large mt-base">
-          <h2 className="inter-base-semibold">Dimensions</h2>
+          <h2 className="inter-base-semibold">Dimensiones</h2>
           <div className="flex flex-col gap-y-xsmall">
-            <Attribute attribute="Height" value={product.height} />
-            <Attribute attribute="Width" value={product.width} />
-            <Attribute attribute="Length" value={product.length} />
-            <Attribute attribute="Weight" value={product.weight} />
+            <Attribute attribute="Altura" value={product.height} />
+            <Attribute attribute="Ancho" value={product.width} />
+            <Attribute attribute="Largo" value={product.length} />
+            <Attribute attribute="Peso" value={product.weight} />
           </div>
         </div>
         <div className="flex flex-col gap-y-xsmall">
-          <h2 className="inter-base-semibold">Customs</h2>
+          <h2 className="inter-base-semibold">Personalizado</h2>
           <div className="flex flex-col gap-y-xsmall">
             <Attribute attribute="MID Code" value={product.mid_code} />
             <Attribute attribute="HS Code" value={product.hs_code} />
             <Attribute
-              attribute="Country of origin"
+              attribute="Ciudad de origen"
               value={product.origin_country}
             />
           </div>

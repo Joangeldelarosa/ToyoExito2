@@ -61,12 +61,12 @@ const DenominationTable: React.FC<DenominationTableProps> = ({
         color={"inherit"}
         actions={[
           {
-            label: "Edit denomination",
+            label: "Editar denominación",
             onClick: () => setEditDenom(denomination),
             icon: <EditIcon size={20} />,
           },
           {
-            label: "Delete denomination",
+            label: "Eliminar denominación",
             variant: "danger",
             onClick: () => setSelectedDenom(denomination.id),
             icon: <TrashIcon size={20} />,
@@ -94,8 +94,8 @@ const DenominationTable: React.FC<DenominationTableProps> = ({
       <Table>
         <Table.Head>
           <Table.HeadRow>
-            <Table.HeadCell>Default Value</Table.HeadCell>
-            <Table.HeadCell>Other Values</Table.HeadCell>
+            <Table.HeadCell>Valor por defecto</Table.HeadCell>
+            <Table.HeadCell>Otros valores</Table.HeadCell>
           </Table.HeadRow>
         </Table.Head>
         <Table.Body className="text-grey-90">
@@ -105,11 +105,11 @@ const DenominationTable: React.FC<DenominationTableProps> = ({
       {selectedDenom && (
         <DeletePrompt
           handleClose={() => setSelectedDenom(null)}
-          text="Are you sure you want to delete this denomination from your Medusa Store?"
-          heading="Delete denomination"
+          text="¿Está seguro de que desea eliminar esta denominación de su tienda?"
+          heading="Eliminar denominación"
           onDelete={() => handleDeleteDenomination()}
-          successText="Successfully deleted denomination"
-          confirmText="Yes, delete"
+          successText="La denominación ha sido eliminada"
+          confirmText="Si, eliminar"
         />
       )}
     </div>

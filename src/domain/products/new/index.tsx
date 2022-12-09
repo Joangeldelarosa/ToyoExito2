@@ -1,8 +1,8 @@
 import { AdminPostProductsReq } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import { useAdminCreateProduct } from "medusa-react"
 import React, { useEffect } from "react"
 import { useForm, useWatch } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import Button from "../../../components/fundamentals/button"
 import FeatureToggle from "../../../components/fundamentals/feature-toggle"
 import CrossIcon from "../../../components/fundamentals/icons/cross-icon"
@@ -52,6 +52,7 @@ const NewProduct = ({ onClose }: Props) => {
     defaultValues: createBlank(),
   })
   const { mutate } = useAdminCreateProduct()
+  const navigate = useNavigate()
   const notification = useNotification()
 
   const watchedCustoms = useWatch({
@@ -96,14 +97,14 @@ const NewProduct = ({ onClose }: Props) => {
           preppedImages = await prepareImages(data.media.images)
         } catch (error) {
           let errorMessage =
-            "Something went wrong while trying to upload images."
+            "Algo ocurrió mientras se subían las imágenes. Por favor, inténtalo de nuevo."
           const response = (error as any).response as Response
 
           if (response.status === 500) {
             errorMessage =
               errorMessage +
               " " +
-              "You might not have a file service configured. Please contact your administrator"
+              "Es posible que no tenga configurado un servicio de archivos. Póngase en contacto con su administrador"
           }
 
           notification("Error", errorMessage, "error")
@@ -121,14 +122,14 @@ const NewProduct = ({ onClose }: Props) => {
           preppedImages = await prepareImages(data.thumbnail.images)
         } catch (error) {
           let errorMessage =
-            "Something went wrong while trying to upload the thumbnail."
+            "Algo salió mal al intentar cargar la vista previa."
           const response = (error as any).response as Response
 
           if (response.status === 500) {
             errorMessage =
               errorMessage +
               " " +
-              "You might not have a file service configured. Please contact your administrator"
+              "Es posible que no tenga configurado un servicio de archivos. Póngase en contacto con su administrador"
           }
 
           notification("Error", errorMessage, "error")
@@ -171,7 +172,7 @@ const NewProduct = ({ onClose }: Props) => {
                 disabled={!isDirty}
                 onClick={onSubmit(false)}
               >
-                Save as draft
+                Guardar como borrador
               </Button>
               <Button
                 size="small"
@@ -180,7 +181,7 @@ const NewProduct = ({ onClose }: Props) => {
                 disabled={!isDirty}
                 onClick={onSubmit(true)}
               >
-                Publish product
+                Publicar producto
               </Button>
             </div>
           </div>
@@ -190,11 +191,12 @@ const NewProduct = ({ onClose }: Props) => {
             <Accordion defaultValue={["general"]} type="multiple">
               <Accordion.Item
                 value={"general"}
-                title="General information"
+                title="Información general"
                 required
               >
                 <p className="inter-base-regular text-grey-50">
-                  To start selling, all you need is a name and a price.
+                  Para comenzar a vender, todo lo que necesitas es un nombre y
+                  un precio.
                 </p>
                 <div className="mt-xlarge flex flex-col gap-y-xlarge">
                   <GeneralForm
@@ -204,14 +206,14 @@ const NewProduct = ({ onClose }: Props) => {
                   <DiscountableForm form={nestedForm(form, "discounted")} />
                 </div>
               </Accordion.Item>
-              <Accordion.Item title="Organize" value="organize">
+              <Accordion.Item title="Organiza" value="Organiza">
                 <p className="inter-base-regular text-grey-50">
-                  To start selling, all you need is a name and a price.
+                  Da mas detalles sobre tu producto.
                 </p>
                 <div className="mt-xlarge flex flex-col gap-y-xlarge pb-xsmall">
                   <div>
                     <h3 className="inter-base-semibold mb-base">
-                      Organize Product
+                      Organizar producto
                     </h3>
                     <OrganizeForm form={nestedForm(form, "organize")} />
                     <FeatureToggle featureFlag="sales_channels">
@@ -224,12 +226,12 @@ const NewProduct = ({ onClose }: Props) => {
                   </div>
                 </div>
               </Accordion.Item>
-              <Accordion.Item title="Variants" value="variants">
+              <Accordion.Item title="Variantes" value="variants">
                 <p className="text-grey-50 inter-base-regular">
-                  Add variations of this product.
+                  Agrega variantes de este producto
                   <br />
-                  Offer your customers different options for color, format,
-                  size, shape, etc.
+                  Ofrezca a sus clientes diferentes opciones de color, formato,
+                  tamaño, forma, etc
                 </p>
                 <div className="mt-large">
                   <AddVariantsForm
@@ -239,29 +241,29 @@ const NewProduct = ({ onClose }: Props) => {
                   />
                 </div>
               </Accordion.Item>
-              <Accordion.Item title="Attributes" value="attributes">
+              <Accordion.Item title="Atributos" value="attributes">
                 <p className="inter-base-regular text-grey-50">
-                  Used for shipping and customs purposes.
+                  Se utiliza para fines de envío y aduanas.
                 </p>
                 <div className="my-xlarge">
-                  <h3 className="inter-base-semibold mb-base">Dimensions</h3>
+                  <h3 className="inter-base-semibold mb-base">Dimensiones</h3>
                   <DimensionsForm form={nestedForm(form, "dimensions")} />
                 </div>
                 <div>
-                  <h3 className="inter-base-semibold mb-base">Customs</h3>
+                  <h3 className="inter-base-semibold mb-base">Personalizado</h3>
                   <CustomsForm form={nestedForm(form, "customs")} />
                 </div>
               </Accordion.Item>
-              <Accordion.Item title="Thumbnail" value="thumbnail">
+              <Accordion.Item title="Vista previa" value="thumbnail">
                 <p className="inter-base-regular text-grey-50 mb-large">
-                  Used to represent your product during checkout, social sharing
-                  and more.
+                  Se utiliza para representar su producto durante el pago, el
+                  intercambio social y más.
                 </p>
                 <ThumbnailForm form={nestedForm(form, "thumbnail")} />
               </Accordion.Item>
-              <Accordion.Item title="Media" value="media">
+              <Accordion.Item title="Medios" value="media">
                 <p className="inter-base-regular text-grey-50 mb-large">
-                  Add images to your product.
+                  Agrega imágenes de tu producto
                 </p>
                 <MediaForm form={nestedForm(form, "media")} />
               </Accordion.Item>

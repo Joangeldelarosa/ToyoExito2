@@ -1,6 +1,6 @@
-import { navigate } from "gatsby"
 import { useAdminCreateDraftOrder } from "medusa-react"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import { LayeredModalContext } from "../../../components/molecules/modal/layered-modal"
 import SteppedModal, {
   SteppedContext,
@@ -24,6 +24,7 @@ const NewOrder = ({ onDismiss }: NewOrderProps) => {
   const steppedContext = React.useContext(SteppedContext)
   const layeredContext = React.useContext(LayeredModalContext)
 
+  const navigate = useNavigate()
   const notification = useNotification()
   const { mutate } = useAdminCreateDraftOrder()
 
@@ -98,7 +99,7 @@ const NewOrder = ({ onDismiss }: NewOrderProps) => {
       },
       {
         onSuccess: ({ draft_order }) => {
-          notification("Success", "Order created", "success")
+          notification("Éxito", "Pedido creado", "success")
           reset()
           onDismiss()
           steppedContext.reset()
@@ -125,7 +126,7 @@ const NewOrder = ({ onDismiss }: NewOrderProps) => {
         <Summary />,
       ]}
       lastScreenIsSummary={true}
-      title={"Create Draft Order"}
+      title={"Crear borrador de pedido"}
       handleClose={onDismiss}
     />
   )

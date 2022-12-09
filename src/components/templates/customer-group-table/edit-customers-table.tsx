@@ -74,26 +74,21 @@ type EditCustomersTableProps = {
  * Container for the "edit customers" table.
  */
 function EditCustomersTable(props: EditCustomersTableProps) {
-  const {
-    setSelectedCustomerIds,
-    selectedCustomerIds,
-    handleSubmit,
-    onClose,
-  } = props
+  const { setSelectedCustomerIds, selectedCustomerIds, handleSubmit, onClose } =
+    props
 
-  const {
-    paginate,
-    setQuery,
-    setFilters,
-    filters,
-    queryObject,
-  } = useQueryFilters(defaultQueryProps)
+  const { paginate, setQuery, setFilters, filters, queryObject } =
+    useQueryFilters(defaultQueryProps)
 
   const [numPages, setNumPages] = useState(0)
   const [activeGroupId, setActiveGroupId] = useState()
 
   const { customer_groups } = useAdminCustomerGroups({ expand: "customers" })
-  const { customers = [], count = 0, isLoading } = useAdminCustomers({
+  const {
+    customers = [],
+    count = 0,
+    isLoading,
+  } = useAdminCustomers({
     ...queryObject,
     groups: activeGroupId ? [activeGroupId] : null,
   })
@@ -136,10 +131,10 @@ function EditCustomersTable(props: EditCustomersTableProps) {
 
   const filteringOptions = [
     {
-      title: "Groups",
+      title: "Grupos",
       options: [
         {
-          title: "All",
+          title: "Todo",
           onClick: () => setActiveGroupId(null),
         },
         ...(customer_groups || []).map((g) => ({
@@ -181,7 +176,7 @@ function EditCustomersTable(props: EditCustomersTableProps) {
     <Modal handleClose={onClose}>
       <Modal.Body>
         <Modal.Header handleClose={onClose}>
-          <h3 className="inter-xlarge-semibold">Edit Customers</h3>
+          <h3 className="inter-xlarge-semibold">Editar clientes</h3>
         </Modal.Header>
 
         <Modal.Content>
@@ -193,7 +188,7 @@ function EditCustomersTable(props: EditCustomersTableProps) {
               count: count!,
               offset: queryObject.offset,
               pageSize: queryObject.offset + table.rows.length,
-              title: "Customers",
+              title: "Clientes",
               currentPage: table.state.pageIndex + 1,
               pageCount: table.pageCount,
               nextPage: handleNext,
@@ -233,7 +228,7 @@ function EditCustomersTable(props: EditCustomersTableProps) {
               className="w-eventButton"
               onClick={onClose}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -241,7 +236,7 @@ function EditCustomersTable(props: EditCustomersTableProps) {
               className="w-eventButton"
               onClick={handleSubmit}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

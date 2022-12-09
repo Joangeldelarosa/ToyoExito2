@@ -118,7 +118,7 @@ const AmountAndCurrencyInput = ({
               allowNegativeValue={false}
               placeholder="-"
               decimalScale={decimal_digits}
-              className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-violet-60 placeholder-grey-40 text-right"
+              className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40 text-right"
             />
             <div className="flex items-center min-w-[16px] ml-2xsmall">
               <p className="text-grey-40 w-full text-right">{symbol_native}</p>

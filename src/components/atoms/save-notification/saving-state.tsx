@@ -11,8 +11,8 @@ type SavingStateProps = {
 
 const SavingState: React.FC<SavingStateProps> = ({
   toast,
-  title = "Saving changes",
-  message = "Hang on, this may take a few moments.",
+  title = "Guardando cambios",
+  message = "Estamos guardando tus cambios. Por favor, espera un momento.",
 }) => {
   return (
     <ToasterContainer visible={toast.visible} className="w-[448px]">

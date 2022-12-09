@@ -15,7 +15,7 @@ export const ProductTypeSelector = ({ items, onChange }) => {
   const columns = useMemo(() => {
     return [
       {
-        Header: "Name",
+        Header: "Nombre",
         accessor: "value",
         Cell: ({ row: { original } }) => {
           return <div className="w-[200px]">{original.value}</div>
@@ -27,7 +27,7 @@ export const ProductTypeSelector = ({ items, onChange }) => {
   return (
     <SelectableTable
       showSearch={false}
-      label="Select Product Types"
+      label="Seleccionar tipos de producto"
       objectName="Product Types"
       totalCount={count}
       pagination={pagination}

@@ -13,8 +13,8 @@ type SavingStateProps = {
 
 const SuccessState: React.FC<SavingStateProps> = ({
   toast,
-  title = "Success",
-  message = "Your changes have been saved.",
+  title = "Cambios guardados",
+  message = "Tus cambios han sido guardados con éxito.",
   onDismiss,
 }) => {
   useEffect(() => {
@@ -40,7 +40,7 @@ const SuccessState: React.FC<SavingStateProps> = ({
         <button onClick={onDismiss}>
           <CrossIcon size={20} className="text-grey-40" />
         </button>
-        <span className="sr-only">Close</span>
+        <span className="sr-only">Cerrar</span>
       </div>
     </ToasterContainer>
   )

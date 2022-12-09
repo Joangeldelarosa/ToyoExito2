@@ -1,7 +1,5 @@
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
 import { useAdminProduct } from "medusa-react"
-import React from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import BackButton from "../../../components/atoms/back-button"
 import Spinner from "../../../components/atoms/spinner"
 import { getErrorStatus } from "../../../utils/get-error-status"
@@ -12,15 +10,14 @@ import RawSection from "./sections/raw"
 import ThumbnailSection from "./sections/thumbnail"
 import VariantsSection from "./sections/variants"
 
-interface EditProps extends RouteComponentProps {
-  id?: string
-}
+const Edit = () => {
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-const Edit = ({ id }: EditProps) => {
   const { product, status, error } = useAdminProduct(id || "")
 
   if (error) {
-    let message = "An unknown error occurred"
+    let message = "Un error desconocido ocurrió"
 
     const errorStatus = getErrorStatus(error)
 
@@ -51,7 +48,7 @@ const Edit = ({ id }: EditProps) => {
     <div className="pb-5xlarge">
       <BackButton
         path="/a/products"
-        label="Back to Products"
+        label="Volver a productos"
         className="mb-xsmall"
       />
       <div className="grid grid-cols-12 gap-x-base">

@@ -38,10 +38,8 @@ const ProductPrices = ({
   onFileChosen,
 }: ProductPricesProps) => {
   const [showAdd, setShowAdd] = React.useState(false)
-  const [
-    selectedVariant,
-    setSelectedVariant,
-  ] = React.useState<ProductVariant | null>(null)
+  const [selectedVariant, setSelectedVariant] =
+    React.useState<ProductVariant | null>(null)
   const unselect = () => setSelectedVariant(null)
 
   const { prices, setPrices } = usePriceListForm()
@@ -62,14 +60,14 @@ const ProductPrices = ({
   const getVariantActions = (variant) => {
     return [
       {
-        label: "Edit prices",
+        label: "Editar precios",
         icon: <EditIcon />,
         onClick: () => {
           setSelectedVariant(variant)
         },
       },
       {
-        label: "Remove from list",
+        label: "Eliminar de la lista",
         icon: <TrashIcon size={20} />,
         onClick: () => {
           // missing core support
@@ -103,7 +101,7 @@ const ProductPrices = ({
         {onSearch && (
           <div className="mb-2">
             <InputField
-              placeholder="Search by name or SKU..."
+              placeholder="Buscar por nombre o codigo SKU..."
               prefix={<SearchIcon />}
               onChange={onChange}
             />
@@ -131,7 +129,7 @@ const ProductPrices = ({
           onClick={() => setShowAdd(true)}
         >
           <PlusIcon />
-          Add Products Manually
+          Agregar productos manualmente
         </Button>
       </div>
 
@@ -145,7 +143,7 @@ const ProductPrices = ({
             text={
               <span>
                 Drop your price list file here, or{" "}
-                <span className="text-violet-60">click to browse</span>
+                <span className="text-green-60">click to browse</span>
               </span>
             }
           />
@@ -163,7 +161,7 @@ const ProductPrices = ({
         <Modal open handleClose={unselect}>
           <Modal.Body>
             <Modal.Header handleClose={unselect}>
-              <h2 className="inter-xlarge-semibold">Edit Prices</h2>
+              <h2 className="inter-xlarge-semibold">Editar precios</h2>
             </Modal.Header>
 
             <PriceOverrides

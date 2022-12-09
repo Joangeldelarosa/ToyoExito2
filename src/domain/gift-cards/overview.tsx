@@ -1,13 +1,11 @@
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
 import {
   useAdminDeleteProduct,
-  useAdminGiftCards,
   useAdminProducts,
   useAdminStore,
   useAdminUpdateProduct,
 } from "medusa-react"
 import React, { useMemo, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import PageDescription from "../../components/atoms/page-description"
 import Spinner from "../../components/atoms/spinner"
 import PlusIcon from "../../components/fundamentals/icons/plus-icon"
@@ -22,18 +20,18 @@ import { getErrorMessage } from "../../utils/error-messages"
 import CustomGiftcard from "./custom-giftcard"
 import NewGiftCard from "./new"
 
-const Overview: React.FC<RouteComponentProps> = () => {
+const Overview = () => {
   const { products, isLoading } = useAdminProducts({
     is_giftcard: true,
   })
   const { store } = useAdminStore()
-  const { gift_cards: giftCards } = useAdminGiftCards()
   const [showCreate, setShowCreate] = useState(false)
   const [showCreateCustom, setShowCreateCustom] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
 
   const giftCard = products?.[0]
 
+  const navigate = useNavigate()
   const notification = useNotification()
   const updateGiftCard = useAdminUpdateProduct(giftCard?.id!)
   const deleteGiftCard = useAdminDeleteProduct(giftCard?.id!)
@@ -49,7 +47,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
       { status },
       {
         onSuccess: () =>
-          notification("Success", "Successfully updated Gift Card", "success"),
+          notification("Éxito", "Successfully updated Gift Card", "success"),
         onError: (err) => notification("Error", getErrorMessage(err), "error"),
       }
     )
@@ -84,7 +82,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
       <div className="flex flex-col grow h-full pb-xlarge">
         <PageDescription
           title="Gift Cards"
-          subtitle="Manage the Gift Cards of your Medusa store"
+          subtitle="Administra las Gift Cards de tu tienda"
         />
         {!isLoading ? (
           <>
@@ -97,14 +95,14 @@ const Overview: React.FC<RouteComponentProps> = () => {
                   onUnpublish={onUpdate}
                 />
               ) : (
-                <BannerCard title="Are you ready to sell your first Gift Card?">
+                <BannerCard title="¿Estás listo para vender tu primera tarjeta de regalo?">
                   <BannerCard.Description
                     cta={{
-                      label: "Create Gift Card",
+                      label: "Crear Gift Card",
                       onClick: () => setShowCreate(true),
                     }}
                   >
-                    No Gift Card has been added yet.
+                    Aún no se ha agregado ninguna Gift Card.
                   </BannerCard.Description>
                 </BannerCard>
               )}
@@ -112,8 +110,9 @@ const Overview: React.FC<RouteComponentProps> = () => {
             <div className="w-full flex flex-col grow">
               <BodyCard
                 title="History"
-                subtitle="See the history of purchased Gift Cards"
+                subtitle="Ver el historial de tarjetas de regalo compradas"
                 actionables={actionables}
+                className="h-fit"
               >
                 <GiftCardTable />
               </BodyCard>
@@ -133,9 +132,9 @@ const Overview: React.FC<RouteComponentProps> = () => {
         <DeletePrompt
           handleClose={() => setShowDelete(!showDelete)}
           onDelete={async () => onDelete()}
-          successText="Successfully deleted Gift Card"
-          confirmText="Yes, delete"
-          heading="Delete Gift Card"
+          successText="La Gift Card ha sido eliminada"
+          confirmText="Si, eliminar"
+          heading="Eliminar Gift Card"
         />
       )}
     </>

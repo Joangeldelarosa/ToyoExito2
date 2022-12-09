@@ -1,7 +1,7 @@
 import { Product } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import { useAdminDeleteProduct, useAdminUpdateProduct } from "medusa-react"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import useImperativeDialog from "../../../hooks/use-imperative-dialog"
 import useNotification from "../../../hooks/use-notification"
 import { getErrorMessage } from "../../../utils/error-messages"
@@ -14,6 +14,7 @@ import { ActionType } from "../../molecules/actionables"
 import useCopyProduct from "./use-copy-product"
 
 const useProductActions = (product: Product) => {
+  const navigate = useNavigate()
   const notification = useNotification()
   const dialog = useImperativeDialog()
   const copyProduct = useCopyProduct()
@@ -22,8 +23,8 @@ const useProductActions = (product: Product) => {
 
   const handleDelete = async () => {
     const shouldDelete = await dialog({
-      heading: "Delete Product",
-      text: "Are you sure you want to delete this product?",
+      heading: "Eliminar producto",
+      text: "¿Está seguro de que desea eliminar este producto?",
     })
 
     if (shouldDelete) {
@@ -33,12 +34,12 @@ const useProductActions = (product: Product) => {
 
   const getActions = (): ActionType[] => [
     {
-      label: "Edit",
+      label: "Editar",
       onClick: () => navigate(`/a/products/${product.id}`),
       icon: <EditIcon size={20} />,
     },
     {
-      label: product.status === "published" ? "Unpublish" : "Publish",
+      label: product.status === "published" ? "Ocultar" : "Publicar",
       onClick: () => {
         const newStatus = product.status === "published" ? "draft" : "published"
         updateProduct.mutate(
@@ -48,10 +49,10 @@ const useProductActions = (product: Product) => {
           {
             onSuccess: () => {
               notification(
-                "Success",
-                `Successfully ${
-                  product.status === "published" ? "unpublished" : "published"
-                } product`,
+                "Éxito",
+                `Se ha ${
+                  product.status === "published" ? "ocultado" : "publicado"
+                } el producto`,
                 "success"
               )
             },
@@ -68,12 +69,12 @@ const useProductActions = (product: Product) => {
         ),
     },
     {
-      label: "Duplicate",
+      label: "Duplicar",
       onClick: () => copyProduct(product),
       icon: <DuplicateIcon size={20} />,
     },
     {
-      label: "Delete",
+      label: "Eliminar",
       variant: "danger",
       onClick: handleDelete,
       icon: <TrashIcon size={20} />,

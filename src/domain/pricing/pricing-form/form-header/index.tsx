@@ -1,6 +1,6 @@
-import { navigate } from "gatsby"
 import { useAdminCreatePriceList, useAdminUpdatePriceList } from "medusa-react"
 import React, { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import Button from "../../../../components/fundamentals/button"
 import CrossIcon from "../../../../components/fundamentals/icons/cross-icon"
 import { FeatureFlagContext } from "../../../../context/feature-flag"
@@ -23,6 +23,7 @@ import {
 
 const FormHeader = (props: PriceListFormProps & { onClose?: () => void }) => {
   const { handleSubmit } = usePriceListForm()
+  const navigate = useNavigate()
   const notification = useNotification()
 
   const closeForm = () => {
@@ -75,7 +76,11 @@ const FormHeader = (props: PriceListFormProps & { onClose?: () => void }) => {
     }
     updatePriceList.mutate(data, {
       onSuccess: ({ price_list }) => {
-        notification("Success", "Successfully updated price list", "success")
+        notification(
+          "Éxito",
+          "Se actualizo la lista de precios correctamente",
+          "success"
+        )
         closeForm()
       },
       onError: (error) => {
@@ -101,31 +106,31 @@ const FormHeader = (props: PriceListFormProps & { onClose?: () => void }) => {
   switch (props.viewType) {
     case ViewType.CREATE:
       mainAction = {
-        label: "Publish price list",
+        label: "Publicar lista de precios",
         onClick: handleSubmit(onPublish),
       }
       secondaryAction = {
-        label: "Save as draft",
+        label: "Guardar como borrador",
         onClick: handleSubmit(onSaveAsDraft),
       }
       break
     case ViewType.EDIT_DETAILS:
       mainAction = {
-        label: "Save changes",
+        label: "Guardar cambios",
         onClick: handleSubmit(onUpdateDetails),
       }
       secondaryAction = {
-        label: "Cancel",
+        label: "Cancelar",
         onClick: closeForm,
       }
       break
     case ViewType.EDIT_PRICES:
       mainAction = {
-        label: "Save changes",
+        label: "Guardar cambios",
         onClick: handleSubmit(onUpdatePrices),
       }
       secondaryAction = {
-        label: "Cancel",
+        label: "Cancelar",
         onClick: closeForm,
       }
       break

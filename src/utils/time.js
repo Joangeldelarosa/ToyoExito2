@@ -1,4 +1,5 @@
 import moment from "moment"
+moment.locale("es")
 
 export const dateToUnixTimestamp = (date) => {
   if (date instanceof Date) {

@@ -49,7 +49,8 @@ const EditConditionsModal = ({ open, condition, discount, onClose }: Props) => {
         <Modal.Body>
           <Modal.Header handleClose={onClose}>
             <h1 className="inter-xlarge-semibold">
-              Edit {capitalize(getTitle(condition?.type))} in Discount Condition
+              Editar {capitalize(getTitle(condition?.type))} en condiciones de
+              descuento
             </h1>
           </Modal.Header>
           {renderModalContext()}
@@ -61,7 +62,7 @@ const EditConditionsModal = ({ open, condition, discount, onClose }: Props) => {
                 type="button"
                 onClick={onClose}
               >
-                Close
+                Cerrar
               </Button>
             </div>
           </Modal.Footer>

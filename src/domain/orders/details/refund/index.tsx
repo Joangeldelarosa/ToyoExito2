@@ -24,8 +24,8 @@ type RefundMenuFormData = {
 }
 
 const reasonOptions = [
-  { label: "Discount", value: "discount" },
-  { label: "Other", value: "other" },
+  { label: "Descuento", value: "discount" },
+  { label: "Otro", value: "other" },
 ]
 
 type RefundMenuProps = {
@@ -71,7 +71,7 @@ const RefundMenu = ({
       },
       {
         onSuccess: () => {
-          notification("Success", "Successfully refunded order", "success")
+          notification("Éxito", "Pedido reembolsado correctamente", "success")
           onDismiss()
         },
         onError: (error) => {
@@ -88,7 +88,7 @@ const RefundMenu = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Modal.Header handleClose={onDismiss}>
-            <h2 className="inter-xlarge-semibold">Create a refund</h2>
+            <h2 className="inter-xlarge-semibold">Crear un reembolso</h2>
           </Modal.Header>
           <Modal.Content>
             {isSystemPayment && (
@@ -97,14 +97,13 @@ const RefundMenu = ({
                   <AlertIcon size={20} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="inter-small-semibold">Attention!</span>
-                  One or more of your payments is a system payment. Be aware,
-                  that captures and refunds are not handled by Medusa for such
-                  payments.
+                  <span className="inter-small-semibold">Atención</span>
+                  Uno o más de sus pagos es un pago manual. ser consciente, que
+                  las capturas y devoluciones no son manejadas por el sistema.
                 </div>
               </div>
             )}
-            <span className="inter-base-semibold">Details</span>
+            <span className="inter-base-semibold">Detalles</span>
             <div className="grid gap-y-base mt-4">
               <CurrencyInput.Root
                 size="small"
@@ -124,10 +123,10 @@ const RefundMenu = ({
                   }}
                   render={({ field: { value, onChange, onBlur } }) => (
                     <CurrencyInput.Amount
-                      label={"Refund Amount"}
+                      label={"Cantidad de reembolso"}
                       amount={value}
                       onBlur={onBlur}
-                      invalidMessage={`Cannot refund more than the order's net total.`}
+                      invalidMessage={`No se puede reembolsar más que el total neto del pedido.`}
                       onValidate={handleValidateRefundAmount}
                       onChange={onChange}
                     />
@@ -137,11 +136,11 @@ const RefundMenu = ({
               <Controller
                 name="reason"
                 control={control}
-                defaultValue={{ label: "Discount", value: "discount" }}
+                defaultValue={{ label: "Descuento", value: "discount" }}
                 rules={{ required: true }}
                 render={({ field: { value, onChange } }) => (
                   <Select
-                    label="Reason"
+                    label="Razón"
                     options={reasonOptions}
                     value={value}
                     onChange={onChange}
@@ -150,7 +149,7 @@ const RefundMenu = ({
               />
               <TextArea
                 {...register("note")}
-                label="Note"
+                label="Nota"
                 placeholder="Discount for loyal customer"
               />
             </div>
@@ -163,7 +162,7 @@ const RefundMenu = ({
               >
                 <div
                   className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                    !noNotification && "bg-violet-60"
+                    !noNotification && "bg-green-60"
                   }`}
                 >
                   <span className="self-center">
@@ -179,7 +178,7 @@ const RefundMenu = ({
                   type="checkbox"
                 />
                 <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                  Send notifications
+                  Enviar notificaciones
                   <IconTooltip content="Notify customer of created return" />
                 </span>
               </div>
@@ -190,7 +189,7 @@ const RefundMenu = ({
                   className="w-[112px]"
                   variant="ghost"
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button
                   type="submit"
@@ -200,7 +199,7 @@ const RefundMenu = ({
                   loading={isLoading}
                   disabled={isLoading}
                 >
-                  Complete
+                  Completar
                 </Button>
               </div>
             </div>

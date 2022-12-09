@@ -1,10 +1,11 @@
-import { navigate } from "gatsby"
 import { useAdminCreateDiscount } from "medusa-react"
+import { useNavigate } from "react-router-dom"
 import useNotification from "../../../hooks/use-notification"
 import { getErrorMessage } from "../../../utils/error-messages"
 import { removeNullish } from "../../../utils/remove-nullish"
 
 const useCopyPromotion = () => {
+  const navigate = useNavigate()
   const notification = useNotification()
   const createPromotion = useAdminCreateDiscount()
 
@@ -59,7 +60,7 @@ const useCopyPromotion = () => {
     await createPromotion.mutate(copy, {
       onSuccess: (result) => {
         navigate(`/a/discounts/${result.discount.id}`)
-        notification("Success", "Successfully copied discount", "success")
+        notification("Éxito", "Descuento copiado con éxito", "success")
       },
       onError: (err) => {
         notification("Error", getErrorMessage(err), "error")

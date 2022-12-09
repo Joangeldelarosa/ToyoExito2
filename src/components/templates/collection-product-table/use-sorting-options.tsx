@@ -6,9 +6,8 @@ import { SimpleProductType } from "./utils"
 
 const useSortingOptions = (products: SimpleProductType[]) => {
   const [options, setOptions] = useState<FilteringOptionProps[]>([])
-  const [sortedProducts, setSortedProducts] = useState<SimpleProductType[]>(
-    products
-  )
+  const [sortedProducts, setSortedProducts] =
+    useState<SimpleProductType[]>(products)
 
   const sortByTitle = (a: SimpleProductType, b: SimpleProductType) => {
     if (a.title < b.title) {
@@ -43,16 +42,16 @@ const useSortingOptions = (products: SimpleProductType[]) => {
   useEffect(() => {
     setOptions([
       {
-        title: "Sort by",
+        title: "Ordenar por",
         options: [
           {
-            title: "All",
+            title: "Todo",
             onClick: () => {
               setSortedProducts(products)
             },
           },
           {
-            title: "Newest",
+            title: "Mas nuevo",
             onClick: () => {
               const sorted = products.sort(sortByNewest)
               console.log(sorted)
@@ -60,7 +59,7 @@ const useSortingOptions = (products: SimpleProductType[]) => {
             },
           },
           {
-            title: "Oldest",
+            title: "Mas viejo",
             onClick: () => {
               const sorted = products.sort(sortByOldest)
               console.log(sorted)
@@ -68,7 +67,7 @@ const useSortingOptions = (products: SimpleProductType[]) => {
             },
           },
           {
-            title: "Title",
+            title: "Titulo",
             onClick: () => {
               const sorted = products.sort(sortByTitle)
               console.log(sorted)

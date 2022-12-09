@@ -30,7 +30,7 @@ const ShippingOptionCard = ({ option }: Props) => {
   const handleDeleteOption = () => {
     mutate(undefined, {
       onSuccess: () => {
-        notification("Success", "Shipping option has been deleted", "success")
+        notification("Éxito", "Shipping option has been deleted", "success")
       },
       onError: (error) => {
         notification("Error", getErrorMessage(error), "error")

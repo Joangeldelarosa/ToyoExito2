@@ -43,13 +43,13 @@ export function CustomerGroupContextContainer(
     const isEdit = !!props.group
     const method = isEdit ? updateGroup : createGroup
 
-    const message = `Successfully ${
-      isEdit ? "edited" : "created"
-    } the customer group`
+    const message = `Exitosamente ${
+      isEdit ? "editado" : "creado"
+    } el grupo de clientes`
 
     method(data, {
       onSuccess: () => {
-        notification("Success", message, "success")
+        notification("Éxito", message, "success")
         hideModal()
       },
       onError: (err) => notification("Error", getErrorMessage(err), "error"),

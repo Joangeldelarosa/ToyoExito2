@@ -1,7 +1,7 @@
 import { CustomerGroup } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import { useAdminCustomerGroups } from "medusa-react"
 import React, { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   HeaderGroup,
   Row,
@@ -90,16 +90,18 @@ type CustomerGroupsTableRowProps = {
  */
 function CustomerGroupsTableRow(props: CustomerGroupsTableRowProps) {
   const { row } = props
+
+  const navigate = useNavigate()
   const { showModal } = useContext(CustomerGroupContext)
 
   const actions = [
     {
-      label: "Edit",
+      label: "Editar",
       onClick: showModal,
       icon: <EditIcon size={20} />,
     },
     {
-      label: "Details",
+      label: "Detalles",
       onClick: () => navigate(row.original.id),
       icon: <DetailsIcon size={20} />,
     },
@@ -135,14 +137,8 @@ type CustomerGroupsTableProps = ReturnType<typeof useQueryFilters> & {
  * Root component of the customer groups table.
  */
 function CustomerGroupsTable(props: CustomerGroupsTableProps) {
-  const {
-    customerGroups,
-    queryObject,
-    count,
-    paginate,
-    setQuery,
-    isLoading,
-  } = props
+  const { customerGroups, queryObject, count, paginate, setQuery, isLoading } =
+    props
 
   const tableConfig: TableOptions<CustomerGroup> = {
     columns: CUSTOMER_GROUPS_TABLE_COLUMNS,
@@ -201,7 +197,7 @@ function CustomerGroupsTable(props: CustomerGroupsTableProps) {
         count: count,
         offset: queryObject.offset,
         pageSize: queryObject.offset + table.rows.length,
-        title: "Customer groups",
+        title: "Grupos de clientes",
         currentPage: table.state.pageIndex + 1,
         pageCount: table.pageCount,
         nextPage: handleNext,
@@ -246,9 +242,11 @@ function CustomerGroupsTable(props: CustomerGroupsTableProps) {
 function CustomerGroupsTableContainer() {
   const params = useQueryFilters(defaultQueryProps)
 
-  const { customer_groups, isLoading, count = 0 } = useAdminCustomerGroups(
-    params.queryObject
-  )
+  const {
+    customer_groups,
+    isLoading,
+    count = 0,
+  } = useAdminCustomerGroups(params.queryObject)
 
   useSetSearchParams(params.representationObject)
 

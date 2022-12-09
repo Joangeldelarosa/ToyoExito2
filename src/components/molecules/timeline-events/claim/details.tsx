@@ -10,10 +10,10 @@ import Table from "../../../../components/molecules/table"
 import { formatAmountWithSymbol } from "../../../../utils/prices"
 
 const reasonOptions = {
-  missing_item: "Missing Item",
-  wrong_item: "Wrong Item",
-  production_failure: "Production Failure",
-  other: "Other",
+  missing_item: "Producto perdido",
+  wrong_item: "Producto equivocado",
+  production_failure: "Falla de producción",
+  other: "Otro",
 }
 
 const ClaimDetails = ({ claim, order, onDismiss }) => {
@@ -27,19 +27,19 @@ const ClaimDetails = ({ claim, order, onDismiss }) => {
     >
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Claim Details</h2>
+          <h2 className="inter-xlarge-semibold">Detalles de reclamo</h2>
         </Modal.Header>
         <Modal.Content>
           <div>
-            <h3 className="inter-base-semibold">Claimed Items</h3>
+            <h3 className="inter-base-semibold">Productos reclamados</h3>
             <Table>
               <Table.HeadRow className="text-grey-50 inter-small-semibold">
-                <Table.HeadCell>Product Details</Table.HeadCell>
+                <Table.HeadCell>Detalles del producto</Table.HeadCell>
                 <Table.HeadCell className="text-right pr-8">
-                  Quantity
+                  Cantidad
                 </Table.HeadCell>
                 <Table.HeadCell className="text-right">
-                  Unit Price
+                  Precio unitario
                 </Table.HeadCell>
                 <Table.HeadCell></Table.HeadCell>
               </Table.HeadRow>
@@ -99,7 +99,7 @@ const ClaimDetails = ({ claim, order, onDismiss }) => {
                                 <span className="ml-2">
                                   {claimItem.images?.length > 0 && (
                                     <>
-                                      ({claimItem.images?.length} image
+                                      ({claimItem.images?.length} imagen
                                       {claimItem.images?.length > 1 ? "s" : ""})
                                     </>
                                   )}
@@ -123,7 +123,7 @@ const ClaimDetails = ({ claim, order, onDismiss }) => {
                               size="small"
                               className="border border-grey-20"
                             >
-                              View
+                              Ver
                             </Button>
                           </div>
                         </Table.Cell>
@@ -144,7 +144,7 @@ const ClaimDetails = ({ claim, order, onDismiss }) => {
                 size="small"
                 variant="primary"
               >
-                Done
+                Listo
               </Button>
             </div>
           </div>
@@ -158,13 +158,13 @@ export default ClaimDetails
 
 const ReasonDetails = (pop, claimItem) => {
   return {
-    title: "Claim Item",
+    title: "Reclamo de producto",
     onBack: () => pop(),
     view: (
       <>
         <Modal.Content>
           <div className="h-full">
-            <h2 className="inter-base-semibold mb-4">Claim Reason</h2>
+            <h2 className="inter-base-semibold mb-4">Razón del reclamo</h2>
             <div className="mb-8 text-grey-50 inter-small-semibold">
               {reasonOptions[claimItem.reason]}
             </div>
@@ -194,7 +194,7 @@ const ReasonDetails = (pop, claimItem) => {
                 pop()
               }}
             >
-              Back
+              Atras
             </Button>
           </div>
         </Modal.Footer>

@@ -112,9 +112,9 @@ const RMASelectProductTable: React.FC<RMASelectProductTableProps> = ({
     <Table>
       <Table.Head className="border-none">
         <Table.HeadRow className="text-grey-50 inter-small-semibold">
-          <Table.HeadCell colSpan={2}>Product Details</Table.HeadCell>
-          <Table.HeadCell className="text-right pr-8">Quantity</Table.HeadCell>
-          <Table.HeadCell className="text-right">Refundable</Table.HeadCell>
+          <Table.HeadCell colSpan={2}>Detalles del producto</Table.HeadCell>
+          <Table.HeadCell className="text-right pr-8">Cantidad</Table.HeadCell>
+          <Table.HeadCell className="text-right">Reintegrable</Table.HeadCell>
           <Table.HeadCell></Table.HeadCell>
         </Table.HeadRow>
       </Table.Head>
@@ -137,7 +137,7 @@ const RMASelectProductTable: React.FC<RMASelectProductTableProps> = ({
                     <div
                       onClick={() => handleReturnToggle(item)}
                       className={`mr-4 w-5 h-5 flex justify-center text-grey-0 border-grey-30 border cursor-pointer rounded-base ${
-                        checked && "bg-violet-60"
+                        checked && "bg-green-60"
                       }`}
                     >
                       <span className="self-center">
@@ -231,7 +231,7 @@ const RMASelectProductTable: React.FC<RMASelectProductTableProps> = ({
                           <span className="ml-2">
                             {toReturn[item.id]?.images?.length > 0 && (
                               <>
-                                ({toReturn[item.id]?.images?.length} image{" "}
+                                ({toReturn[item.id]?.images?.length} imagen{" "}
                                 {toReturn[item.id]?.images?.length > 1
                                   ? "s"
                                   : ""}
@@ -263,7 +263,7 @@ const RMASelectProductTable: React.FC<RMASelectProductTableProps> = ({
                         size="small"
                         className="border border-grey-20"
                       >
-                        Select Reason
+                        Selecciona una razón
                       </Button>
                     </div>
                   </Table.Cell>

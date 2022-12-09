@@ -23,9 +23,8 @@ import { useNewOrderForm } from "../form"
 import CustomItemSubModal from "./custom-item-sub-modal"
 
 const Items = () => {
-  const { enableNextPage, disableNextPage, nextStepEnabled } = React.useContext(
-    SteppedContext
-  )
+  const { enableNextPage, disableNextPage, nextStepEnabled } =
+    React.useContext(SteppedContext)
 
   const {
     context: { region, items },
@@ -270,7 +269,7 @@ const Items = () => {
           }}
         >
           <PlusIcon size={20} />
-          Add Custom
+          Agregar personalizado
         </Button>
         <Button
           variant="ghost"
@@ -287,7 +286,7 @@ const Items = () => {
           }}
         >
           <PlusIcon size={20} />
-          Add Existing
+          Agregar existente
         </Button>
       </div>
     </div>
@@ -296,7 +295,7 @@ const Items = () => {
 
 const SelectProductsScreen = (pop, itemsToAdd, setSelectedItems) => {
   return {
-    title: "Add Products",
+    title: "Agregar productos",
     onBack: () => pop(),
     view: (
       <RMASelectProductSubModal
@@ -309,7 +308,7 @@ const SelectProductsScreen = (pop, itemsToAdd, setSelectedItems) => {
 
 const CreateCustomProductScreen = (pop, onSubmit, region) => {
   return {
-    title: "Add Custom Item",
+    title: "Agregar producto personalizado",
     onBack: () => pop(),
     view: <CustomItemSubModal onSubmit={onSubmit} region={region} />,
   }

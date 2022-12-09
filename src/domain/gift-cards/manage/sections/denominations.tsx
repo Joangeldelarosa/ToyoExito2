@@ -40,8 +40,8 @@ const Denominations: React.FC<DenominationsProps> = ({ giftCard }) => {
       deleteGiftCardVariant.mutate(editDenom!.id, {
         onSuccess: () => {
           notification(
-            "Success",
-            "Successfully updated denominations",
+            "Éxito",
+            "Las denominaciones se han actualizado con éxito",
             "success"
           )
           setEditDenom(null)
@@ -68,8 +68,8 @@ const Denominations: React.FC<DenominationsProps> = ({ giftCard }) => {
       {
         onSuccess: () => {
           notification(
-            "Success",
-            "Successfully updated denominations",
+            "Éxito",
+            "Las denominaciones se han actualizado con éxito",
             "success"
           )
           setEditDenom(null)
@@ -81,12 +81,12 @@ const Denominations: React.FC<DenominationsProps> = ({ giftCard }) => {
   return (
     <>
       <BodyCard
-        title="Denominations"
-        subtitle="Manage your denominations"
+        title="Denominaciones"
+        subtitle="Maneja las denominaciones de la tarjeta de regalo"
         className={"h-auto w-full"}
         actionables={[
           {
-            label: "Add Denomination",
+            label: "Agregar denominación",
             onClick: () => setAddDenom(true),
             icon: <PlusIcon size={20} />,
           },

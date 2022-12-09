@@ -46,7 +46,7 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
       },
       {
         onSuccess: ({ discount }) => {
-          notification("Success", "Discount updated successfully", "success")
+          notification("Éxito", "Descuento actualizado con éxito.", "success")
           reset(mapConfigurations(discount))
           onClose()
         },
@@ -65,7 +65,7 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
     <Modal handleClose={onClose} isLargeModal>
       <Modal.Body>
         <Modal.Header handleClose={onClose}>
-          <h1 className="inter-xlarge-semibold">Edit configurations</h1>
+          <h1 className="inter-xlarge-semibold">Editar configuraciones</h1>
         </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Content>
@@ -85,17 +85,17 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                           onChange(new Date(discount.starts_at))
                         }
                       }}
-                      title="Discount has a start date?"
-                      description="Schedule the discount to activate in the future."
+                      title="¿El descuento tiene una fecha de inicio?"
+                      description="Programe el descuento para activarlo en el futuro."
                     >
                       <div className="flex gap-x-xsmall items-center">
                         <DatePicker
                           date={value!}
-                          label="Start date"
+                          label="Fecha de inicio"
                           onSubmitDate={onChange}
                         />
                         <TimePicker
-                          label="Start time"
+                          label="Hora de inicio"
                           date={value!}
                           onSubmitDate={onChange}
                         />
@@ -122,17 +122,17 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                           )
                         }
                       }}
-                      title="Discount has an expiry date?"
-                      description="Schedule the discount to deactivate in the future."
+                      title="¿El descuento tiene fecha de caducidad?"
+                      description="Programe el descuento para desactivarlo en el futuro."
                     >
                       <div className="flex gap-x-xsmall items-center">
                         <DatePicker
                           date={value!}
-                          label="Expiry date"
+                          label="Fecha de caducidad"
                           onSubmitDate={onChange}
                         />
                         <TimePicker
-                          label="Expiry time"
+                          label="Hora de caducidad"
                           date={value!}
                           onSubmitDate={onChange}
                         />
@@ -155,11 +155,11 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                           onChange(10)
                         }
                       }}
-                      title="Limit the number of redemtions?"
-                      description="Limit applies across all customers, not per customer."
+                      title="¿El descuento tiene un límite de uso?"
+                      description="Los limites aplican para todos los clientes en total y no por cliente."
                     >
                       <InputField
-                        label="Number of redemptions"
+                        label="Número de redenciones."
                         type="number"
                         placeholder="5"
                         min={1}
@@ -187,8 +187,8 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                             onChange("P0Y0M0DT00H00M")
                           }
                         }}
-                        title="Availability duration?"
-                        description="Set the duration of the discount."
+                        title="¿Duración de la disponibilidad?"
+                        description="Establece la duración del descuento."
                       >
                         <AvailabilityDuration
                           value={value ?? undefined}
@@ -210,7 +210,7 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                 type="button"
                 onClick={onClose}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -220,7 +220,7 @@ const EditConfigurations: React.FC<EditConfigurationsProps> = ({
                 loading={isLoading}
                 disabled={isLoading}
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

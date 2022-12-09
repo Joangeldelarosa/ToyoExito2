@@ -60,9 +60,9 @@ const GeneratingInput = React.forwardRef(
           {!value && (
             <button
               onClick={generateCode}
-              className="inter-small-semibold text-violet-50"
+              className="inter-small-semibold text-green-50"
             >
-              Generate
+              Generar
             </button>
           )}
         </div>
@@ -71,7 +71,7 @@ const GeneratingInput = React.forwardRef(
             ref={inputRef}
             value={value}
             onChange={handleChange}
-            className="bg-inherit outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-violet-60 placeholder-grey-40"
+            className="bg-inherit outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40"
             placeholder={placeholder}
             autoComplete="off"
             name={name}

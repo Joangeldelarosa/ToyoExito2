@@ -226,15 +226,15 @@ const ConditionItem = <Type extends DiscountConditionType>({
 const getTitle = (type: DiscountConditionType) => {
   switch (type) {
     case DiscountConditionType.PRODUCTS:
-      return "Product"
+      return "Producto"
     case DiscountConditionType.PRODUCT_COLLECTIONS:
-      return "Collection"
+      return "Colección"
     case DiscountConditionType.PRODUCT_TAGS:
       return "Tag"
     case DiscountConditionType.CUSTOMER_GROUPS:
-      return "Customer group"
+      return "Grupo de clientes"
     case DiscountConditionType.PRODUCT_TYPES:
-      return "Type"
+      return "Tipo"
   }
 }
 

@@ -17,11 +17,11 @@ const Configurations: React.FC<ConfigurationsProps> = ({ discount }) => {
   return (
     <>
       <BodyCard
-        title={"Configurations"}
+        title={"Configuraciones"}
         className="min-h-[200px]"
         actionables={[
           {
-            label: "Edit configurations",
+            label: "Editar configuraciones",
             onClick: () => setShowModal(true),
             icon: <EditIcon size={20} />,
           },

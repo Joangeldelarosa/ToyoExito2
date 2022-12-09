@@ -1,5 +1,5 @@
-import { Link } from "gatsby"
 import React, { useMemo } from "react"
+import { Link } from "react-router-dom"
 import { Column } from "react-table"
 import Table from "../../molecules/table"
 import { decideStatus, SimpleProductType } from "./utils"
@@ -25,7 +25,7 @@ const useViewProductColumns = () => {
               {value ? (
                 <img
                   src={value}
-                  alt="Thumbnail"
+                  alt="Vista previa"
                   className="h-full w-full object-cover"
                 />
               ) : null}

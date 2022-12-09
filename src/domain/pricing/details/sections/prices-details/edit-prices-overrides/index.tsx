@@ -1,7 +1,6 @@
 import { MoneyAmount, Product } from "@medusajs/medusa"
-import { useParams } from "@reach/router"
 import { useAdminStore, useAdminUpdatePriceList } from "medusa-react"
-import * as React from "react"
+import { useParams } from "react-router-dom"
 import Button from "../../../../../../components/fundamentals/button"
 import { CollapsibleTree } from "../../../../../../components/molecules/collapsible-tree"
 import Modal from "../../../../../../components/molecules/modal"
@@ -25,7 +24,7 @@ const EditPricesOverridesModal = ({
 }: EditPricesOverridesModalProps) => {
   const context = useLayeredModal()
   const { id: priceListId } = useParams()
-  const updatePriceList = useAdminUpdatePriceList(priceListId)
+  const updatePriceList = useAdminUpdatePriceList(priceListId || "")
   const { store } = useAdminStore()
 
   const defaultPrices = store?.currencies.map((curr) => ({
@@ -37,7 +36,7 @@ const EditPricesOverridesModal = ({
 
   const getOnClick = (variant) => () =>
     context.push({
-      title: `Edit price overrides`,
+      title: `Editar actualizacion de precios`,
       onBack: () => context.pop(),
       view: (
         <PriceOverrides
@@ -60,7 +59,11 @@ const EditPricesOverridesModal = ({
                 onSuccess: () => {
                   context.pop()
                   close()
-                  notification("Success", "Price overrides updated", "success")
+                  notification(
+                    "Éxito",
+                    "Precios actualizados correctamente",
+                    "success"
+                  )
                 },
               }
             )
@@ -74,7 +77,7 @@ const EditPricesOverridesModal = ({
       <Modal.Body className="h-[calc(100vh-134px)] flex flex-col">
         <Modal.Header handleClose={close}>
           <h1 className="inter-xlarge-semibold">
-            Price overrides{" "}
+            Actualizacion de precios{" "}
             <span className="text-grey-50 inter-xlarge-regular truncate">
               ({product.title})
             </span>
@@ -115,7 +118,7 @@ const EditPricesOverridesModal = ({
               size="large"
               onClick={close}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               disabled
@@ -123,7 +126,7 @@ const EditPricesOverridesModal = ({
               className="w-32 text-small justify-center rounded-rounded"
               variant="primary"
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

@@ -45,11 +45,11 @@ const OrganizeForm = ({ form }: Props) => {
           render={({ field: { value, onChange } }) => {
             return (
               <NextCreateableSelect
-                label="Type"
+                label="Tipo"
                 onChange={onChange}
                 options={productTypeOptions}
                 value={value || null}
-                placeholder="Choose a type"
+                placeholder="Selecciona un tipo"
                 onCreateOption={onCreateOption}
                 isClearable
               />
@@ -62,11 +62,11 @@ const OrganizeForm = ({ form }: Props) => {
           render={({ field: { value, onChange } }) => {
             return (
               <NextSelect
-                label="Collection"
+                label="Colección"
                 onChange={onChange}
                 options={collectionOptions}
                 value={value}
-                placeholder="Choose a collection"
+                placeholder="Selecciona una colección"
                 isClearable
               />
             )

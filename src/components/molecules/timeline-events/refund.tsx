@@ -12,7 +12,7 @@ type RefundEventProps = {
 const Refund: React.FC<RefundEventProps> = ({ event }) => {
   const args = {
     icon: <RefundIcon size={20} />,
-    title: "Refund",
+    title: "Devolver",
     time: event.time,
     midNode: (
       <span className="text-grey-50 inter-small-regular">
@@ -31,7 +31,7 @@ const Refund: React.FC<RefundEventProps> = ({ event }) => {
         )}
         {event.note && (
           <div className="rounded-2xl px-base py-base bg-grey-5">
-            Note: {event.note}
+            Nota: {event.note}
           </div>
         )}
       </div>

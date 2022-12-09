@@ -37,7 +37,7 @@ const CurrencyTaxSetting = ({ currency, isDefault }: Props) => {
   const onSubmit = handleSubmit((data: CurrencyTaxSettingFormType) => {
     mutate(data, {
       onSuccess: () => {
-        notification("Success", "Successfully updated currency", "success")
+        notification("Éxito", "Se ha actualizado la moneda", "success")
 
         // When we update a currency, we need to invalidate the store in order for this change to be reflected across admin
         queryClient.invalidateQueries(adminStoreKeys.all)
@@ -66,7 +66,7 @@ const CurrencyTaxSetting = ({ currency, isDefault }: Props) => {
           </div>
           {isDefault && (
             <div className="bg-grey-10 rounded-rounded py-[2px] px-xsmall">
-              <p className="inter-small-semibold text-grey-50">Default</p>
+              <p className="inter-small-semibold text-grey-50">Por defecto</p>
             </div>
           )}
         </div>

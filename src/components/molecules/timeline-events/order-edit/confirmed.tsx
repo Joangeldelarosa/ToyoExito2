@@ -24,7 +24,9 @@ const EditConfirmed: React.FC<ConfirmedProps> = ({ event }) => {
 
   return (
     <EventContainer
-      title={`Order Edit ${confirmedByCustomer ? "" : "force"} confirmed`}
+      title={`Edición de pedido ${
+        confirmedByCustomer ? "" : "forzada"
+      } confirmada`}
       icon={<FastDeliveryIcon size={20} />}
       time={event.time}
       isFirst={event.first}

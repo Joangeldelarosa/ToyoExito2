@@ -25,12 +25,12 @@ export const TaxRuleItem = ({ onEdit, onDelete, index, name, description }) => {
           forceDropdown
           actions={[
             {
-              label: "Edit",
+              label: "Editar",
               onClick: () => onEdit(),
               icon: <EditIcon size={20} />,
             },
             {
-              label: "Delete rule",
+              label: "Eliminar regla",
               variant: "danger",
               onClick: () => onDelete(),
               icon: <TrashIcon size={20} />,
@@ -41,4 +41,3 @@ export const TaxRuleItem = ({ onEdit, onDelete, index, name, description }) => {
     </div>
   )
 }
-

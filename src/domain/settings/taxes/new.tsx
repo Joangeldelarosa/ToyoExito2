@@ -56,7 +56,7 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
       },
       {
         onSuccess: () => {
-          notification("Success", "Successfully created tax rate.", "success")
+          notification("Éxito", "Tasa de impuestos creada con éxito", "success")
           onDismiss()
         },
         onError: (error) => {
@@ -98,13 +98,13 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
         <Modal.Body>
           <Modal.Header handleClose={onDismiss}>
             <div>
-              <h1 className="inter-xlarge-semibold">Add Tax Rate</h1>
+              <h1 className="inter-xlarge-semibold">Añadir Tasa de Impuesto</h1>
             </div>
           </Modal.Header>
           <Modal.Content>
             <EditTaxRateDetails form={nestedForm(form, "details")} />
             <div>
-              <p className="inter-base-semibold mb-base">Overrides</p>
+              <p className="inter-base-semibold mb-base">Actualizaciones</p>
               {(product_types.length > 0 ||
                 products.length > 0 ||
                 shipping_options.length > 0) && (
@@ -128,8 +128,8 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                         )
                       }}
                       index={1}
-                      name="Product Rules"
-                      description={`Applies to ${products.length} product${
+                      name="Reglas del producto"
+                      description={`Aplica a ${products.length} producto${
                         products.length > 1 ? "s" : ""
                       }`}
                     />
@@ -156,10 +156,10 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                         )
                       }}
                       index={2}
-                      name="Product Type Rules"
-                      description={`Applies to ${
-                        product_types.length
-                      } product type${product_types.length > 1 ? "s" : ""}`}
+                      name="Reglas de tipo de producto"
+                      description={`Aplica a ${product_types.length} tipo${
+                        product_types.length > 1 ? "s" : ""
+                      } de producto`}
                     />
                   )}
                   {shipping_options.length > 0 && (
@@ -184,12 +184,10 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                         )
                       }}
                       index={3}
-                      name="Shipping Option Rules"
-                      description={`Applies to ${
-                        shipping_options.length
-                      } shipping option${
-                        shipping_options.length > 1 ? "s" : ""
-                      }`}
+                      name="Reglas de opción de envío"
+                      description={`Aplica a ${shipping_options.length} opcion${
+                        shipping_options.length > 1 ? "es" : ""
+                      } de envío`}
                     />
                   )}
                 </div>
@@ -214,7 +212,7 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                   size="medium"
                   variant="secondary"
                 >
-                  <PlusIcon /> Add Overrides
+                  <PlusIcon /> Agregar actualización
                 </Button>
               )}
             </div>
@@ -228,7 +226,7 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                 size="small"
                 className="w-eventButton justify-center"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 type="submit"
@@ -238,7 +236,7 @@ const NewTaxRate = ({ regionId, onDismiss }: NewTaxRateProps) => {
                 loading={isLoading}
                 disabled={isLoading}
               >
-                Create
+                Crear
               </Button>
             </div>
           </Modal.Footer>
@@ -255,7 +253,7 @@ const SelectOverridesScreen = (
   options = {}
 ) => {
   return {
-    title: "Add override",
+    title: "Agregar actualización",
     onBack: () => pop(),
     view: (
       <TaxRuleSelector

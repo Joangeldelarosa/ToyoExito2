@@ -64,14 +64,10 @@ const SearchModal = ({ handleClose }) => {
 
   const totalLength = getTotal(products, discounts, customers, orders)
 
-  const {
-    getInputProps,
-    getLIProps,
-    getULProps,
-    selected,
-  } = useKeyboardNavigationList({
-    length: totalLength,
-  })
+  const { getInputProps, getLIProps, getULProps, selected } =
+    useKeyboardNavigationList({
+      length: totalLength,
+    })
 
   return (
     <RadixDialog.Root open onOpenChange={handleClose}>
@@ -94,13 +90,13 @@ const SearchModal = ({ handleClose }) => {
                   className="flex-1"
                   onChange={onChange}
                   value={q}
-                  placeholder="Search typing to search..."
+                  placeholder="Escribe para buscar..."
                   {...getInputProps()}
                 />
                 <Tooltip
                   className="bg-grey-0"
                   onClick={handleClear}
-                  content="Clear search"
+                  content="Limpiar búsqueda"
                 >
                   <CrossIcon className="flex text-grey-50" />
                 </Tooltip>

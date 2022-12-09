@@ -1,5 +1,4 @@
 import React from "react"
-import { navigate } from "gatsby"
 import { useAdminDeleteDiscount, useAdminUpdateDiscount } from "medusa-react"
 import useImperativeDialog from "../../../hooks/use-imperative-dialog"
 import useNotification from "../../../hooks/use-notification"
@@ -10,8 +9,10 @@ import TrashIcon from "../../fundamentals/icons/trash-icon"
 import UnpublishIcon from "../../fundamentals/icons/unpublish-icon"
 import EditIcon from "../../fundamentals/icons/edit-icon"
 import useCopyPromotion from "./use-copy-promotion"
+import { useNavigate } from "react-router-dom"
 
 const usePromotionActions = (promotion) => {
+  const navigate = useNavigate()
   const notification = useNotification()
   const dialog = useImperativeDialog()
 
@@ -22,8 +23,8 @@ const usePromotionActions = (promotion) => {
 
   const handleDelete = async () => {
     const shouldDelete = await dialog({
-      heading: "Delete Discount",
-      text: "Are you sure you want to delete this Discount?",
+      heading: "Eliminar descuento",
+      text: "¿Estás segura de que deseas eliminar este descuento?",
     })
 
     if (shouldDelete) {
@@ -34,12 +35,12 @@ const usePromotionActions = (promotion) => {
   const getRowActions = () => {
     return [
       {
-        label: "Edit",
+        label: "Editar",
         icon: <EditIcon size={20} />,
         onClick: () => navigate(`/a/discounts/${promotion.id}`),
       },
       {
-        label: promotion.is_disabled ? "Publish" : "Unpublish",
+        label: promotion.is_disabled ? "Publicar" : "Ocultar",
         icon: promotion.is_disabled ? (
           <PublishIcon size={20} />
         ) : (
@@ -54,8 +55,8 @@ const usePromotionActions = (promotion) => {
               onSuccess: () => {
                 notification(
                   "Success",
-                  `Successfully ${
-                    promotion.is_disabled ? "published" : "unpublished"
+                  `Exitosamente ${
+                    promotion.is_disabled ? "publicado" : "ocultado"
                   } discount`,
                   "success"
                 )
@@ -67,12 +68,12 @@ const usePromotionActions = (promotion) => {
         },
       },
       {
-        label: "Duplicate",
+        label: "Duplicar",
         icon: <DuplicateIcon size={20} />,
         onClick: () => copyPromotion(promotion),
       },
       {
-        label: "Delete",
+        label: "Eliminar",
         icon: <TrashIcon size={20} />,
         variant: "danger",
         onClick: handleDelete,

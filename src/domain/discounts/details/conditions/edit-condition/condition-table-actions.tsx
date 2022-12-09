@@ -36,7 +36,7 @@ const ExistingConditionTableActions = ({
       <div className={clsx("transition-all duration-200", classes)}>
         <div className="divide-x flex items-center h-[34px] mb-2">
           <span className="mr-3 inter-small-regular text-grey-50">
-            {numberOfSelectedRows} selected
+            {numberOfSelectedRows} seleccionados
           </span>
           <div className="flex space-x-xsmall pl-3">
             <Button
@@ -45,7 +45,7 @@ const ExistingConditionTableActions = ({
               variant="ghost"
               className="border border-grey-20"
             >
-              Deselect
+              Quitar selección
             </Button>
             <Button
               onClick={onRemove}
@@ -53,7 +53,7 @@ const ExistingConditionTableActions = ({
               variant="ghost"
               className="border border-grey-20 text-rose-50"
             >
-              Remove
+              Eliminar
             </Button>
           </div>
         </div>
@@ -64,7 +64,7 @@ const ExistingConditionTableActions = ({
             className="border border-grey-20"
             onClick={() => push(addConditionsModalScreen)}
           >
-            <PlusIcon size={20} /> Add
+            <PlusIcon size={20} /> Agregar
           </Button>
         </div>
       </div>

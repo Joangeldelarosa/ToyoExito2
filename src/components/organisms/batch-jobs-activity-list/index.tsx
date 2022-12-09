@@ -67,14 +67,11 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
 
   const batchJob = useBatchJob(props.batchJob)
 
-  const {
-    mutate: cancelBatchJob,
-    error: cancelBatchJobError,
-  } = useAdminCancelBatchJob(batchJob.id)
+  const { mutate: cancelBatchJob, error: cancelBatchJobError } =
+    useAdminCancelBatchJob(batchJob.id)
   const { mutateAsync: deleteFile } = useAdminDeleteFile()
-  const {
-    mutateAsync: createPresignedUrl,
-  } = useAdminCreatePresignedDownloadUrl()
+  const { mutateAsync: createPresignedUrl } =
+    useAdminCreatePresignedDownloadUrl()
 
   const fileName = batchJob.result?.file_key ?? `${batchJob.type}.csv`
   const relativeTimeElapsed = getRelativeTime({
@@ -106,7 +103,7 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
   useEffect(() => {
     if (cancelBatchJobError) {
       notification(
-        "Error canceling the batch job",
+        "Error al cancelar el trabajo por lotes",
         getErrorMessage(cancelBatchJobError),
         "error"
       )
@@ -132,7 +129,7 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
     } catch (e) {
       notification(
         "Error",
-        `Something went wrong while downloading the ${operation.toLowerCase()} file`,
+        `Algo salió mal al descargar ${operation.toLowerCase()}`,
         "error"
       )
     }
@@ -145,11 +142,15 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
 
     try {
       await deleteFile({ file_key: batchJob.result?.file_key })
-      notification("Success", `${operation} file has been removed`, "success")
+      notification(
+        "Success",
+        `${operation} el archivo ha sido eliminado`,
+        "success"
+      )
     } catch (e) {
       notification(
         "Error",
-        `Something went wrong while deleting the ${operation.toLowerCase()} file`,
+        `Algo salió mal al eliminar ${operation.toLowerCase()}`,
         "error"
       )
     }
@@ -215,8 +216,8 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
         <div className="flex mt-6">
           {canDownload && (
             <div className="flex">
-              {buildButton(onDeleteFile, "danger", "Delete")}
-              {buildButton(onDownloadFile, "ghost", "Download", "ml-2")}
+              {buildButton(onDeleteFile, "danger", "Eliminar")}
+              {buildButton(onDownloadFile, "ghost", "Descargar", "ml-2")}
             </div>
           )}
           {canCancel && buildButton(() => cancelBatchJob(), "danger", "Cancel")}
@@ -227,7 +228,7 @@ const BatchJobActivityCard = (props: { batchJob: BatchJob }) => {
 
   return (
     <ActivityCard
-      title={store?.name ?? "Medusa Team"}
+      title={store?.name ?? "TOYO ÉXITO Team"}
       icon={<MedusaIcon className="mr-3" size={20} />}
       relativeTimeElapsed={relativeTimeElapsed.rtf}
       date={batchJob.created_at}

@@ -17,7 +17,7 @@ type BannerCardDescriptionProps = {
 const BannerCard: React.FC<BannerCardProps> & {
   Description: React.FC<BannerCardDescriptionProps>
   Footer: React.FC
-} = ({ title, thumbnail, actions, children }) => {
+} = ({ title, thumbnail, actions, children }: any) => {
   return (
     <div className="rounded-rounded border bg-grey-0 border-grey-20 w-full p-base medium:p-xlarge">
       <div className="flex gap-large items-start">
@@ -25,7 +25,7 @@ const BannerCard: React.FC<BannerCardProps> & {
           <div className="min-w-[72px] min-h-[72px] w-[72px] h-[72px] rounded-base overflow-hidden">
             <img
               src={thumbnail}
-              alt="Thumbnail"
+              alt="Vista previa"
               className="w-full h-full object-cover"
             />
           </div>
@@ -45,7 +45,7 @@ const BannerCard: React.FC<BannerCardProps> & {
 const Description: React.FC<BannerCardDescriptionProps> = ({
   cta,
   children,
-}) => {
+}: any) => {
   return (
     <div>
       <p className="inter-small-regular text-grey-50 max-w-[460px] line-clamp-2">
@@ -53,7 +53,7 @@ const Description: React.FC<BannerCardDescriptionProps> = ({
       </p>
       {cta && (
         <button
-          className="text-violet-60 inter-small-semibold mt-base"
+          className="text-green-60 inter-small-semibold mt-base"
           onClick={cta.onClick}
         >
           {cta.label}
@@ -63,7 +63,7 @@ const Description: React.FC<BannerCardDescriptionProps> = ({
   )
 }
 
-const Footer: React.FC = ({ children }) => {
+const Footer: React.FC = ({ children }: any) => {
   return <div className="mt-base">{children}</div>
 }
 

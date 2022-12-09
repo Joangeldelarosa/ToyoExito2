@@ -51,7 +51,7 @@ const EditCustomerModal = ({
       {
         onSuccess: () => {
           handleClose()
-          notification("Success", "Successfully updated customer", "success")
+          notification("Éxito", "Cliente actualizado correctamente", "success")
         },
         onError: (err) => {
           handleClose()
@@ -69,23 +69,23 @@ const EditCustomerModal = ({
     <Modal handleClose={handleClose}>
       <Modal.Body>
         <Modal.Header handleClose={handleClose}>
-          <span className="inter-xlarge-semibold">Customer Details</span>
+          <span className="inter-xlarge-semibold">Detalles del cliente</span>
         </Modal.Header>
         <Modal.Content>
           <div className="inter-base-semibold text-grey-90 mb-4">General</div>
           <div className="w-full flex mb-4 space-x-2">
             <InputField
-              label="First Name"
+              label="Primer nombre"
               {...register("first_name")}
               placeholder="Lebron"
             />
             <InputField
-              label="Last Name"
+              label="Apellido"
               {...register("last_name")}
               placeholder="James"
             />
           </div>
-          <div className="inter-base-semibold text-grey-90 mb-4">Contact</div>
+          <div className="inter-base-semibold text-grey-90 mb-4">Contacto</div>
           <div className="flex space-x-2">
             <InputField
               label="Email"
@@ -101,7 +101,7 @@ const EditCustomerModal = ({
               disabled={customer.has_account}
             />
             <InputField
-              label="Phone number"
+              label="Teléfono"
               {...register("phone")}
               placeholder="+45 42 42 42 42"
             />
@@ -115,7 +115,7 @@ const EditCustomerModal = ({
               onClick={handleClose}
               className="mr-2"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               loading={updateCustomer.isLoading}
@@ -125,7 +125,7 @@ const EditCustomerModal = ({
               size="small"
               onClick={onSubmit}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

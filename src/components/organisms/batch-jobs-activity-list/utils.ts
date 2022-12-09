@@ -18,30 +18,29 @@ export function batchJobDescriptionBuilder(
 
   switch (batchJob.status) {
     case "failed":
-      description = `${operation} of ${entityName}s has failed.`
+      description = `${operation} de ${entityName}s ha fallido.`
       break
     case "canceled":
-      description = `${operation} of ${entityName}s has been canceled.`
-      break
+      description = `${operation} de ${entityName}s ha sido cancelada.`
     case "completed":
       if (elapsedTime && Math.abs(elapsedTime) > twentyfourHoursInMs) {
-        description = `${operation} file is no longer available. The file will only be stored for 24 hours.`
+        description = `${operation} El archivo ya no está disponible. El archivo solo se almacenará durante 24 horas.`
         break
       } else {
-        description = `${operation} of ${entityName}s is done.`
+        description = `${operation} de ${entityName}s esta listo.`
         break
       }
     case "processing":
-      description = `${operation} of ${entityName}s is being processed. You can safely close the activity tab. We will notify you once your export is ready for download.`
+      description = `${operation} de ${entityName}s está siendo procesado. Puede cerrar con seguridad la pestaña de actividad. Le notificaremos una vez que su exportación esté lista para descargar.`
       break
     case "confirmed":
-      description = `${operation} of ${entityName}s has been confirmed and will start soon.`
+      description = `${operation} de ${entityName}s ha sido confirmado y comenzará pronto.`
       break
     case "pre_processed":
-      description = `${operation} of ${entityName}s is being prepared.`
+      description = `${operation} de ${entityName}s está siendo procesado.`
       break
     default:
-      description = `${operation} of ${entityName}s has been created and will start soon.`
+      description = `${operation} de ${entityName}s ha sido creado y comenzará pronto.`
   }
 
   return description

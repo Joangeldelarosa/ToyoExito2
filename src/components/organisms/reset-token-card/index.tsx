@@ -50,53 +50,56 @@ const ResetTokenCard: React.FC<ResetTokenCardProps> = ({ goBack }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col items-center">
         <span className="inter-2xlarge-semibold mt-base text-grey-90">
-          Reset your password
+          Restablecer password
         </span>
         <span className="inter-base-regular text-grey-50 mt-xsmall text-center">
-          Enter your email address below, and we'll send you
+          Ingrese su dirección de correo electrónico a continuación y le
+          enviaremos
           <br />
-          instructions on how to reset your password.
+          instrucciones sobre cómo restablecer su contraseña.
         </span>
         {!mailSent ? (
           <>
             <SigninInput
               placeholder="lebron@james.com..."
-              {...register('email', { required: true })}
-              className="mb-0 mt-xlarge" />
+              {...register("email", { required: true })}
+              className="mb-0 mt-xlarge"
+            />
             {unrecognizedEmail && (
               <div className="mt-xsmall w-[318px]">
                 <span className="inter-small-regular text-rose-50 text-left">
-                  We can't find a user with that email address
+                  No podemos encontrar un usuario con esa dirección de correo
+                  electrónico.
                 </span>
               </div>
             )}
             {invalidEmail && (
               <div className="mt-xsmall w-[318px]">
                 <span className="inter-small-regular text-rose-50 text-left">
-                  Not a valid email address
+                  La dirección de email no es válida
                 </span>
               </div>
             )}
             <button
-              className="text-grey-0 w-[320px] h-[48px] border rounded-rounded mt-4 bg-violet-50 inter-base-regular py-3 px-4"
+              className="text-grey-0 w-[320px] h-[48px] border rounded-rounded mt-4 bg-green-50 inter-base-regular py-3 px-4"
               type="submit"
             >
-              Send reset instructions
+              Enviar instrucciones de reinicio
             </button>
           </>
         ) : (
-          <div className="text-violet-60 rounded-rounded bg-violet-10 p-base flex gap-x-small mt-large">
+          <div className="text-green-60 rounded-rounded bg-green-10 p-base flex gap-x-small mt-large">
             <div>
               <CheckCircleIcon size={20} />
             </div>
             <div className="flex flex-col gap-y-2xsmall">
               <span className="inter-small-semibold">
-                Succesfully sent you an email
+                Le enviamos un correo electrónico con éxito{" "}
               </span>
               <span className="inter-small-regular">
-                We've sent you an email which you can use to reset your
-                password. Check your spam folder if you haven't received it
-                after a few minutes.
+                Le hemos enviado un correo electrónico que puede utilizar para
+                restablecer su clave. Revisa tu carpeta de spam si no lo has
+                recibido despues de unos minutos.
               </span>
             </div>
           </div>
@@ -105,11 +108,11 @@ const ResetTokenCard: React.FC<ResetTokenCardProps> = ({ goBack }) => {
           className="inter-small-regular text-grey-50 mt-8 cursor-pointer"
           onClick={goBack}
         >
-          Go back to sign in
+          Volver para iniciar sesión
         </span>
       </div>
     </form>
-  );
+  )
 }
 
 export default ResetTokenCard

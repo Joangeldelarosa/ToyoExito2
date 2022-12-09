@@ -78,13 +78,13 @@ const PriceListsFilter = ({
         triggerElement={
           <button
             className={clsx(
-              "flex rounded-rounded items-center space-x-1 focus-visible:outline-none focus-visible:shadow-input focus-visible:border-violet-60"
+              "flex rounded-rounded items-center space-x-1 focus-visible:outline-none focus-visible:shadow-input focus-visible:border-green-60"
             )}
           >
             <div className="flex rounded-rounded items-center bg-grey-5 border border-grey-20 inter-small-semibold px-2 h-6">
-              Filters
+              Filtros
               <div className="text-grey-40 ml-1 flex items-center rounded">
-                <span className="text-violet-60 inter-small-semibold">
+                <span className="text-green-60 inter-small-semibold">
                   {numberOfFilters ? numberOfFilters : "0"}
                 </span>
               </div>
@@ -96,14 +96,14 @@ const PriceListsFilter = ({
         }
       >
         <FilterDropdownItem
-          filterTitle="Status"
+          filterTitle="Estado"
           options={statusFilters}
           filters={tempState.status.filter}
           open={tempState.status.open}
           setFilter={(v) => setSingleFilter("status", v)}
         />
         <FilterDropdownItem
-          filterTitle="Type"
+          filterTitle="Tipo"
           options={typeFilters}
           filters={tempState.type.filter}
           open={tempState.type.open}

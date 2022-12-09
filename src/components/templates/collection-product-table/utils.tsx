@@ -12,13 +12,13 @@ export type SimpleProductType = {
 export const decideStatus = (status: string) => {
   switch (status) {
     case "published":
-      return <StatusIndicator title="Published" variant="success" />
+      return <StatusIndicator title="Publicado" variant="success" />
     case "draft":
-      return <StatusIndicator title="Draft" variant="default" />
+      return <StatusIndicator title="Borrador" variant="default" />
     case "proposed":
-      return <StatusIndicator title="Proposed" variant="warning" />
+      return <StatusIndicator title="Propuesto" variant="warning" />
     case "rejected":
-      return <StatusIndicator title="Rejected" variant="danger" />
+      return <StatusIndicator title="Rechazado" variant="danger" />
     default:
       return null
   }

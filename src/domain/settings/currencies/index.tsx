@@ -1,8 +1,6 @@
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
+import { JsonViewer } from "@textea/json-viewer"
 import { useAdminStore } from "medusa-react"
-import React from "react"
-import ReactJson from "react-json-view"
+import { useNavigate } from "react-router-dom"
 import BackButton from "../../../components/atoms/back-button"
 import Spinner from "../../../components/atoms/spinner"
 import Tooltip from "../../../components/atoms/tooltip"
@@ -14,7 +12,8 @@ import CurrencyTaxSetting from "./components/currency-tax-setting"
 import DefaultStoreCurrency from "./components/default-store-currency"
 import StoreCurrencies from "./components/store-currencies"
 
-const CurrencySettings = (_props: RouteComponentProps) => {
+const CurrencySettings = () => {
+  const navigate = useNavigate()
   const { trackCurrencies } = useAnalytics()
   const { store, status, error } = useAdminStore({
     onSuccess: (data) => {
@@ -25,7 +24,7 @@ const CurrencySettings = (_props: RouteComponentProps) => {
   })
 
   if (error) {
-    let message = "An unknown error occurred"
+    let message = "Un error desconocido ocurrió"
 
     const errorStatus = getErrorStatus(error)
 
@@ -44,10 +43,10 @@ const CurrencySettings = (_props: RouteComponentProps) => {
         <p className="inter-base-regular">{message}</p>
 
         <div className="mt-base bg-grey-5 rounded-rounded px-base py-xsmall">
-          <ReactJson
-            name={"Stack Trace"}
-            collapsed={true}
-            src={JSON.parse(JSON.stringify(error))}
+          <JsonViewer
+            rootName="stack_trace"
+            defaultInspectDepth={0}
+            value={JSON.parse(JSON.stringify(error))}
           />
         </div>
       </Section>
@@ -74,7 +73,7 @@ const CurrencySettings = (_props: RouteComponentProps) => {
         <div className="col-span-2 flex flex-col gap-y-xsmall ">
           <Section title="Currencies">
             <p className="text-grey-50 inter-base-regular mt-2xsmall">
-              Manage the markets that you will operate within.
+              Administre los mercados en los que operará.
             </p>
           </Section>
 
@@ -85,14 +84,14 @@ const CurrencySettings = (_props: RouteComponentProps) => {
             <FeatureToggle featureFlag="tax_inclusive_pricing">
               <div className="cursor-default">
                 <div className="inter-small-semibold text-grey-50 flex items-center justify-between mb-base">
-                  <p>Currency</p>
+                  <p>Moneda</p>
                   <Tooltip
                     side="top"
                     content={
-                      "Decide if you want to include or exclude taxes whenever you define a price in this currency"
+                      "Decide si quieres incluir o excluir impuestos siempre que definas un precio en esta moneda"
                     }
                   >
-                    <p>Tax Incl. Prices</p>
+                    <p>Tax Incl. en los precios</p>
                   </Tooltip>
                 </div>
                 <div className="grid grid-cols-1 gap-base">

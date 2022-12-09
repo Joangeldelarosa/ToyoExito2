@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 import type { Toast } from "react-hot-toast"
-import { toast as global } from "react-hot-toast"
+import { toast as globalToast } from "react-hot-toast"
 import RefreshIcon from "../../fundamentals/icons/refresh-icon"
 import ToasterContainer from "../toaster-container"
 import ErrorState from "./error-state"
@@ -19,31 +19,37 @@ type SaveNotificationProps = {
 const SaveNotification: React.FC<SaveNotificationProps> = ({
   toast,
   icon,
-  title = "Unsaved changes",
-  message = "You have unsaved changes. Do you want to save and publish or discard them?",
+  title = "Cambios sin guardar",
+  message = "Tienes cambios sin guardar. ¿Quieres guardarlos y publicarlos o descartar los cambios?",
   onSave,
   reset,
 }) => {
   const onDismiss = () => {
     reset()
-    global.dismiss(toast.id)
+    globalToast.dismiss(toast.id)
   }
 
   const handleSave = () => {
-    global.custom((t) => <SavingState toast={t} />, {
+    globalToast.custom((t) => <SavingState toast={t} />, {
       id: toast.id,
     })
 
     onSave()
       .then(() => {
-        global.custom((t) => <SuccessState toast={t} onDismiss={onDismiss} />, {
-          id: toast.id,
-        })
+        globalToast.custom(
+          (t) => <SuccessState toast={t} onDismiss={onDismiss} />,
+          {
+            id: toast.id,
+          }
+        )
       })
       .catch((_err) => {
-        global.custom((t) => <ErrorState toast={t} onDismiss={onDismiss} />, {
-          id: toast.id,
-        })
+        globalToast.custom(
+          (t) => <ErrorState toast={t} onDismiss={onDismiss} />,
+          {
+            id: toast.id,
+          }
+        )
       })
   }
 
@@ -57,15 +63,15 @@ const SaveNotification: React.FC<SaveNotificationProps> = ({
       <div className="flex flex-col inter-small-semibold border-l border-grey-20 h-full">
         <button
           onClick={handleSave}
-          className="inter-small-semibold flex items-center justify-center h-1/2 border-b border-grey-20 px-base text-violet-60"
+          className="inter-small-semibold flex items-center justify-center h-1/2 border-b border-grey-20 px-base text-green-60"
         >
-          Publish
+          Publicar
         </button>
         <button
           className="inter-small-semibold flex items-center justify-center h-1/2 px-base"
           onClick={onDismiss}
         >
-          Discard
+          Descartar
         </button>
       </div>
     </ToasterContainer>

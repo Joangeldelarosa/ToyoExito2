@@ -32,15 +32,15 @@ const ReturnReasons = () => {
     <div>
       <BreadCrumb
         previousRoute="/a/settings"
-        previousBreadcrumb="Settings"
-        currentPage="Return Reasons"
+        previousBreadcrumb="Ajustes"
+        currentPage="Razones de devolución"
       />
       <TwoSplitPane>
         <BodyCard
-          title="Return Reasons"
+          title="Razones de devolución"
           actionables={[
             {
-              label: "Add reason",
+              label: "Agregar razón",
               icon: (
                 <span className="text-grey-90">
                   <PlusIcon size={20} />
@@ -49,7 +49,7 @@ const ReturnReasons = () => {
               onClick: open,
             },
           ]}
-          subtitle="Manage reasons for returned items"
+          subtitle="Administrar los motivos de los artículos devueltos"
         >
           <div className="mt-large">
             {isLoading ? (

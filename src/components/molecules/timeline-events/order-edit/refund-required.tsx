@@ -51,7 +51,7 @@ const RefundRequired: React.FC<RequestedProps> = ({ event }) => {
           size="small"
           className="w-full border border-grey-20 mb-xsmall text-rose-50"
         >
-          Refund
+          Devolver
           {formatAmountWithSymbol({
             amount: refundableAmount,
             currency: event.currency_code,

@@ -42,7 +42,7 @@ const DetailsConditionFooter: React.FC<AddConditionFooterProps> = ({
           pop()
         }}
       >
-        Save and add more
+        Guardar y agregar mas
       </Button>
       <Button
         variant="primary"
@@ -53,7 +53,7 @@ const DetailsConditionFooter: React.FC<AddConditionFooterProps> = ({
           reset()
         }}
       >
-        Save and close
+        Guardar y cerrar
       </Button>
     </div>
   )

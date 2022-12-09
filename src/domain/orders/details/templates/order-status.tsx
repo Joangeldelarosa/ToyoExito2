@@ -5,13 +5,13 @@ import StatusDot from "../../../../components/fundamentals/status-indicator"
 export const OrderStatusComponent = ({ status }) => {
   switch (status) {
     case "completed":
-      return <StatusDot title="Completed" variant="success" />
+      return <StatusDot title="Completeda" variant="success" />
     case "pending":
-      return <StatusDot title="Processing" variant="default" />
+      return <StatusDot title="Procesando" variant="default" />
     case "canceled":
-      return <StatusDot title="Canceled" variant="danger" />
+      return <StatusDot title="Canceleda" variant="danger" />
     case "requires_action":
-      return <StatusDot title="Requires action" variant="danger" />
+      return <StatusDot title="Requiere revision" variant="danger" />
     default:
       return null
   }

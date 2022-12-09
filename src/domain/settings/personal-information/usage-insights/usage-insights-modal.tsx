@@ -43,8 +43,8 @@ const UsageInsightsModal = ({ config, open, onClose }: Props) => {
     mutate(data, {
       onSuccess: () => {
         notification(
-          "Success",
-          "Your information was successfully updated",
+          "Éxito",
+          "Tu configuración de uso de datos ha sido actualizada",
           "success"
         )
         onClose()
@@ -58,7 +58,7 @@ const UsageInsightsModal = ({ config, open, onClose }: Props) => {
   return (
     <Modal handleClose={onClose} open={open} isLargeModal={true}>
       <Modal.Header handleClose={onClose}>
-        <h1 className="inter-xlarge-semibold">Edit preferences</h1>
+        <h1 className="inter-xlarge-semibold">Editar configuración</h1>
       </Modal.Header>
       <Modal.Body>
         <Modal.Content>
@@ -67,7 +67,7 @@ const UsageInsightsModal = ({ config, open, onClose }: Props) => {
         <Modal.Footer className="border-t border-grey-20 pt-base">
           <div className="flex items-center justify-end gap-x-xsmall w-full">
             <Button variant="secondary" size="small">
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -76,7 +76,7 @@ const UsageInsightsModal = ({ config, open, onClose }: Props) => {
               disabled={isSubmitting}
               onClick={onSubmit}
             >
-              Submit and close
+              Guardar y cerrar
             </Button>
           </div>
         </Modal.Footer>

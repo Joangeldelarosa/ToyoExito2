@@ -29,7 +29,7 @@ const DimensionsForm = ({ form }: DimensionsFormProps) => {
   return (
     <div className="grid grid-cols-4 gap-x-large">
       <InputField
-        label="Width"
+        label="Ancho"
         placeholder="100..."
         type="number"
         {...register(path("width"), {
@@ -39,7 +39,7 @@ const DimensionsForm = ({ form }: DimensionsFormProps) => {
         errors={errors}
       />
       <InputField
-        label="Length"
+        label="Largo"
         placeholder="100..."
         type="number"
         {...register(path("length"), {
@@ -49,7 +49,7 @@ const DimensionsForm = ({ form }: DimensionsFormProps) => {
         errors={errors}
       />
       <InputField
-        label="Height"
+        label="Altura"
         placeholder="100..."
         type="number"
         {...register(path("height"), {
@@ -59,7 +59,7 @@ const DimensionsForm = ({ form }: DimensionsFormProps) => {
         errors={errors}
       />
       <InputField
-        label="Weight"
+        label="Peso"
         placeholder="100..."
         type="number"
         {...register(path("weight"), {

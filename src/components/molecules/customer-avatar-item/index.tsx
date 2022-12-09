@@ -11,7 +11,7 @@ type CustomerAvatarItemProps = {
 }
 
 const CustomerAvatarItem: React.FC<CustomerAvatarItemProps> = ({
-  color = "bg-violet-60",
+  color = "bg-green-60",
   customer,
 }: CustomerAvatarItemProps) => {
   const identifier =

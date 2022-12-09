@@ -87,13 +87,13 @@ const EditDenominationsModal = ({
     <Modal handleClose={handleClose}>
       <Modal.Body>
         <Modal.Header handleClose={handleClose}>
-          <span className="inter-xlarge-semibold">Edit Denominations</span>
+          <span className="inter-xlarge-semibold">Editar denominaciones</span>
         </Modal.Header>
         <Modal.Content>
           <div className="pt-1">
             <div className="flex items-center">
               <label className="inter-base-semibold text-grey-90 mr-1.5">
-                Prices
+                Precios
               </label>
               <IconTooltip content={"Helpful denominations"} />
             </div>
@@ -137,7 +137,7 @@ const EditDenominationsModal = ({
               disabled={availableCurrencies.length === 0}
             >
               <PlusIcon size={20} />
-              Add a price
+              Agregar precio
             </Button>
           </div>
         </Modal.Content>
@@ -149,7 +149,7 @@ const EditDenominationsModal = ({
               onClick={handleClose}
               className="mr-2 min-w-[130px] justify-center"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -157,7 +157,7 @@ const EditDenominationsModal = ({
               className="mr-2 min-w-[130px] justify-center"
               onClick={submitHandler}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

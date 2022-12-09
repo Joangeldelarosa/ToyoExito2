@@ -87,12 +87,12 @@ const TwoStepDelete = forwardRef<HTMLButtonElement, Props>(
           })}
         >
           <Tooltip
-            content="Are you sure?"
+            content="¿Estas seguro?"
             side="top"
             sideOffset={16}
             open={armed}
           >
-            Confirm
+            Confirmar
           </Tooltip>
         </span>
         <span

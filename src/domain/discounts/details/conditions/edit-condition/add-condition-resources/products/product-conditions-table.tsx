@@ -17,11 +17,8 @@ const ProductConditionsTable = () => {
 
   const [selectedResources, setSelectedResources] = useState<string[]>([])
 
-  const {
-    condition,
-    removeConditionResources,
-    isLoading,
-  } = useEditConditionContext()
+  const { condition, removeConditionResources, isLoading } =
+    useEditConditionContext()
 
   const {
     isLoading: isLoadingProducts,
@@ -66,7 +63,7 @@ const ProductConditionsTable = () => {
             />
           ),
         }}
-        resourceName="Products"
+        resourceName="Productos"
         totalCount={count ?? 0}
         selectedIds={selectedResources}
         data={products || []}

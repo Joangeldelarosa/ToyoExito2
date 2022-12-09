@@ -37,23 +37,27 @@ const AccountDetails = () => {
     const validateInviteLinkTemplate = validateUrl(data.invite_link_template)
 
     if (!validateSwapLinkTemplate) {
-      notification("Error", "Malformed swap url", "error")
+      notification(
+        "Error",
+        "URL de intercambio con formato incorrecto",
+        "error"
+      )
       return
     }
 
     if (!validatePaymentLinkTemplate) {
-      notification("Error", "Malformed payment url", "error")
+      notification("Error", "URL de pago con formato incorrecto", "error")
       return
     }
 
     if (!validateInviteLinkTemplate) {
-      notification("Error", "Malformed invite url", "error")
+      notification("Error", "URL de invitación con formato incorrecto", "error")
       return
     }
 
     mutate(data, {
       onSuccess: () => {
-        notification("Success", "Successfully updated store", "success")
+        notification("Éxito", "Tienda actualizada con éxito", "success")
       },
       onError: (error) => {
         notification("Error", getErrorMessage(error), "error")
@@ -67,43 +71,47 @@ const AccountDetails = () => {
         <BreadCrumb
           previousRoute="/a/settings/"
           previousBreadcrumb="Settings"
-          currentPage="Store Details"
+          currentPage="Detalles de la tienda"
         />
         <BodyCard
           events={[
             {
-              label: "Save",
+              label: "Guardar",
               type: "button",
               onClick: handleSubmit(onSubmit),
             },
-            { label: "Cancel changes", type: "button", onClick: handleCancel },
+            {
+              label: "Cancelar cambios",
+              type: "button",
+              onClick: handleCancel,
+            },
           ]}
-          title="Store Details"
-          subtitle="Manage your business details"
+          title="Detalles de la tienda"
+          subtitle="Administra los detalles de tu tienda"
         >
           <h6 className="mt-large inter-base-semibold">General</h6>
           <Input
             className="mt-base"
-            label="Store name"
+            label="Nombre de la tienda"
             {...register("name")}
-            placeholder="Medusa Store"
+            placeholder="Store Name"
           />
-          <h6 className="mt-2xlarge inter-base-semibold">Advanced settings</h6>
+          <h6 className="mt-2xlarge inter-base-semibold">Ajustes avanzados</h6>
           <Input
             className="mt-base"
-            label="Swap link template"
+            label="Plantilla de enlace de intercambio"
             {...register("swap_link_template")}
             placeholder="https://acme.inc/swap={swap_id}"
           />
           <Input
             className="mt-base"
-            label="Draft order link template"
+            label="Borrador de plantilla de enlace de pedido"
             {...register("payment_link_template")}
             placeholder="https://acme.inc/payment={payment_id}"
           />
           <Input
             className="mt-base"
-            label="Invite link template"
+            label="Plantilla de enlace de invitación"
             {...register("invite_link_template")}
             placeholder="https://acme-admin.inc/invite?token={invite_token}"
           />

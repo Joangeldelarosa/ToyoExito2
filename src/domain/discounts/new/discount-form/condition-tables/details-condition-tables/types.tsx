@@ -50,9 +50,9 @@ const DetailsTypeConditionSelector = ({
           options={{
             enableSearch: true,
             immediateSearchFocus: true,
-            searchPlaceholder: "Search by type...",
+            searchPlaceholder: "Buscar por tipo...",
           }}
-          resourceName="Types"
+          resourceName="Tipos"
           totalCount={count || 0}
           selectedIds={items?.map((c) => c.id)}
           data={product_types}

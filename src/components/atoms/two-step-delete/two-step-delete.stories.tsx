@@ -13,7 +13,7 @@ storiesOf("Atoms/TwoStepDelete", module).add("Default", () => {
     setDeleting(true)
     setTimeout(() => {
       setDeleting(false)
-      notification("Success", "Successfully deleted something", "success")
+      notification("Éxito", "Successfully deleted something", "success")
     }, 3000)
   }
 
@@ -33,7 +33,7 @@ storiesOf("Atoms/TwoStepDelete", module).add("Custom text and style", () => {
     setDeleting(true)
     setTimeout(() => {
       setDeleting(false)
-      notification("Success", "Successfully deleted something", "success")
+      notification("Éxito", "Successfully deleted something", "success")
     }, 3000)
   }
 

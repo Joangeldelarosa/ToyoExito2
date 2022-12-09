@@ -27,8 +27,8 @@ export const TaxRateRow = ({ row, onEdit }) => {
     }
 
     const shouldDelete = await dialog({
-      heading: "Delete tax rate",
-      text: "Are you sure you want to delete this tax rate?",
+      heading: "Eliminar tasa de impuesto",
+      text: "¿Está seguro de que desea eliminar esta tasa de impuestos?",
     })
 
     if (!shouldDelete) {
@@ -38,7 +38,7 @@ export const TaxRateRow = ({ row, onEdit }) => {
     return deleteTaxRate
       .mutateAsync()
       .then(() => {
-        notification("Success", "Tax rate was deleted.", "success")
+        notification("Éxito", "Se eliminó la tasa de impuestos", "success")
       })
       .catch((err) => {
         notification("Error", getErrorMessage(err), "error")
@@ -55,7 +55,7 @@ export const TaxRateRow = ({ row, onEdit }) => {
 
   if (row.original.type === TaxRateType.RATE) {
     actions.push({
-      label: "Delete Tax Rate",
+      label: "Eliminar Tasa de Impuesto",
       variant: "danger",
       onClick: () => handleDelete(row.original),
       icon: <TrashIcon size={20} />,

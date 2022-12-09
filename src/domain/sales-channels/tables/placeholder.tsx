@@ -11,15 +11,15 @@ function Placeholder({ showAddModal }) {
       </span>
 
       <h3 className="font-semibold text-large text-gray-90 mt-6">
-        Start building your channels setup...
+        Comience a crear la configuración de sus canales...
       </h3>
       <p className="mt-2 mb-8 text-grey-50 w-[358px] text-center">
-        You haven’t added any products to this channels yet, but once you do
-        they will live here.
+        Todavía no ha agregado ningún producto a estos canales, pero una vez que
+        lo haga estarán aquí.
       </p>
 
       <Button onClick={showAddModal} variant="primary" size="small">
-        Add products
+        Agregar productos
       </Button>
     </div>
   )

@@ -15,11 +15,8 @@ import ExistingConditionTableActions from "../../condition-table-actions"
 const CustomerGroupsConditionsTable = () => {
   const params = useQueryFilters(defaultQueryProps)
 
-  const {
-    condition,
-    removeConditionResources,
-    isLoading,
-  } = useEditConditionContext()
+  const { condition, removeConditionResources, isLoading } =
+    useEditConditionContext()
 
   const {
     isLoading: isLoadingCustomerGroups,
@@ -67,7 +64,7 @@ const CustomerGroupsConditionsTable = () => {
             />
           ),
         }}
-        resourceName="Groups"
+        resourceName="Grupos"
         totalCount={count ?? 0}
         selectedIds={selectedRowIds}
         data={customer_groups || []}

@@ -41,7 +41,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
   const onSubmit = (data: EditUserModalFormData) => {
     mutate(data, {
       onSuccess: () => {
-        notification("Success", `User was updated`, "success")
+        notification("Éxito", `El usuario ha sido actualizado`, "success")
         onSuccess()
       },
       onError: (error) => {
@@ -58,13 +58,13 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Modal.Header handleClose={handleClose}>
-            <span className="inter-xlarge-semibold">Edit User</span>
+            <span className="inter-xlarge-semibold">Editar usuario</span>
           </Modal.Header>
           <Modal.Content>
             <div className="w-full grid grid-cols-2 gap-large mb-base">
               <InputField
-                label="First Name"
-                placeholder="First name..."
+                label="Primer nombre"
+                placeholder="Primer nombre..."
                 required
                 {...register("first_name", {
                   required: FormValidator.required("First name"),
@@ -74,8 +74,8 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 errors={errors}
               />
               <InputField
-                label="Last Name"
-                placeholder="Last name..."
+                label="Apellido"
+                placeholder="Apellido .."
                 required
                 {...register("last_name", {
                   required: FormValidator.required("Last name"),
@@ -95,7 +95,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 onClick={handleClose}
                 className="mr-2"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 loading={isLoading}
@@ -103,7 +103,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({
                 variant="primary"
                 size="small"
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

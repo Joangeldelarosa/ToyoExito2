@@ -33,11 +33,7 @@ const ResendModal: React.FC<ResendModalProps> = ({
       },
       {
         onSuccess: () => {
-          notification(
-            "Success",
-            `Notification re-send to ${data.to}`,
-            "success"
-          )
+          notification("Éxito", `Notificación enviada a ${data.to}`, "success")
           handleCancel()
         },
         onError: (err) => notification("Error", getErrorMessage(err), "error"),
@@ -50,7 +46,7 @@ const ResendModal: React.FC<ResendModalProps> = ({
       <form onSubmit={handleSubmit(handleResend)}>
         <Modal.Body>
           <Modal.Header handleClose={handleCancel}>
-            <span className="inter-xlarge-semibold">Resend notification</span>
+            <span className="inter-xlarge-semibold">Reenviar notificación</span>
           </Modal.Header>
           <Modal.Content>
             <div className="flex flex-col">
@@ -60,7 +56,7 @@ const ResendModal: React.FC<ResendModalProps> = ({
                   type="text"
                   placeholder={"Email"}
                   {...register(`to`, {
-                    required: "Must be filled",
+                    required: "Es requerido",
                   })}
                 />
               </div>
@@ -75,7 +71,7 @@ const ResendModal: React.FC<ResendModalProps> = ({
                   size="large"
                   onClick={handleCancel}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button
                   size="large"
@@ -85,7 +81,7 @@ const ResendModal: React.FC<ResendModalProps> = ({
                   disabled={isLoading}
                   loading={isLoading}
                 >
-                  Send
+                  Enviar
                 </Button>
               </div>
             </div>

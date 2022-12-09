@@ -95,7 +95,7 @@ const AddScreen = () => {
       <Modal.Footer>
         <div className="flex justify-end w-full space-x-xsmall">
           <Button variant="secondary" size="small" onClick={pop}>
-            Cancel
+            Cancelar
           </Button>
           <Button
             variant="primary"
@@ -103,7 +103,7 @@ const AddScreen = () => {
             onClick={saveAndGoBack}
             disabled={disableSave}
           >
-            Save and go back
+            Guardar y volver
           </Button>
           <Button
             variant="primary"
@@ -111,7 +111,7 @@ const AddScreen = () => {
             onClick={saveAndClose}
             disabled={disableSave}
           >
-            Save and close
+            Guardar y cerrar
           </Button>
         </div>
       </Modal.Footer>

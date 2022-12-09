@@ -42,7 +42,7 @@ const UpdateBalanceModal = ({
       <Modal.Body>
         <form onSubmit={handleSubmit(handleSave)}>
           <Modal.Header handleClose={handleClose}>
-            <span className="inter-xlarge-semibold">Update Balance</span>
+            <span className="inter-xlarge-semibold">Actualizar balance</span>
             <span
               className={clsx(
                 "inter-small-regular text-rose-50 mt-2xsmall transition-display delay-75",
@@ -51,8 +51,8 @@ const UpdateBalanceModal = ({
                 }
               )}
             >
-              Balance can't be updated to a value that is greater than the
-              original amount
+              El saldo no se puede actualizar a un valor mayor que el cantidad
+              original
             </span>
           </Modal.Header>
           <Modal.Content>
@@ -71,7 +71,7 @@ const UpdateBalanceModal = ({
                   return (
                     <CurrencyInput.Amount
                       amount={value}
-                      label="Price"
+                      label="Precio"
                       onChange={onChange}
                     />
                   )
@@ -88,7 +88,7 @@ const UpdateBalanceModal = ({
                 className="mr-2"
                 type="button"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 loading={updating}
@@ -99,11 +99,11 @@ const UpdateBalanceModal = ({
                 disabled={balance > giftCard.value || updating}
               >
                 {balance > giftCard.value ? (
-                  <Tooltip content="Balance is above original value">
-                    Save
+                  <Tooltip content="El saldo está por encima del valor original">
+                    Guardar
                   </Tooltip>
                 ) : (
-                  "Save"
+                  "Guardar"
                 )}
               </Button>
             </div>

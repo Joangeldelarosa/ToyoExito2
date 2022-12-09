@@ -27,7 +27,7 @@ const ImageTable = ({ data, form, onDelete }: ImageTableProps) => {
       {
         Header: () => (
           <div className="ml-large min-w-[140px] max-w-[140px]">
-            <span>Image</span>
+            <span>Imagen</span>
           </div>
         ),
         maxWidth: 140,
@@ -46,7 +46,7 @@ const ImageTable = ({ data, form, onDelete }: ImageTableProps) => {
         },
       },
       {
-        Header: () => <span>File name</span>,
+        Header: () => <span>Nombre del archivo</span>,
         accessor: "nativeFile",
         Cell: ({ cell }) => {
           return (
@@ -72,7 +72,7 @@ const ImageTable = ({ data, form, onDelete }: ImageTableProps) => {
       {
         Header: () => (
           <div className="flex gap-x-[6px] items-center justify-center">
-            <span>Thumbnail</span>
+            <span>Vista previa</span>
             <IconTooltip content="Select which image you want to use as the thumbnail for this product" />
           </div>
         ),
@@ -108,19 +108,14 @@ const ImageTable = ({ data, form, onDelete }: ImageTableProps) => {
     ]
   }, [])
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
-    defaultColumn: {
-      width: "auto",
-    },
-  })
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns,
+      data,
+      defaultColumn: {
+        width: "auto",
+      },
+    })
 
   return (
     <Table {...getTableProps()}>

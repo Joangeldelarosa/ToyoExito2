@@ -81,8 +81,8 @@ const OrderEditLine = ({
   const onDuplicate = async () => {
     if (!item.variant) {
       notification(
-        "Warning",
-        "Cannot duplicate an item without a variant",
+        "Alerta",
+        "No se puede duplicar un producto sin variantes",
         "warning"
       )
       return
@@ -94,7 +94,7 @@ const OrderEditLine = ({
         quantity: item.quantity,
       })
     } catch (e) {
-      notification("Error", "Failed to duplicate item", "error")
+      notification("Error", "No se pudo duplicar el producto", "error")
     }
   }
 
@@ -111,9 +111,9 @@ const OrderEditLine = ({
       } else {
         await removeItem()
       }
-      notification("Success", "Item removed", "success")
+      notification("Éxito", "Producto eliminado", "success")
     } catch (e) {
-      notification("Error", "Failed to remove item", "error")
+      notification("Error", "No se pudo eliminar el producto", "error")
     }
   }
 
@@ -122,14 +122,14 @@ const OrderEditLine = ({
     try {
       await onRemove()
       await addLineItem({ variant_id: newVariantId, quantity: item.quantity })
-      notification("Success", "Item added", "success")
+      notification("Éxito", "Producto agregado", "success")
     } catch (e) {
-      notification("Error", "Failed to replace the item", "error")
+      notification("Error", "Error al reemplazar el producto", "error")
     }
   }
 
   const replaceProductVariantScreen = {
-    title: "Replace Product Variants",
+    title: "Reemplazar las variantes del producto",
     onBack: pop,
     view: (
       <AddProductVariant
@@ -144,17 +144,17 @@ const OrderEditLine = ({
 
   const actions = [
     !isLocked && {
-      label: "Replace with other item",
+      label: "Reemplazar con otro producto",
       onClick: () => push(replaceProductVariantScreen),
       icon: <RefreshIcon size="20" />,
     },
     {
-      label: "Duplicate item",
+      label: "Duplicar producto",
       onClick: onDuplicate,
       icon: <DuplicateIcon size="20" />,
     },
     !isLocked && {
-      label: "Remove item",
+      label: "Eliminar producto",
       onClick: onRemove,
       variant: "danger",
       icon: <TrashIcon size="20" />,
@@ -165,7 +165,7 @@ const OrderEditLine = ({
     <Tooltip
       side="top"
       open={isLocked ? undefined : false}
-      content="This line item is part of a fulfillment and cannot be edited. Cancel the fulfillment to edit the line item."
+      content="Esta línea de pedido es parte de un cumplimiento y no se puede editar. Cancele el cumplimiento para editar el elemento de línea."
     >
       <div className="flex justify-between mb-1 h-[64px] py-2 mx-[-5px] px-[5px] hover:bg-grey-5 rounded-rounded">
         <div className="flex space-x-4 justify-center flex-grow-1">
@@ -188,14 +188,14 @@ const OrderEditLine = ({
             </div>
             <div className="flex items-center">
               {isNew && (
-                <div className="text-small text-blue-500 bg-blue-10 h-[24px] w-[42px] mr-2 flex-shrink-0 flex items-center justify-center rounded-rounded">
-                  New
+                <div className="text-small text-green-500 bg-green-10 h-[24px] w-[42px] mr-2 flex-shrink-0 flex items-center justify-center rounded-rounded">
+                  Nuevo
                 </div>
               )}
 
               {isModified && (
                 <div className="text-small text-orange-500 bg-orange-10 h-[24px] w-[68px] mr-2 flex-shrink-0 flex items-center justify-center rounded-rounded">
-                  Modified
+                  Modificado
                 </div>
               )}
 

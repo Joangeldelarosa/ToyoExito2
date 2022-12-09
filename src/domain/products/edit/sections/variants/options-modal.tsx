@@ -140,20 +140,16 @@ const OptionsModal = ({ product, open, onClose }: Props) => {
     })
 
     if (errors.length === toCreate.length + toUpdate.length + toDelete.length) {
-      notification("Error", "Failed to update product options", "error")
+      notification("Error", "No se pudo actualizar las opciones", "error")
       return
     }
 
     if (errors.length > 0) {
-      notification(
-        "Warning",
-        "Failed to; " + errors.join(", ") + ".",
-        "warning"
-      )
+      notification("Alerta", "Fallo en; " + errors.join(", ") + ".", "warning")
     }
 
     refetch()
-    notification("Success", "Successfully updated product options", "success")
+    notification("Éxito", "Opciones actualizadas correctamente", "success")
     handleClose()
   })
 
@@ -161,13 +157,17 @@ const OptionsModal = ({ product, open, onClose }: Props) => {
     <Modal open={open} handleClose={handleClose}>
       <Modal.Body>
         <Modal.Header handleClose={handleClose}>
-          <h1 className="inter-xlarge-semibold">Edit Options</h1>
+          <h1 className="inter-xlarge-semibold">Editar opciones</h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
-            <h2 className="inter-large-semibold mb-base">Product options</h2>
+            <h2 className="inter-large-semibold mb-base">
+              Opciones del producto
+            </h2>
             <div className="flex flex-col gap-y-small">
-              <p className="inter-small-semibold text-grey-50">Option title</p>
+              <p className="inter-small-semibold text-grey-50">
+                Título de la opción
+              </p>
               <div className="flex flex-col gap-y-xsmall">
                 {fields.map((field, index) => {
                   return (
@@ -179,10 +179,9 @@ const OptionsModal = ({ product, open, onClose }: Props) => {
                         key={field.id}
                         placeholder="Color"
                         {...register(`options.${index}.title`, {
-                          required: "Option title is required",
-                          minLength: FormValidator.minOneCharRule(
-                            "Option title"
-                          ),
+                          required: "El título es requerido",
+                          minLength:
+                            FormValidator.minOneCharRule("Option title"),
                           pattern: FormValidator.whiteSpaceRule("Option title"),
                         })}
                         errors={errors}
@@ -206,13 +205,13 @@ const OptionsModal = ({ product, open, onClose }: Props) => {
               type="button"
               onClick={handleAddAnOption}
             >
-              <PlusIcon size="20" /> Add an option
+              <PlusIcon size="20" /> Agregar una opción
             </Button>
           </Modal.Content>
           <Modal.Footer>
             <div className="flex items-center justify-end gap-xsmall w-full">
               <Button variant="secondary" size="small" type="button">
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -221,7 +220,7 @@ const OptionsModal = ({ product, open, onClose }: Props) => {
                 disabled={!isDirty}
                 loading={isSubmitting}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

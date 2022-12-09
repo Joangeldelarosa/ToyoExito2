@@ -73,7 +73,7 @@ const ProductVariantLeaf = ({ sku, title, prices = [] }: LeafProps) => {
             }`}</span>
           ) : (
             <span className="inter-small-semibold text-orange-40">
-              Add prices
+              Agregar precios
             </span>
           )}
         </div>

@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import moment from "moment"
-import React, { useState } from "react"
+import React, { ReactNode, useState } from "react"
 import Tooltip from "../../atoms/tooltip"
 import BellOffIcon from "../../fundamentals/icons/bell-off-icon"
 import ChevronDownIcon from "../../fundamentals/icons/chevron-down"
@@ -10,7 +10,7 @@ export enum EventIconColor {
   GREEN = "text-emerald-40",
   RED = "text-rose-50",
   ORANGE = "text-orange-40",
-  VIOLET = "text-violet-60",
+  VIOLET = "text-green-60",
   DEFAULT = "text-grey-50",
 }
 
@@ -24,6 +24,7 @@ type EventContainerProps = {
   midNode?: React.ReactNode
   isFirst?: boolean
   expandable?: boolean
+  children: ReactNode
 }
 
 const EventContainer: React.FC<EventContainerProps> = ({

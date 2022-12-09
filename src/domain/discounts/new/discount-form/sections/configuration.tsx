@@ -78,9 +78,9 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
               headingSize="medium"
               forceMountContent
               className="border-b-0"
-              title="Start date"
-              subtitle="Schedule the discount to activate in the future."
-              tooltip="If you want to schedule the discount to activate in the future, you can set a start date here, otherwise the discount will be active immediately."
+              title="Fecha de inicio"
+              subtitle="Programa la fecha de inicio del descuento."
+              tooltip="Si desea programar el descuento para que se active en el futuro, puede establecer una fecha de inicio aquí; de lo contrario, el descuento se activará de inmediato."
               value="starts_at"
               customTrigger={
                 <Switch checked={openItems.indexOf("starts_at") > -1} />
@@ -98,17 +98,17 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
                 <Controller
                   name="starts_at"
                   control={control}
-                  render={({ field: { value, onChange } }) => {
+                  render={({ field: { value, onChange } }) => {
                     const date = value || new Date()
                     return (
                       <>
                         <DatePicker
                           date={date}
-                          label="Start date"
+                          label="Fecha de inicio"
                           onSubmitDate={onChange}
                         />
                         <TimePicker
-                          label="Start time"
+                          label="Hora de inicio"
                           date={date}
                           onSubmitDate={onChange}
                         />
@@ -122,9 +122,9 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
               headingSize="medium"
               forceMountContent
               className="border-b-0"
-              title="Discount has an expiry date?"
-              subtitle="Schedule the discount to deactivate in the future."
-              tooltip="If you want to schedule the discount to deactivate in the future, you can set an expiry date here."
+              title="¿El descuento tiene fecha de caducidad?"
+              subtitle="Programe el descuento para desactivarlo en el futuro."
+              tooltip="Si desea programar el descuento para que se desactive en el futuro, puede establecer una fecha de caducidad aquí."
               value="ends_at"
               customTrigger={
                 <Switch checked={openItems.indexOf("ends_at") > -1} />
@@ -142,7 +142,7 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
                 <Controller
                   name="ends_at"
                   control={control}
-                  render={({ field: { value, onChange } }) => {
+                  render={({ field: { value, onChange } }) => {
                     const date =
                       value ||
                       new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
@@ -150,11 +150,11 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
                       <>
                         <DatePicker
                           date={date}
-                          label="Expiry date"
+                          label="Fecha de caducidad"
                           onSubmitDate={onChange}
                         />
                         <TimePicker
-                          label="Expiry time"
+                          label="Hora de caducidad"
                           date={date}
                           onSubmitDate={onChange}
                         />
@@ -168,9 +168,9 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
               headingSize="medium"
               forceMountContent
               className="border-b-0"
-              title="Limit the number of redemptions?"
-              subtitle="Limit applies across all customers, not per customer."
-              tooltip="If you wish to limit the amount of times a customer can redeem this discount, you can set a limit here."
+              title="¿Limitar el número de canjes?"
+              subtitle="El límite se aplica a todos los clientes, no por cliente."
+              tooltip="Si desea limitar la cantidad de veces que un cliente puede canjear este descuento, puede establecer un límite aquí."
               value="usage_limit"
               customTrigger={
                 <Switch checked={openItems.indexOf("usage_limit") > -1} />
@@ -182,8 +182,8 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
                 })}
               >
                 <InputField
-                  {...register("usage_limit",{ valueAsNumber: true })}
-                  label="Number of redemptions"
+                  {...register("usage_limit", { valueAsNumber: true })}
+                  label="Numero de canjes"
                   type="number"
                   placeholder="5"
                   min={1}
@@ -196,10 +196,10 @@ const Settings: React.FC<SettingsProps> = ({ promotion, isEdit = false }) => {
                 disabled={!isDynamic}
                 headingSize="medium"
                 forceMountContent
-                title="Availability duration?"
+                title="¿Duración de la disponibilidad?"
                 className="border-b-0"
-                subtitle="Set the duration of the discount."
-                tooltip="Select a discount type"
+                subtitle="Establezca la duración del descuento"
+                tooltip="Seleccione un tipo de descuento"
                 value="valid_duration"
                 customTrigger={
                   <Switch checked={openItems.indexOf("valid_duration") > -1} />

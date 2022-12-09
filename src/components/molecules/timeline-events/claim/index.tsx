@@ -52,7 +52,7 @@ const Claim: React.FC<ClaimProps> = ({ event, refetch }) => {
       ? EventIconColor.DEFAULT
       : EventIconColor.ORANGE,
     time: event.canceledAt ? event.canceledAt : event.time,
-    title: event.canceledAt ? "Claim Canceled" : "Claim Created",
+    title: event.canceledAt ? "Reclamo cancelado" : "Reclamo creado",
     topNode: actions,
     children: [
       <div className="flex flex-col gap-y-base">
@@ -97,7 +97,9 @@ const Claim: React.FC<ClaimProps> = ({ event, refetch }) => {
 function ClaimItems(event: ClaimEvent) {
   return (
     <div className="flex flex-col gap-y-small">
-      <span className="inter-small-regular text-grey-50">Claimed items</span>
+      <span className="inter-small-regular text-grey-50">
+        Productos reclamados
+      </span>
       <div>
         {event.claimItems.map((i) => (
           <EventItemContainer item={i} />
@@ -110,12 +112,12 @@ function ClaimItems(event: ClaimEvent) {
 function ClaimStatus(event: ClaimEvent) {
   return event.claimType === "refund" && event.refundStatus ? (
     <div>
-      <span className="text-grey-50 mb-2xsmall">Refund:</span>
+      <span className="text-grey-50 mb-2xsmall">Devolucion:</span>
       <RefundStatus refundStatus={event.refundStatus} />
     </div>
   ) : event.claimType === "return" && event.fulfillmentStatus ? (
     <div>
-      <span className="text-grey-50 mb-2xsmall">Fulfillment:</span>
+      <span className="text-grey-50 mb-2xsmall">Envio:</span>
       <FulfillmentStatus fulfillmentStatus={event.fulfillmentStatus} />
     </div>
   ) : null
@@ -124,7 +126,7 @@ function ClaimStatus(event: ClaimEvent) {
 function ClaimRefundOrReplacement(event: ClaimEvent) {
   return event.claimType === "replace" ? (
     <div className="flex flex-col gap-y-small">
-      <span className="inter-small-regular text-grey-50">New items</span>
+      <span className="inter-small-regular text-grey-50">Nuevos productos</span>
       <div>
         {event.newItems.map((i) => (
           <EventItemContainer item={i} />
@@ -135,9 +137,9 @@ function ClaimRefundOrReplacement(event: ClaimEvent) {
     <div className="flex flex-col">
       <span className="text-grey-50 mb-2xsmall">{`${
         event.refundStatus && event.refundStatus === "refunded"
-          ? "Refunded"
-          : "Refund"
-      } amount:`}</span>
+          ? "Devuelto"
+          : "Devolucion"
+      } cantidad:`}</span>
       <span className="inter-small-semibold">
         {formatAmountWithSymbol({
           amount: event.refundAmount,
@@ -158,7 +160,7 @@ function ClaimActions(
 
   actions.push({
     icon: <ListIcon size={20} />,
-    label: "More Details",
+    label: "Mas detalles",
     onClick: onDetails,
   })
 
@@ -170,7 +172,7 @@ function ClaimActions(
     ) {
       actions.push({
         icon: <CheckCircleIcon size={20} />,
-        label: "Fulfill Claim",
+        label: "Reclamo sobre el envio",
         onClick: onFulfill,
       })
     }
@@ -178,7 +180,7 @@ function ClaimActions(
     if (event.refundStatus !== "refunded" && !event.isCanceled) {
       actions.push({
         icon: <TrashIcon size={20} />,
-        label: "Cancel Claim",
+        label: "Cancelar reclamo",
         variant: "danger",
         onClick: onCancel,
       })

@@ -64,9 +64,9 @@ const RMASelectReturnProductTable: React.FC<RMASelectProductTableProps> = ({
   return (
     <Table>
       <Table.HeadRow className="text-grey-50 inter-small-semibold">
-        <Table.HeadCell colSpan={2}>Product Details</Table.HeadCell>
-        <Table.HeadCell className="text-right pr-8">Quantity</Table.HeadCell>
-        <Table.HeadCell className="text-right">Refundable</Table.HeadCell>
+        <Table.HeadCell colSpan={2}>Detalles del producto</Table.HeadCell>
+        <Table.HeadCell className="text-right pr-8">Cantidad</Table.HeadCell>
+        <Table.HeadCell className="text-right">Reintegrable</Table.HeadCell>
         <Table.HeadCell></Table.HeadCell>
       </Table.HeadRow>
       <Table.Body>
@@ -91,7 +91,7 @@ const RMASelectReturnProductTable: React.FC<RMASelectProductTableProps> = ({
                   <div
                     onClick={() => handleReturnToggle(item)}
                     className={`mr-4 w-5 h-5 flex justify-center text-grey-0 border-grey-30 border cursor-pointer rounded-base ${
-                      checked && "bg-violet-60"
+                      checked && "bg-green-60"
                     }`}
                   >
                     <span className="self-center">

@@ -60,9 +60,9 @@ const DetailsCustomerGroupConditionSelector = ({
           options={{
             enableSearch: true,
             immediateSearchFocus: true,
-            searchPlaceholder: "Search groups...",
+            searchPlaceholder: "Buscar grupos...",
           }}
-          resourceName="Customer groups"
+          resourceName="Grupos de clientes"
           totalCount={count || 0}
           selectedIds={items.map((i) => i.id)}
           data={customer_groups}

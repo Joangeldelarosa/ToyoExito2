@@ -1,4 +1,3 @@
-import React from "react"
 import {
   HeaderGroup,
   Row,
@@ -7,7 +6,6 @@ import {
   useTable,
 } from "react-table"
 import { UseMutateFunction } from "react-query"
-import { navigate } from "gatsby"
 
 import { Customer } from "@medusajs/medusa"
 
@@ -17,6 +15,7 @@ import DetailsIcon from "../../fundamentals/details-icon"
 import TrashIcon from "../../fundamentals/icons/trash-icon"
 import useQueryFilters from "../../../hooks/use-query-filters"
 import { FilteringOptionProps } from "../../molecules/table/filtering-option"
+import { useNavigate } from "react-router-dom"
 import TableContainer from "../../organisms/table-container"
 
 /* ********************************** */
@@ -81,9 +80,11 @@ interface CustomersListTableRowProps {
 function CustomersListTableRow(props: CustomersListTableRowProps) {
   const { row, removeCustomers } = props
 
+  const navigate = useNavigate()
+
   const actions = [
     {
-      label: "Details",
+      label: "Detalles",
       onClick: () => navigate(`/a/customers/${row.original.id}`),
       icon: <DetailsIcon size={20} />,
     },
@@ -93,7 +94,7 @@ function CustomersListTableRow(props: CustomersListTableRowProps) {
     //   icon: <MailIcon size={20} />,
     // },
     {
-      label: "Delete from the group",
+      label: "Eliminar del grupo",
       variant: "danger",
       onClick: () =>
         removeCustomers({
@@ -185,7 +186,7 @@ function CustomersListTable(props: CustomersListTableProps) {
         count: count!,
         offset: queryObject.offset,
         pageSize: queryObject.offset + table.rows.length,
-        title: "Customer Groups",
+        title: "Grupos de clientes",
         currentPage: table.state.pageIndex + 1,
         pageCount: table.pageCount,
         nextPage: handleNext,

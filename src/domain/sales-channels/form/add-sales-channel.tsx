@@ -98,7 +98,7 @@ const AddSalesChannelModal = ({ onClose }: AddSalesChannelModalProps) => {
       {
         onSuccess: ({ sales_channel }) => {
           notification(
-            "Success",
+            "Éxito",
             "The sales channel is successfully created",
             "success"
           )
@@ -120,7 +120,7 @@ const AddSalesChannelModal = ({ onClose }: AddSalesChannelModalProps) => {
       {
         onSuccess: ({ sales_channel }) => {
           notification(
-            "Success",
+            "Éxito",
             "The sales channel is successfully created",
             "success"
           )
@@ -152,7 +152,7 @@ const AddSalesChannelModal = ({ onClose }: AddSalesChannelModalProps) => {
               disabled={!name}
               className="rounded-rounded"
             >
-              Save as draft
+              Guardar como borrador
             </Button>
 
             <Button
@@ -162,7 +162,7 @@ const AddSalesChannelModal = ({ onClose }: AddSalesChannelModalProps) => {
               disabled={!name}
               className="rounded-rounded"
             >
-              Publish channel
+              Publicar canal
             </Button>
           </div>
         </div>

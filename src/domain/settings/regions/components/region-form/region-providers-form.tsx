@@ -28,17 +28,17 @@ const RegionProvidersForm = ({ form }: Props) => {
         control={control}
         name={path("payment_providers")}
         rules={{
-          required: "Payment providers are required",
+          required: "Proveedores de pago son requeridos",
           minLength: {
             value: 1,
-            message: "Payment providers are required",
+            message: "Proveedores de pago son requeridos",
           },
         }}
         render={({ field: { value, onBlur, onChange } }) => {
           return (
             <NextSelect
-              label="Payment Providers"
-              placeholder="Choose payment providers..."
+              label="Proveedores de pago"
+              placeholder="Seleccionar proveedores de pago..."
               options={paymentProviderOptions}
               isMulti
               isClearable
@@ -57,17 +57,17 @@ const RegionProvidersForm = ({ form }: Props) => {
         control={control}
         name={path("fulfillment_providers")}
         rules={{
-          required: "Fulfillment providers are required",
+          required: "Proveedores de envío son requeridos",
           minLength: {
             value: 1,
-            message: "Fulfillment providers are required",
+            message: "Proveedores de envío son requeridos",
           },
         }}
         render={({ field: { onBlur, onChange, value } }) => {
           return (
             <NextSelect
-              label="Fulfillment Providers"
-              placeholder="Choose fulfillment providers..."
+              label="Proveedores de envío"
+              placeholder="Seleccionar proveedores de envío..."
               options={fulfillmentProviderOptions}
               required
               isMulti

@@ -36,7 +36,7 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
       tax_provider_id: {
         label:
           region.tax_provider_id === null
-            ? "System Tax Provider"
+            ? "Proveedor de impuestos del sistema"
             : region.tax_provider_id,
         value: region.tax_provider_id,
       },
@@ -51,17 +51,15 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
       tax_provider_id: {
         label:
           region.tax_provider_id === null
-            ? "System Tax Provider"
+            ? "Proveedor de impuestos del sistema"
             : region.tax_provider_id,
         value: region.tax_provider_id,
       },
     })
   }, [region])
 
-  const {
-    isLoading: isProvidersLoading,
-    tax_providers,
-  } = useAdminStoreTaxProviders()
+  const { isLoading: isProvidersLoading, tax_providers } =
+    useAdminStoreTaxProviders()
 
   const updateRegion = useAdminUpdateRegion(region.id)
 
@@ -69,7 +67,7 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
     if (tax_providers) {
       return [
         {
-          label: "System Tax Provider",
+          label: "Proveedor de impuestos del sistema",
           value: null,
         },
         ...tax_providers.map((tp) => ({
@@ -81,7 +79,7 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
 
     return [
       {
-        label: "System Tax Provider",
+        label: "Proveedor de impuestos del sistema",
         value: null,
       },
     ]
@@ -96,8 +94,8 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
     updateRegion.mutate(toSubmit, {
       onSuccess: () => {
         notification(
-          "Success",
-          "Region tax settings were successfully updated.",
+          "Éxito",
+          "La configuración de impuestos de la región se actualizó correctamente.",
           "success"
         )
       },
@@ -117,7 +115,7 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
           render={({ field: { value, onChange } }) => (
             <Select
               disabled={isProvidersLoading}
-              label="Tax Provider"
+              label="Proveedor de impuestos"
               options={providerOptions}
               value={value}
               onChange={onChange}
@@ -129,11 +127,11 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
           <Checkbox
             className="inter-base-regular"
             {...register("automatic_taxes")}
-            label="Calculate taxes automatically?"
+            label="¿Calcular impuestos automáticamente?"
           />
           <IconTooltip
             content={
-              "When checked Medusa will automatically apply tax calculations to Carts in this Region. When unchecked you will have to manually compute taxes at checkout. Manual taxes are recommended if using a 3rd party tax provider to avoid performing too many requests"
+              "Cuando está marcada, el sistema aplicará automáticamente los cálculos de impuestos a los carritos en esta región. Cuando no esté marcado, tendrá que calcular manualmente los impuestos al finalizar la compra. Se recomiendan los impuestos manuales si se utiliza un proveedor de impuestos de terceros para evitar realizar demasiadas solicitudes."
             }
           />
         </div>
@@ -141,11 +139,11 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
           <Checkbox
             className="inter-base-regular"
             {...register("gift_cards_taxable")}
-            label="Apply tax to gift cards?"
+            label="¿Aplicar impuestos a las tarjetas de regalo?"
           />
           <IconTooltip
             content={
-              "When checked taxes will be applied to gift cards on checkout. In some contries tax regulations require that taxes are applied to gift cards on purchase."
+              "Cuando se verifique, los impuestos se aplicarán a las tarjetas de regalo al finalizar la compra. En algunos países, las normas fiscales exigen que se apliquen impuestos a las tarjetas de regalo en el momento de la compra."
             }
           />
         </div>
@@ -158,7 +156,7 @@ export const RegionTaxForm = ({ region }: RegionTaxFormProps) => {
             size="medium"
             type="submit"
           >
-            Save
+            Guardar
           </Button>
         )}
       </div>

@@ -1,6 +1,5 @@
-import { RouteComponentProps, Router } from "@reach/router"
-import { navigate } from "gatsby"
-import React, { useMemo, useState } from "react"
+import { useMemo, useState } from "react"
+import { Route, Routes, useNavigate } from "react-router-dom"
 
 import PlusIcon from "../../../components/fundamentals/icons/plus-icon"
 import BodyCard from "../../../components/organisms/body-card"
@@ -10,16 +9,18 @@ import NewOrderFormProvider from "../new/form"
 import NewOrder from "../new/new-order"
 import DraftOrderDetails from "./details"
 
-const VIEWS = ["orders", "drafts"]
+const VIEWS = ["pedidos", "borradores"]
 
-const DraftOrderIndex: React.FC<RouteComponentProps> = () => {
-  const view = "drafts"
+const DraftOrderIndex = () => {
+  const navigate = useNavigate()
+
+  const view = "borradores"
   const [showNewOrder, setShowNewOrder] = useState(false)
 
   const actions = useMemo(() => {
     return [
       {
-        label: "Create draft order",
+        label: "Crear pedido borrador",
         onClick: () => setShowNewOrder(true),
         icon: <PlusIcon size={20} />,
       },
@@ -34,7 +35,7 @@ const DraftOrderIndex: React.FC<RouteComponentProps> = () => {
             <TableViewHeader
               views={VIEWS}
               setActiveView={(v) => {
-                if (v === "orders") {
+                if (v === "pedidos") {
                   navigate(`/a/orders`)
                 }
               }}
@@ -42,6 +43,7 @@ const DraftOrderIndex: React.FC<RouteComponentProps> = () => {
             />
           }
           actionables={actions}
+          className="h-fit"
         >
           <DraftOrderTable />
         </BodyCard>
@@ -57,10 +59,10 @@ const DraftOrderIndex: React.FC<RouteComponentProps> = () => {
 
 const DraftOrders = () => {
   return (
-    <Router>
-      <DraftOrderIndex path="/" />
-      <DraftOrderDetails path=":id" />
-    </Router>
+    <Routes>
+      <Route index element={<DraftOrderIndex />} />
+      <Route path="/:id" element={<DraftOrderDetails />} />
+    </Routes>
   )
 }
 

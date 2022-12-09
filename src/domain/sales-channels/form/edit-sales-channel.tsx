@@ -34,14 +34,18 @@ function EditSalesChannel(props: EditSalesChannelProps) {
       {
         onSuccess: () => {
           notification(
-            "Success",
-            "The sales channel is successfully updated",
+            "Éxito",
+            "El canal de ventas se ha actualizado correctamente",
             "success"
           )
           handleClose()
         },
         onError: () =>
-          notification("Error", "Failed to update the sales channel", "error"),
+          notification(
+            "Error",
+            "No se pudo actualizar el canal de ventas",
+            "error"
+          ),
       }
     )
   }
@@ -50,22 +54,24 @@ function EditSalesChannel(props: EditSalesChannelProps) {
     <Modal handleClose={handleClose}>
       <Modal.Body>
         <Modal.Header handleClose={handleClose}>
-          <span className="inter-xlarge-semibold">Sales channel details</span>
+          <span className="inter-xlarge-semibold">
+            Detalles del canal de ventas
+          </span>
         </Modal.Header>
         <Modal.Content>
           <div className="inter-base-semibold text-grey-90 mb-4">
-            General info
+            Información general
           </div>
 
           <div className="w-full flex flex-col gap-3">
             <InputField
-              label="Name"
+              label="Nombre"
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <InputField
-              label="Description"
+              label="Descripción"
               name="description"
               value={description!}
               onChange={(e) => setDescription(e.target.value)}
@@ -80,7 +86,7 @@ function EditSalesChannel(props: EditSalesChannelProps) {
               onClick={handleClose}
               className="mr-2"
             >
-              Close
+              Cerrar
             </Button>
             <Button
               disabled={!name.length || isLoading}
@@ -90,7 +96,7 @@ function EditSalesChannel(props: EditSalesChannelProps) {
               onClick={handleSubmit}
               loading={isLoading}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

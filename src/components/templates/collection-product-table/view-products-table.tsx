@@ -145,7 +145,7 @@ const ViewProductsTable: React.FC<ViewProductsTableProps> = ({
           count: count!,
           offset: offset,
           pageSize: offset + rows.length,
-          title: "Products",
+          title: "Productos",
           currentPage: pageIndex + 1,
           pageCount: pageCount,
           nextPage: handleNext,
@@ -157,7 +157,7 @@ const ViewProductsTable: React.FC<ViewProductsTableProps> = ({
         <Table
           enableSearch
           handleSearch={handleSearch}
-          searchPlaceholder="Search Products"
+          searchPlaceholder="Buscar productos"
           {...getTableProps()}
           className="h-full"
         >
@@ -183,8 +183,8 @@ const ViewProductsTable: React.FC<ViewProductsTableProps> = ({
         <DeletePrompt
           onDelete={async () => handleRemoveProduct()}
           handleClose={() => setShowDelete(!showDelete)}
-          heading="Remove product from collection"
-          successText="Product removed from collection"
+          heading="Quitar producto de la colección"
+          successText="Producto eliminado de la colección."
         />
       )}
     </>

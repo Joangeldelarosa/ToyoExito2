@@ -61,7 +61,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
   const columns = useMemo(() => {
     return [
       {
-        Header: "Name",
+        Header: "Nombre",
         accessor: "title",
         Cell: ({ row: { original } }) => {
           return (
@@ -85,7 +85,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
         },
       },
       {
-        Header: "Status",
+        Header: "Estado",
         accessor: "status",
         Cell: ({ row: { original } }) => (
           <StatusIndicator
@@ -97,7 +97,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
         ),
       },
       {
-        Header: <div className="text-right">In Stock</div>,
+        Header: <div className="text-right">En Stock</div>,
         accessor: "inventory_quantity",
         Cell: ({ row: { original } }) => (
           <div className="text-right">{original.inventory_quantity}</div>
@@ -218,7 +218,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
             count: count!,
             offset: offset,
             pageSize: offset + rows.length,
-            title: "Products",
+            title: "Productos",
             currentPage: pageIndex + 1,
             pageCount: pageCount,
             nextPage: handleNext,
@@ -230,13 +230,20 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
           <Table
             immediateSearchFocus
             enableSearch
-            searchPlaceholder="Search Products.."
+            searchPlaceholder="Buscar productos.."
             handleSearch={handleSearch}
             {...getTableProps()}
           >
             <Table.Body {...getTableBodyProps()}>
               {isLoading ? (
-                <Spinner size="large" />
+                <Table.Row>
+                  <Table.Cell
+                    colSpan={columns.length}
+                    className="flex items-center justify-center"
+                  >
+                    <Spinner size="large" variant="secondary" />
+                  </Table.Cell>
+                </Table.Row>
               ) : (
                 rows.map((row, i) => {
                   prepareRow(row)
@@ -265,7 +272,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
             className="w-[112px]"
             onClick={() => pop()}
           >
-            Back
+            Volver
           </Button>
           <Button
             variant="primary"
@@ -273,7 +280,7 @@ const RMASelectProductSubModal: React.FC<RMASelectProductSubModalProps> = ({
             size="small"
             onClick={handleSubmit}
           >
-            Add
+            Agregar
           </Button>
         </div>
       </Modal.Footer>

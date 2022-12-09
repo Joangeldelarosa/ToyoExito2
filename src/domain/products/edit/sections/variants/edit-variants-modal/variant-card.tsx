@@ -51,7 +51,7 @@ export const VariantCard = ({
   const actions: ActionType[] = useMemo(() => {
     return [
       {
-        label: "Edit Variant",
+        label: "Editar variante",
         icon: <EditIcon size={20} className="text-grey-50" />,
         onClick: () => push(editVariantScreen),
       },

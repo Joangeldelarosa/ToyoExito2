@@ -5,7 +5,7 @@ import { Controller, useForm, useWatch } from "react-hook-form"
 import Button from "../../../../components/fundamentals/button"
 import InputField from "../../../../components/molecules/input"
 import Modal from "../../../../components/molecules/modal"
-import Select from "../../../../components/molecules/select"
+import { NextSelect } from "../../../../components/molecules/select/next-select"
 import TextArea from "../../../../components/molecules/textarea"
 import CurrencyInput from "../../../../components/organisms/currency-input"
 import useNotification from "../../../../hooks/use-notification"
@@ -46,7 +46,11 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
       },
       {
         onSuccess: ({ discount }) => {
-          notification("Success", "Discount updated successfully", "success")
+          notification(
+            "Éxito",
+            "Descuento actualizado correctamente",
+            "success"
+          )
           reset(mapGeneral(discount))
           onClose()
         },
@@ -91,28 +95,30 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Modal.Header handleClose={onClose}>
-            <h1 className="inter-xlarge-semibold">Edit general information</h1>
+            <h1 className="inter-xlarge-semibold">
+              Editar información general
+            </h1>
           </Modal.Header>
-          <Modal.Content isLargeModal>
+          <Modal.Content>
             <Controller
               name="regions"
               control={control}
               rules={{
-                required: "Atleast one region is required",
+                required: "Por lo menos una región es requerida",
                 validate: (value) =>
                   Array.isArray(value) ? value.length > 0 : !!value,
               }}
               render={({ field: { value, onChange } }) => {
                 return (
-                  <Select
+                  <NextSelect
                     value={value}
                     onChange={(value) => {
                       onChange(type === "fixed" ? [value] : value)
                     }}
-                    label="Choose valid regions"
-                    isMultiSelect={type !== "fixed"}
-                    hasSelectAll={type !== "fixed"}
-                    enableSearch
+                    label="Selecciona las regiones válidas"
+                    isMulti={type !== "fixed"}
+                    selectAll={type !== "fixed"}
+                    isSearchable
                     required
                     options={regionOptions}
                   />
@@ -121,11 +127,11 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
             />
             <div className="flex gap-x-base gap-y-base my-base">
               <InputField
-                label="Code"
+                label="Código"
                 className="flex-1"
                 placeholder="SUMMERSALE10"
                 required
-                {...register("code", { required: "Code is required" })}
+                {...register("code", { required: "Se requiere un código" })}
               />
 
               {type !== "free_shipping" && (
@@ -142,7 +148,7 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
                           name="value"
                           control={control}
                           rules={{
-                            required: "Amount is required",
+                            required: "La cantidad es requerida",
                             min: 1,
                           }}
                           render={({ field: { value, onChange } }) => {
@@ -161,14 +167,14 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
                   ) : (
                     <div className="flex-1">
                       <InputField
-                        label="Percentage"
+                        label="Porcentaje"
                         min={0}
                         required
                         type="number"
                         placeholder="10"
                         prefix={"%"}
                         {...register("value", {
-                          required: "Percentage is required",
+                          required: "El porcentaje es requerido",
                           valueAsNumber: true,
                         })}
                       />
@@ -180,18 +186,18 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
 
             <div className="text-grey-50 inter-small-regular flex flex-col mb-6">
               <span>
-                The code your customers will enter during checkout. This will
-                appear on your customer’s invoice.
+                El código que sus clientes ingresarán durante el pago. Esto
+                aparecerá en la factura.
               </span>
-              <span>Uppercase letters and numbers only.</span>
+              <span>Solo letras mayúsculas y números.</span>
             </div>
             <TextArea
-              label="Description"
+              label="Descripción"
               required
               placeholder="Summer Sale 2022"
               rows={1}
               {...register("description", {
-                required: "Description is required",
+                required: "La descripción es requerida",
               })}
             />
           </Modal.Content>
@@ -204,7 +210,7 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
                 type="button"
                 onClick={onClose}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -214,7 +220,7 @@ const EditGeneral: React.FC<EditGeneralProps> = ({ discount, onClose }) => {
                 disabled={isLoading}
                 loading={isLoading}
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

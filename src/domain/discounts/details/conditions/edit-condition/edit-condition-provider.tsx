@@ -42,10 +42,8 @@ export const EditConditionProvider = ({
     condition.id
   )
 
-  const removeConditionResourceBatch = useAdminDeleteDiscountConditionResourceBatch(
-    discount.id,
-    condition.id
-  )
+  const removeConditionResourceBatch =
+    useAdminDeleteDiscountConditionResourceBatch(discount.id, condition.id)
 
   const addConditionResources = (
     resourcesToAdd: string[],
@@ -56,14 +54,14 @@ export const EditConditionProvider = ({
       {
         onSuccess: () => {
           notification(
-            "Success",
-            "The resources were successfully added",
+            "Éxito",
+            "Las condiciones se agregaron con éxito.",
             "success"
           )
           onSuccessCallback?.()
         },
         onError: () =>
-          notification("Error", "Failed to add resources", "error"),
+          notification("Error", "Error al agregar las condiciones", "error"),
       }
     )
   }
@@ -74,13 +72,13 @@ export const EditConditionProvider = ({
       {
         onSuccess: () => {
           notification(
-            "Success",
-            "The resources were successfully removed",
+            "Éxito",
+            "Las condiciones se eliminaron con éxito.",
             "success"
           )
         },
         onError: () =>
-          notification("Error", "Failed to remove resources", "error"),
+          notification("Error", "Error al eliminar las condiciones", "error"),
       }
     )
   }

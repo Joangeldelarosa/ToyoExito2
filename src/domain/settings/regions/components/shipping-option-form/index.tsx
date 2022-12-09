@@ -43,17 +43,17 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
     formState: { errors },
   } = form
 
-  const {
-    shippingProfileOptions,
-    fulfillmentOptions,
-  } = useShippingOptionFormData(region.id)
+  const { shippingProfileOptions, fulfillmentOptions } =
+    useShippingOptionFormData(region.id)
 
   return (
     <div>
       <div>
         <div className="flex flex-col gap-y-2xsmall">
           <div className="flex items-center justify-between">
-            <h3 className="inter-base-semibold mb-2xsmall">Visible in store</h3>
+            <h3 className="inter-base-semibold mb-2xsmall">
+              Visible en tienda
+            </h3>
             <Controller
               control={control}
               name={"store_option"}
@@ -63,19 +63,20 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
             />
           </div>
           <p className="inter-base-regular text-grey-50">
-            Enable or disable the shipping option visiblity in store.
+            Habilite o deshabilite la visibilidad de la opción de envío en la
+            tienda.
           </p>
         </div>
       </div>
       <div className="h-px w-full bg-grey-20 my-xlarge" />
       <div>
-        <h3 className="inter-base-semibold mb-base">Details</h3>
+        <h3 className="inter-base-semibold mb-base">Detalles</h3>
         <div className="grid grid-cols-2 gap-large">
           <InputField
-            label="Title"
+            label="Titulo"
             required
             {...register("name", {
-              required: "Title is required",
+              required: "El titulo es requerido",
               pattern: FormValidator.whiteSpaceRule("Title"),
               minLength: FormValidator.minOneCharRule("Title"),
             })}
@@ -88,19 +89,19 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
               render={({ field }) => {
                 return (
                   <NextSelect
-                    label="Price Type"
+                    label="Tipo de precio"
                     required
                     options={[
                       {
-                        label: "Flat Rate",
+                        label: "Tarifa plana",
                         value: "flat_rate",
                       },
                       {
-                        label: "Calculated",
+                        label: "Calculada",
                         value: "calculated",
                       },
                     ]}
-                    placeholder="Choose a price type"
+                    placeholder="Seleccione un tipo de precio"
                     {...field}
                     errors={errors}
                   />
@@ -119,7 +120,7 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
                   return (
                     <div>
                       <InputHeader
-                        label="Price"
+                        label="Precio"
                         className="mb-2xsmall"
                         tooltip={
                           <IncludesTaxTooltip
@@ -149,10 +150,10 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
                 render={({ field }) => {
                   return (
                     <NextSelect
-                      label="Shipping Profile"
+                      label="Perfil de envío"
                       required
                       options={shippingProfileOptions}
-                      placeholder="Choose a shipping profile"
+                      placeholder="Seleccione un perfil de envío"
                       {...field}
                       errors={errors}
                     />
@@ -165,9 +166,9 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
                 render={({ field }) => {
                   return (
                     <NextSelect
-                      label="Fulfillment Method"
+                      label="Metodo de envío"
                       required
-                      placeholder="Choose a fulfillment method"
+                      placeholder="Seleccione un metodo de envío"
                       options={fulfillmentOptions}
                       {...field}
                       errors={errors}
@@ -181,7 +182,7 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
       </div>
       <div className="h-px w-full bg-grey-20 my-xlarge" />
       <div>
-        <h3 className="inter-base-semibold mb-base">Requirements</h3>
+        <h3 className="inter-base-semibold mb-base">Requerimientos</h3>
         <div className="grid grid-cols-2 gap-large">
           <Controller
             control={control}
@@ -201,7 +202,7 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
                   "requirements.max_subtotal.amount"
                 )
                 if (maxSubtotal && value > maxSubtotal) {
-                  return "Min. subtotal must be less than max. subtotal"
+                  return "Min. subtotal debe ser menor que Max. subtotal"
                 }
                 return true
               },
@@ -245,7 +246,7 @@ const ShippingOptionForm = ({ form, region, isEdit = false }: Props) => {
                   "requirements.min_subtotal.amount"
                 )
                 if (minSubtotal && value < minSubtotal) {
-                  return "Max. subtotal must be greater than min. subtotal"
+                  return "Max. subtotal debe ser mayor que Min. subtotal"
                 }
                 return true
               },

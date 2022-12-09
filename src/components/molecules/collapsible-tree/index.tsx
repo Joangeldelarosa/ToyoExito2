@@ -22,11 +22,10 @@ type TCollapsibleTreeContext = {
   toggle: () => void
 }
 
-const CollapsibleTreeContext = React.createContext<TCollapsibleTreeContext | null>(
-  null
-)
+const CollapsibleTreeContext =
+  React.createContext<TCollapsibleTreeContext | null>(null)
 
-export const CollapsibleTree: CollapsibleTreeType = ({ children }) => {
+export const CollapsibleTree: CollapsibleTreeType = ({ children }: any) => {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -93,7 +92,7 @@ const CollapsibleTreeParent: React.FC<CollapsibleTreeParentProps> = ({
   actions,
   className,
   children,
-}) => {
+}: any) => {
   const { open, toggle } = useCollapsibleTree()
   return (
     <div>
@@ -133,7 +132,7 @@ const CollapsibleTreeLeaf: React.FC<CollapsibleTreeLeafProps> = ({
   className,
   children,
   actions,
-}) => {
+}: any) => {
   return (
     <div
       className={clsx(
@@ -165,7 +164,7 @@ CollapsibleTree.Leaf = CollapsibleTreeLeaf
 const Container: React.FC<{ className?: string }> = ({
   children,
   className,
-}) => {
+}: any) => {
   return (
     <div
       className={clsx(

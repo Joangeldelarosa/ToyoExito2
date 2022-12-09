@@ -1,6 +1,6 @@
-import { navigate, RouteComponentProps, useLocation } from "@reach/router"
 import { useAdminCreateBatchJob, useAdminCreateCollection } from "medusa-react"
 import React, { useContext, useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import Fade from "../../../components/atoms/fade-wrapper"
 import Button from "../../../components/fundamentals/button"
 import ExportIcon from "../../../components/fundamentals/icons/export-icon"
@@ -19,11 +19,12 @@ import ImportProducts from "../batch-job/import"
 import NewProduct from "../new"
 import { PollingContext } from "../../../context/polling"
 
-const VIEWS = ["products", "collections"]
+const VIEWS = ["productos", "colecciones"]
 
-const Overview = (_props: RouteComponentProps) => {
+const Overview = () => {
+  const navigate = useNavigate()
   const location = useLocation()
-  const [view, setView] = useState("products")
+  const [view, setView] = useState("productos")
   const {
     state: createProductState,
     close: closeProductCreate,
@@ -39,7 +40,7 @@ const Overview = (_props: RouteComponentProps) => {
 
   useEffect(() => {
     if (location.search.includes("?view=collections")) {
-      setView("collections")
+      setView("colecciones")
     }
   }, [location])
 
@@ -49,7 +50,7 @@ const Overview = (_props: RouteComponentProps) => {
 
   const CurrentView = () => {
     switch (view) {
-      case "products":
+      case "productos":
         return <ProductTable />
       default:
         return <CollectionsTable />
@@ -58,7 +59,7 @@ const Overview = (_props: RouteComponentProps) => {
 
   const CurrentAction = () => {
     switch (view) {
-      case "products":
+      case "productos":
         return (
           <div className="flex space-x-2">
             <Button
@@ -67,7 +68,7 @@ const Overview = (_props: RouteComponentProps) => {
               onClick={() => openImportModal()}
             >
               <UploadIcon size={20} />
-              Import Products
+              Importar productos
             </Button>
             <Button
               variant="secondary"
@@ -75,7 +76,7 @@ const Overview = (_props: RouteComponentProps) => {
               onClick={() => openExportModal()}
             >
               <ExportIcon size={20} />
-              Export Products
+              Exportar productos
             </Button>
             <Button
               variant="secondary"
@@ -83,7 +84,7 @@ const Overview = (_props: RouteComponentProps) => {
               onClick={openProductCreate}
             >
               <PlusIcon size={20} />
-              New Product
+              Nuevo producto
             </Button>
           </div>
         )
@@ -96,7 +97,7 @@ const Overview = (_props: RouteComponentProps) => {
               onClick={() => setShowNewCollection(!showNewCollection)}
             >
               <PlusIcon size={20} />
-              New Collection
+              Nueva colección
             </Button>
           </div>
         )
@@ -130,7 +131,7 @@ const Overview = (_props: RouteComponentProps) => {
       { ...data, metadata },
       {
         onSuccess: ({ collection }) => {
-          notification("Success", "Successfully created collection", "success")
+          notification("Éxito", "Colección creada con éxito", "success")
           navigate(`/a/collections/${collection.id}`)
           setShowNewCollection(false)
         },
@@ -149,7 +150,7 @@ const Overview = (_props: RouteComponentProps) => {
     createBatchJob.mutate(reqObj, {
       onSuccess: () => {
         resetInterval()
-        notification("Success", "Successfully initiated export", "success")
+        notification("Éxito", "Exportación iniciada con éxito", "success")
       },
       onError: (err) => {
         notification("Error", getErrorMessage(err), "error")
@@ -173,6 +174,7 @@ const Overview = (_props: RouteComponentProps) => {
                 activeView={view}
               />
             }
+            className="h-fit"
           >
             <CurrentView />
           </BodyCard>
@@ -186,7 +188,7 @@ const Overview = (_props: RouteComponentProps) => {
       )}
       {exportModalOpen && (
         <ExportModal
-          title="Export Products"
+          title="Exportar productos"
           handleClose={() => closeExportModal()}
           onSubmit={handleCreateExport}
           loading={createBatchJob.isLoading}

@@ -1,8 +1,7 @@
 import { AxiosError } from "axios"
-import { navigate } from "gatsby"
+import { useNavigate } from "react-router-dom"
 import React, { ErrorInfo } from "react"
 import { analytics, getAnalyticsConfig } from "../../../services/analytics"
-import { IS_PROD } from "../../constants/is-prod"
 import Button from "../../fundamentals/button"
 
 type State = {
@@ -46,7 +45,7 @@ class ErrorBoundary extends React.Component<Props, State> {
   }
 
   public dismissError = () => {
-    navigate(-1)
+    history.back()
     this.setState({ hasError: false })
   }
 
@@ -76,7 +75,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                   variant="primary"
                   onClick={this.dismissError}
                 >
-                  Back to dashboard
+                  Volver al dashboard
                 </Button>
               </div>
             </div>
@@ -95,11 +94,6 @@ const isNetworkError = (error: Error): error is AxiosError => {
 }
 
 const shouldTrackEvent = async (error: Error) => {
-  // Don't track errors in development
-  if (!IS_PROD) {
-    return false
-  }
-
   // Don't track 404s
   if (isNetworkError(error) && error.response?.status === 404) {
     return false
@@ -121,19 +115,19 @@ const shouldTrackEvent = async (error: Error) => {
 }
 
 const errorMessage = (status?: number) => {
-  const defaultMessage = "An unknown error occured"
+  const defaultMessage = "Un error ha ocurrido"
 
   if (!status) {
     return defaultMessage
   }
 
   const message = {
-    400: "Bad request",
-    401: "You are not logged in",
-    403: "You do not have permission perform this action",
-    404: "Page was not found",
-    500: "An unknown server error occured",
-    503: "Server is currently unavailable",
+    400: "La solicitud es incorrecta",
+    401: "No estás logueado",
+    403: "No tienes permiso para realizar esta acción",
+    404: "Pagina no encontrada",
+    500: "El servidor no pudo procesar tu solicitud",
+    503: "El servidor no está disponible",
   }[status]
 
   return message || defaultMessage
@@ -141,19 +135,19 @@ const errorMessage = (status?: number) => {
 
 const errorDescription = (status?: number) => {
   const defaultDescription =
-    "An error occurred with unspecified causes, this is most likely due to a techinical issue on our end. Please try refreshing the page. If the issue keeps happening, contact your administrator."
+    "Ocurrió un error con causas no especificadas, lo más probable es que se deba a un problema técnico de nuestra parte. Intente actualizar la página. Si el problema persiste, comuníquese con su administrador."
 
   if (!status) {
     return defaultDescription
   }
 
   const description = {
-    400: "The request was malformed, fix your request and please try again.",
-    401: "You are not logged in, please log in to proceed.",
-    403: "You do not have permission perform this action, if you think this is a mistake, contact your administrator.",
-    404: "The page you have requested was not found, please check the URL and try again.",
-    500: "The server was not able to handle your request, this is mostly likely due to a techinical issue on our end. Please try again. If the issue keeps happening, contact your administrator.",
-    503: "The server is temporarily unavailable, and your request could not be processed. Please try again later. If the issue keeps happening, contact your administrator.",
+    400: "La solicitud tiene un formato incorrecto, solucione su solicitud y vuelva a intentarlo.",
+    401: "No ha iniciado sesión, inicie sesión para continuar.",
+    403: "No tiene permiso para realizar esta acción, si cree que se trata de un error, póngase en contacto con su administrador.",
+    404: "No se encontró la página solicitada, verifique la URL y vuelva a intentarlo.",
+    500: "El servidor no pudo manejar su solicitud, lo más probable es que se deba a un problema técnico de nuestra parte. Inténtalo de nuevo. Si el problema persiste, comuníquese con su administrador.",
+    503: "El servidor no está disponible temporalmente y no se pudo procesar su solicitud. Por favor, inténtelo de nuevo más tarde. Si el problema persiste, comuníquese con su administrador.",
   }[status]
 
   return description || defaultDescription

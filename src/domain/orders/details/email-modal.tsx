@@ -34,11 +34,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
 
     return updateEmail(updateObj, {
       onSuccess: () => {
-        notification(
-          "Success",
-          "Successfully updated the email address",
-          "success"
-        )
+        notification("Éxito", "Email actualizado exitosamente", "success")
         handleClose()
       },
       onError: (err) => notification("Error", getErrorMessage(err), "error"),
@@ -50,7 +46,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
       <form onSubmit={handleSubmit(handleUpdateEmail)}>
         <Modal.Body>
           <Modal.Header handleClose={handleClose}>
-            <span className="inter-xlarge-semibold">Email Address</span>
+            <span className="inter-xlarge-semibold">Email</span>
           </Modal.Header>
           <Modal.Content>
             <div className="space-y-4">
@@ -72,7 +68,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
                 type="button"
                 onClick={handleClose}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="large"
@@ -82,7 +78,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
                 disabled={isLoading}
                 type="submit"
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

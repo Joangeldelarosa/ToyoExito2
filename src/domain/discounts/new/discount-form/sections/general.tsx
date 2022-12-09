@@ -5,7 +5,7 @@ import { Controller, useWatch } from "react-hook-form"
 import Checkbox from "../../../../../components/atoms/checkbox"
 import IconTooltip from "../../../../../components/molecules/icon-tooltip"
 import InputField from "../../../../../components/molecules/input"
-import Select from "../../../../../components/molecules/select"
+import { NextSelect } from "../../../../../components/molecules/select/next-select"
 import TextArea from "../../../../../components/molecules/textarea"
 import CurrencyInput from "../../../../../components/organisms/currency-input"
 import { useDiscountForm } from "../form/discount-form-context"
@@ -36,7 +36,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
       if (Array.isArray(regions) && regions.length) {
         id = regions[0].value
       } else {
-        id = ((regions as unknown) as { label: string; value: string }).value // if you change from fixed to percentage, unselect and select a region, and then change back to fixed it is possible to make useForm set regions to an object instead of an array
+        id = (regions as unknown as { label: string; value: string }).value // if you change from fixed to percentage, unselect and select a region, and then change back to fixed it is possible to make useForm set regions to an object instead of an array
       }
 
       const reg = opts?.find((r) => r.id === id)
@@ -64,21 +64,21 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
             name="regions"
             control={control}
             rules={{
-              required: "Atleast one region is required",
+              required: "Se requiere al menos una región",
               validate: (value) =>
                 Array.isArray(value) ? value.length > 0 : !!value,
             }}
             render={({ field: { onChange, value } }) => {
               return (
-                <Select
+                <NextSelect
                   value={value || null}
                   onChange={(value) => {
                     onChange(type === "fixed" ? [value] : value)
                   }}
-                  label="Choose valid regions"
-                  isMultiSelect={type !== "fixed"}
-                  hasSelectAll={type !== "fixed"}
-                  enableSearch
+                  label="Elija regiones válidas"
+                  isMulti={type !== "fixed"}
+                  selectAll={type !== "fixed"}
+                  isSearchable
                   required
                   options={regionOptions}
                 />
@@ -87,11 +87,11 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
           />
           <div className="flex gap-x-base gap-y-base my-base">
             <InputField
-              label="Code"
+              label="Código"
               className="flex-1"
               placeholder="SUMMERSALE10"
               required
-              {...register("code", { required: "Code is required" })}
+              {...register("code", { required: "Se requiere un código" })}
             />
 
             {type !== "free_shipping" && (
@@ -108,13 +108,13 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
                         name="rule.value"
                         control={control}
                         rules={{
-                          required: "Amount is required",
+                          required: "La cantidad es requerida",
                           min: 1,
                         }}
                         render={({ field: { value, onChange } }) => {
                           return (
                             <CurrencyInput.Amount
-                              label={"Amount"}
+                              label={"Cantidad"}
                               required
                               amount={value}
                               onChange={onChange}
@@ -127,7 +127,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
                 ) : (
                   <div className="flex-1">
                     <InputField
-                      label="Percentage"
+                      label="Porcentaje"
                       min={0}
                       required
                       type="number"
@@ -146,13 +146,13 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
 
           <div className="text-grey-50 inter-small-regular flex flex-col mb-6">
             <span>
-              The code your customers will enter during checkout. This will
-              appear on your customer’s invoice.
+              El código que sus clientes ingresarán durante el pago. Esto
+              aparecerá en la factura.
             </span>
-            <span>Uppercase letters and numbers only.</span>
+            <span>Solo letras mayúsculas y números.</span>
           </div>
           <TextArea
-            label="Description"
+            label="Descripción"
             required
             placeholder="Summer Sale 2022"
             rows={1}
@@ -167,7 +167,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
               render={({ field: { onChange, value } }) => {
                 return (
                   <Checkbox
-                    label="This is a template discount"
+                    label="Este es un descuento de plantilla."
                     name="is_dynamic"
                     id="is_dynamic"
                     checked={value}
@@ -178,7 +178,7 @@ const General: React.FC<GeneralProps> = ({ discount }) => {
             />
             <IconTooltip
               content={
-                "Template discounts allow you to define a set of rules that can be used across a group of discounts. This is useful in campaigns that should generate unique codes for each user, but where the rules for all unique codes should be the same."
+                "Los descuentos de plantilla le permiten definir un conjunto de reglas que se pueden usar en un grupo de descuentos. Esto es útil en campañas que deben generar códigos únicos para cada usuario, pero donde las reglas para todos los códigos únicos deben ser las mismas."
               }
             />
           </div>

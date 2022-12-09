@@ -1,6 +1,5 @@
 import clsx from "clsx"
-import { navigate } from "gatsby"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 
 import { SalesChannel } from "@medusajs/medusa"
 import {
@@ -30,6 +29,7 @@ import TwoSplitPane from "../../../components/templates/two-split-pane"
 import Fade from "../../../components/atoms/fade-wrapper"
 import Breadcrumb from "../../../components/molecules/breadcrumb"
 import useToggleState from "../../../hooks/use-toggle-state"
+import { useNavigate, useParams } from "react-router-dom"
 
 type ListIndicatorProps = { isActive: boolean }
 
@@ -43,12 +43,12 @@ function ListIndicator(props: ListIndicatorProps) {
       className={clsx(
         "flex justify-center items-center flex-shrink-0 w-[18px] h-[18px] bg-white border rounded-circle",
         {
-          "border-2 border-violet-60": isActive,
+          "border-2 border-green-60": isActive,
         }
       )}
     >
       {isActive && (
-        <div className="w-[10px] h-[10px] bg-violet-60 rounded-circle" />
+        <div className="w-[10px] h-[10px] bg-green-60 rounded-circle" />
       )}
     </div>
   )
@@ -91,7 +91,7 @@ function SalesChannelTile(props: SalesChannelTileProps) {
       className={clsx(
         "mb-2 p-4 cursor-pointer rounded-lg border flex justify-between h-[83px]",
         {
-          "border-2 border-violet-60": isSelected,
+          "border-2 border-green-60": isSelected,
         }
       )}
     >
@@ -149,7 +149,7 @@ function SalesChannelsHeader(props: SalesChannelsHeaderProps) {
         <div className="h-[55px]">
           <div className="flex justify-between items-center mb-1">
             <h2 className="font-semibold text-xlarge text-grey-90">
-              Sales channels
+              Canales de venta
             </h2>
             <div className="flex justify-between items-center gap-4">
               <SearchIcon
@@ -165,7 +165,7 @@ function SalesChannelsHeader(props: SalesChannelsHeaderProps) {
             </div>
           </div>
           <div className="text-grey-50 text-small mb-6 block overflow-hidden truncate max-w-[100%]">
-            Control which products are available in which channels
+            Controla la disponibilidad de tus productos en diferentes canales
           </div>
         </div>
 
@@ -175,8 +175,8 @@ function SalesChannelsHeader(props: SalesChannelsHeaderProps) {
             ref={inputRef}
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
-            placeholder="Search by title or description"
-            className="bg-inherit outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-violet-60 placeholder-grey-40"
+            placeholder="Buscar por nombre o descripción"
+            className="bg-inherit outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40"
             onBlur={() => setShowFilter(!!filterText)}
             autoComplete="off"
           />
@@ -263,12 +263,12 @@ function SalesChannelDetailsHeader(props: SalesChannelDetailsHeaderProps) {
   const actions = useMemo(() => {
     const _actions: ActionType[] = [
       {
-        label: "Edit general info",
+        label: "Editar información general",
         icon: <EditIcon size="20" />,
         onClick: openUpdateModal,
       },
       {
-        label: "Add products",
+        label: "Agregar productos",
         icon: <PlusIcon />,
         onClick: () => showProductsAdd(),
       },
@@ -276,7 +276,7 @@ function SalesChannelDetailsHeader(props: SalesChannelDetailsHeaderProps) {
 
     if (!isDefault) {
       _actions.push({
-        label: "Delete channel",
+        label: "Eliminar canal",
         icon: <TrashIcon size={20} />,
         variant: "danger",
         onClick: () => setShowDelete(true),
@@ -310,10 +310,10 @@ function SalesChannelDetailsHeader(props: SalesChannelDetailsHeaderProps) {
             deleteSalesChannel()
             resetDetails()
           }}
-          confirmText="Yes, delete"
-          successText="Sales channel deleted"
-          text={`Are you sure you want to delete "${salesChannel.name}" sales channel?`}
-          heading="Delete channel"
+          confirmText="Si, eliminar"
+          successText="Canal eliminado"
+          text={`¿Estás seguro que quieres eliminar el canal ${salesChannel.name}?`}
+          heading="Eliminar canal"
         />
       )}
     </div>
@@ -332,12 +332,10 @@ type SalesChannelDetailsProps = {
 function SalesChannelDetails(props: SalesChannelDetailsProps) {
   const { resetDetails, salesChannel, isDefault } = props
 
-  const [showUpdateModal, openUpdateModal, closeUpdateModal] = useToggleState(
-    false
-  )
-  const [showAddProducts, showProductsAdd, hideProductsAdd] = useToggleState(
-    false
-  )
+  const [showUpdateModal, openUpdateModal, closeUpdateModal] =
+    useToggleState(false)
+  const [showAddProducts, showProductsAdd, hideProductsAdd] =
+    useToggleState(false)
 
   return (
     <div className="col-span-2 rounded-rounded border bg-grey-0 border-grey-20 px-8 py-6 h-[968px]">
@@ -371,21 +369,19 @@ function SalesChannelDetails(props: SalesChannelDetailsProps) {
   )
 }
 
-type DetailsProps = { id: string }
-
 /**
  * Sales channels details page container.
  */
-function Details(props: DetailsProps) {
-  const { id: routeSalesChannelId } = props
+function Details() {
+  const { id: routeSalesChannelId } = useParams()
+
   const [filterText, setFilterText] = useState<string>()
   const [showCreateModal, setShowCreateModal] = useState(false)
 
-  const [
-    activeSalesChannel,
-    setActiveSalesChannel,
-  ] = useState<SalesChannel | null>()
+  const [activeSalesChannel, setActiveSalesChannel] =
+    useState<SalesChannel | null>()
 
+  const navigate = useNavigate()
   const { store } = useAdminStore()
   const { sales_channels } = useAdminSalesChannels()
 
@@ -454,8 +450,8 @@ function Details(props: DetailsProps) {
   return (
     <div>
       <Breadcrumb
-        currentPage={"Sales channels"}
-        previousBreadcrumb={"Settings"}
+        currentPage={"Canales de venta"}
+        previousBreadcrumb={"Ajustes"}
         previousRoute="/a/settings"
       />
 

@@ -1,9 +1,9 @@
-import { navigate } from "gatsby"
 import { useAdminResetPassword } from "medusa-react"
 import qs from "qs"
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { decodeToken } from "react-jwt"
+import { useLocation, useNavigate } from "react-router-dom"
 import Button from "../components/fundamentals/button"
 import MedusaIcon from "../components/fundamentals/icons/medusa-icon"
 import SigninInput from "../components/molecules/input-signin"
@@ -16,7 +16,9 @@ type formValues = {
   repeat_password: string
 }
 
-const ResetPasswordPage = ({ location }) => {
+const ResetPasswordPage = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const parsed = qs.parse(location.search.substring(1))
 
   let token: { email: string } | null = null
@@ -80,7 +82,7 @@ const ResetPasswordPage = ({ location }) => {
 
   return (
     <LoginLayout>
-      <SEO title="Reset Password" />
+      <SEO title="Restablecer password" />
       <div className="flex h-full w-full items-center justify-center">
         <div className="flex min-h-[540px] bg-grey-0 rounded-rounded justify-center">
           <form
@@ -91,19 +93,19 @@ const ResetPasswordPage = ({ location }) => {
             {!token ? (
               <div className="h-full flex flex-col gap-y-2 text-center items-center justify-center">
                 <span className="inter-large-semibold text-grey-90">
-                  You reset link is invalid
+                  El enlace de restablecimiento no es válido
                 </span>
                 <span className="inter-base-regular text-grey-50 mt-2">
-                  Please try resetting your password again
+                  Por favor intenta de nuevo
                 </span>
               </div>
             ) : (
               <>
                 <span className="inter-2xlarge-semibold mt-4 text-grey-90">
-                  Reset your password
+                  Restablecer password
                 </span>
                 <span className="inter-base-regular text-grey-50 mt-2 mb-xlarge">
-                  Choose a new password below 👇🏼
+                  Ingresa un nuevo password 👇🏼
                 </span>
                 <SigninInput
                   placeholder="Email"
@@ -118,7 +120,7 @@ const ResetPasswordPage = ({ location }) => {
                   autoComplete="new-password"
                 />
                 <SigninInput
-                  placeholder="Confirm password"
+                  placeholder="Repetir password"
                   type={"password"}
                   {...register("repeat_password", { required: true })}
                   autoComplete="new-password"
@@ -126,12 +128,12 @@ const ResetPasswordPage = ({ location }) => {
                 />
                 {error && (
                   <span className="text-rose-50 w-full mt-xsmall inter-small-regular">
-                    The two passwords are not the same
+                    Los dos passwords no son iguales
                   </span>
                 )}
                 {passwordMismatch && (
                   <span className="text-rose-50 w-full mt-xsmall inter-small-regular">
-                    The two passwords are not the same
+                    Los dos passwords no son iguales
                   </span>
                 )}
                 <Button
@@ -142,7 +144,7 @@ const ResetPasswordPage = ({ location }) => {
                   loading={formState.isSubmitting}
                   disabled={!ready}
                 >
-                  Reset Password
+                  Restablecer password
                 </Button>
               </>
             )}

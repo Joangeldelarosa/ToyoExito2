@@ -14,7 +14,7 @@ type SavingStateProps = {
 const ErrorState: React.FC<SavingStateProps> = ({
   toast,
   title = "Error",
-  message = "An error occured while trying to save your changes. Please try again.",
+  message = "Ha ocurrido un error al guardar tus cambios. Por favor, inténtalo de nuevo.",
   onDismiss,
 }) => {
   useEffect(() => {
@@ -40,7 +40,7 @@ const ErrorState: React.FC<SavingStateProps> = ({
         <button onClick={onDismiss}>
           <CrossIcon size={20} className="text-grey-40" />
         </button>
-        <span className="sr-only">Close</span>
+        <span className="sr-only">Cerrar</span>
       </div>
     </ToasterContainer>
   )

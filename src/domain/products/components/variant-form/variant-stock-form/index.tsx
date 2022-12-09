@@ -29,12 +29,14 @@ const VariantStockForm = ({ form }: Props) => {
   return (
     <div>
       <p className="inter-base-regular text-grey-50">
-        Configure the inventory and stock for this variant.
+        Configure el inventario y el stock para esta variante.
       </p>
       <div className="pt-large flex flex-col gap-y-xlarge">
         <div className="flex flex-col gap-y-2xsmall">
           <div className="flex items-center justify-between">
-            <h3 className="inter-base-semibold mb-2xsmall">Manage inventory</h3>
+            <h3 className="inter-base-semibold mb-2xsmall">
+              Manejar inventario
+            </h3>
             <Controller
               control={control}
               name={path("manage_inventory")}
@@ -44,13 +46,15 @@ const VariantStockForm = ({ form }: Props) => {
             />
           </div>
           <p className="inter-base-regular text-grey-50">
-            When checked Medusa will regulate the inventory when orders and
-            returns are made.
+            Cuando está marcado, se regulará el inventario cuando se realicen
+            pedidos y devoluciones.
           </p>
         </div>
         <div className="flex flex-col gap-y-2xsmall">
           <div className="flex items-center justify-between">
-            <h3 className="inter-base-semibold mb-2xsmall">Allow backorders</h3>
+            <h3 className="inter-base-semibold mb-2xsmall">
+              Permitir ordenes sin stock
+            </h3>
             <Controller
               control={control}
               name={path("allow_backorder")}
@@ -60,18 +64,18 @@ const VariantStockForm = ({ form }: Props) => {
             />
           </div>
           <p className="inter-base-regular text-grey-50">
-            When checked the product will be available for purchase despite the
-            product being sold out
+            Cuando está marcado, se permitirán pedidos de productos que no están
+            en stock.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-large">
           <InputField
-            label="Stock keeping unit (SKU)"
+            label="Código (SKU)"
             placeholder="SUN-G, JK1234..."
             {...register(path("sku"))}
           />
           <InputField
-            label="Quantity in stock"
+            label="Cantidad en inventario"
             type="number"
             placeholder="100..."
             errors={errors}
@@ -90,7 +94,7 @@ const VariantStockForm = ({ form }: Props) => {
             {...register(path("upc"))}
           />
           <InputField
-            label="Barcode"
+            label="Código de barras"
             placeholder="123456789104..."
             {...register(path("barcode"))}
           />

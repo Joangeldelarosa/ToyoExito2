@@ -1,15 +1,16 @@
-import { navigate } from "gatsby"
 import { useAdminCreatePriceList } from "medusa-react"
+import { useNavigate } from "react-router-dom"
 import useNotification from "../../../hooks/use-notification"
 import { getErrorMessage } from "../../../utils/error-messages"
 
 const useCopyPriceList = () => {
+  const navigate = useNavigate()
   const notification = useNotification()
   const createPriceList = useAdminCreatePriceList()
 
   const handleCopyPriceList = async (priceList) => {
     const copy: any = {
-      name: `${priceList.name} Copy`,
+      name: `${priceList.name} Copia`,
       description: `${priceList.description}`,
       type: priceList.type,
       status: priceList.status,
@@ -43,7 +44,11 @@ const useCopyPriceList = () => {
     try {
       const data = await createPriceList.mutateAsync(copy)
       navigate(`/a/pricing/${data.price_list.id}`)
-      notification("Success", "Successfully copied price list", "success")
+      notification(
+        "Success",
+        "Lista de precios copiada correctamente",
+        "success"
+      )
     } catch (err) {
       notification("Error", getErrorMessage(err), "error")
     }

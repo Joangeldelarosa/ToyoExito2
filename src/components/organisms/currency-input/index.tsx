@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
-  useState
+  useState,
 } from "react"
 import AmountField from "react-currency-input-field"
 import { Option } from "../../../types/shared"
@@ -27,6 +27,7 @@ type CurrencyInputProps = {
   hideCurrency?: boolean
   onChange?: (currencyCode: string) => void
   className?: React.HTMLAttributes<HTMLDivElement>["className"]
+  children?: React.ReactNode
 }
 
 type CurrencyInputState = {
@@ -131,7 +132,7 @@ const Root: React.FC<CurrencyInputProps> = ({
             {!readOnly ? (
               <Select
                 enableSearch
-                label="Currency"
+                label="Moneda"
                 value={value}
                 onChange={onCurrencyChange}
                 options={options}
@@ -139,7 +140,7 @@ const Root: React.FC<CurrencyInputProps> = ({
               />
             ) : (
               <Input
-                label="Currency"
+                label="Moneda"
                 value={value?.label}
                 readOnly
                 className="pointer-events-none"
@@ -238,7 +239,7 @@ const Amount = forwardRef<HTMLInputElement, AmountInputProps>(
         <InputHeader label={label} required={required} className="mb-xsmall" />
         <div
           className={clsx(
-            "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-violet-60",
+            "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-green-60",
             {
               "border-rose-50 focus-within:shadow-cta focus-within:shadow-rose-60/10 focus-within:border-rose-50":
                 errors && name && errors[name],
@@ -249,7 +250,7 @@ const Amount = forwardRef<HTMLInputElement, AmountInputProps>(
             <Tooltip
               open={invalid}
               side={"top"}
-              content={invalidMessage || "Amount is not valid"}
+              content={invalidMessage || "La cantidad no es valida"}
             >
               <span className="inter-base-regular text-grey-40 mr-xsmall">
                 {currencyInfo.symbol_native}
@@ -257,7 +258,7 @@ const Amount = forwardRef<HTMLInputElement, AmountInputProps>(
             </Tooltip>
           )}
           <AmountField
-            className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-violet-60 placeholder-grey-40"
+            className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40"
             decimalScale={currencyInfo?.decimal_digits}
             value={formattedValue}
             onValueChange={(value, _name, values) =>

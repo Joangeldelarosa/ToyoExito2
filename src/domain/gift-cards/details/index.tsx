@@ -1,12 +1,12 @@
 import { AdminPostGiftCardsGiftCardReq } from "@medusajs/medusa"
-import { RouteComponentProps } from "@reach/router"
 import {
   useAdminGiftCard,
   useAdminRegions,
   useAdminUpdateGiftCard,
 } from "medusa-react"
 import moment from "moment"
-import React, { useState } from "react"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 import Spinner from "../../../components/atoms/spinner"
 import Badge from "../../../components/fundamentals/badge"
 import DollarSignIcon from "../../../components/fundamentals/icons/dollar-sign-icon"
@@ -23,9 +23,9 @@ import { formatAmountWithSymbol } from "../../../utils/prices"
 import EditGiftCardModal from "./edit-gift-card-modal"
 import UpdateBalanceModal from "./update-balance-modal"
 
-const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
-  id,
-}) => {
+const GiftCardDetails = () => {
+  const { id } = useParams()
+
   const { gift_card: giftCard, isLoading } = useAdminGiftCard(id!, {
     enabled: !!id,
   })
@@ -40,12 +40,12 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
 
   const actions = [
     {
-      label: "Edit",
+      label: "Editar",
       onClick: () => setShowEdit(true),
       icon: <EditIcon size={20} />,
     },
     {
-      label: `${giftCard?.is_disabled ? "Activate" : "Disable"}`,
+      label: `${giftCard?.is_disabled ? "Activar" : "Deshabilitar"}`,
       onClick: () => handleUpdate({ is_disabled: !giftCard?.is_disabled }),
       icon: giftCard?.is_disabled ? (
         <PublishIcon size={20} />
@@ -54,7 +54,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
       ),
     },
     {
-      label: "Update balance",
+      label: "Actualizar balance",
       onClick: () => setShowUpdateBalance(true),
       icon: <DollarSignIcon size={20} />,
     },
@@ -65,7 +65,11 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
       { ...data },
       {
         onSuccess: () => {
-          notification("Success", "Succesfully updated Gift Card", "success")
+          notification(
+            "Éxito",
+            "Se actualizo la Gift Card correctamente",
+            "success"
+          )
           setShowEdit(false)
           setShowUpdateBalance(false)
         },
@@ -77,7 +81,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
   return (
     <div>
       <Breadcrumb
-        currentPage={"Gift Card Details"}
+        currentPage={"Detalles de la Gift Card"}
         previousBreadcrumb={"Gift Cards"}
         previousRoute="/a/gift-cards"
       />
@@ -90,7 +94,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
           <BodyCard
             className={"h-auto min-h-0 w-full"}
             title={`${giftCard?.code}`}
-            subtitle={`Gift Card id: ${giftCard?.id}`}
+            subtitle={`ID de la Gift Card: ${giftCard?.id}`}
             status={
               <StatusSelector
                 isDraft={!!giftCard?.is_disabled}
@@ -107,7 +111,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
               <div className="flex mt-6 space-x-6 divide-x">
                 <div className="flex flex-col">
                   <div className="inter-smaller-regular text-grey-50 mb-1">
-                    Original amount
+                    Valor original
                   </div>
                   <div>
                     {formatAmountWithSymbol({
@@ -129,7 +133,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
                 </div>
                 <div className="flex flex-col pl-6">
                   <div className="inter-smaller-regular text-grey-50 mb-1">
-                    Created
+                    Creada
                   </div>
                   <div>
                     {moment(giftCard?.created_at).format("DD MMM YYYY")}
@@ -142,7 +146,7 @@ const GiftCardDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
             </div>
           </BodyCard>
           <div className="mt-large">
-            <RawJSON data={giftCard} title="Raw gift card" />
+            <RawJSON data={giftCard} title="Raw gift card" rootName="product" />
           </div>
         </>
       )}

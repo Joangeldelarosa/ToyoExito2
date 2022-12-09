@@ -11,7 +11,7 @@ function Switch(props: RadixSwitch.SwitchProps) {
       {...props}
       disabled={props.disabled}
       className={clsx(
-        "w-8 h-[18px] rounded-full transition-bg bg-gray-300 radix-state-checked:bg-violet-60"
+        "w-8 h-[18px] rounded-full transition-bg bg-gray-300 radix-state-checked:bg-green-60"
       )}
     >
       <RadixSwitch.Thumb

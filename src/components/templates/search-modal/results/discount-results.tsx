@@ -1,9 +1,9 @@
 import clsx from "clsx"
-import { Link } from "gatsby"
 import React from "react"
 import SectionCollapsible from "../section-collapsible"
 import { useAdminDiscounts } from "medusa-react"
 import useKeyboardNavigationList from "../use-keyboard-navigation-list"
+import { Link } from "react-router-dom"
 
 type DiscountResultsProps = {
   discounts: ReturnType<typeof useAdminDiscounts>["discounts"]
@@ -19,7 +19,7 @@ const DiscountResults = ({
   selected,
 }: DiscountResultsProps) => {
   return discounts.length > 0 ? (
-    <SectionCollapsible title={"Discounts"} length={discounts?.length || 0}>
+    <SectionCollapsible title={"Descuentos"} length={discounts?.length || 0}>
       <div className="mt-large">
         <div className="flex flex-col">
           {discounts?.map((discount, index) => (
@@ -50,7 +50,7 @@ const DiscountResults = ({
                     }
                   )}
                 >
-                  Jump to...
+                  Saltar a...
                 </span>
               </Link>
             </li>

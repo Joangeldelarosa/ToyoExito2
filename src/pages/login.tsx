@@ -5,6 +5,7 @@ import LoginCard from "../components/organisms/login-card"
 import ResetTokenCard from "../components/organisms/reset-token-card"
 import SEO from "../components/seo"
 import LoginLayout from "../components/templates/login-layout"
+import logo from "../images/logo.svg"
 
 const LoginPage = () => {
   const [resetPassword, setResetPassword] = useState(false)
@@ -22,7 +23,7 @@ const LoginPage = () => {
           )}
         >
           <div className="flex flex-col pt-12 w-full px-[120px] items-center">
-            <MedusaIcon />
+            <img src={logo} alt="Medusa Commerce" className="w-[200px]" />
             {resetPassword ? (
               <ResetTokenCard goBack={() => setResetPassword(false)} />
             ) : (

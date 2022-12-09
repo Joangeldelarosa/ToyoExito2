@@ -51,7 +51,7 @@ const EditModal = ({ open, onClose, option }: Props) => {
       },
       {
         onSuccess: () => {
-          notification("Success", "Shipping option updated", "success")
+          notification("Éxito", "Shipping option updated", "success")
           closeAndReset()
         },
         onError: (error) => {

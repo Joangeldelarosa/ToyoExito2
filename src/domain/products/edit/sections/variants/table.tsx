@@ -20,7 +20,7 @@ export const useVariantsTableColumns = () => {
   const columns = useMemo<Column<ProductVariant>[]>(
     () => [
       {
-        Header: "Title",
+        Header: "Titulo",
         id: "title",
         accessor: "title",
       },
@@ -54,7 +54,7 @@ export const useVariantsTableColumns = () => {
         Header: () => {
           return (
             <div className="text-right">
-              <span>Inventory</span>
+              <span>Inventario</span>
             </div>
           )
         },
@@ -79,19 +79,14 @@ export const useVariantsTableColumns = () => {
 const VariantsTable = ({ variants, actions }: Props) => {
   const columns = useVariantsTableColumns()
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data: variants,
-    defaultColumn: {
-      width: "auto",
-    },
-  })
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns,
+      data: variants,
+      defaultColumn: {
+        width: "auto",
+      },
+    })
 
   const { deleteVariant, updateVariant, duplicateVariant } = actions
 
@@ -126,12 +121,12 @@ const VariantsTable = ({ variants, actions }: Props) => {
                     forceDropdown
                     actions={[
                       {
-                        label: "Edit Variant",
+                        label: "Editar variante",
                         icon: <EditIcon size="20" />,
                         onClick: () => updateVariant(row.original),
                       },
                       {
-                        label: "Duplicate Variant",
+                        label: "Duplicar variante",
                         onClick: () =>
                           // @ts-ignore
                           duplicateVariant({
@@ -141,7 +136,7 @@ const VariantsTable = ({ variants, actions }: Props) => {
                         icon: <DuplicateIcon size="20" />,
                       },
                       {
-                        label: "Delete Variant",
+                        label: "Eliminar variante",
                         onClick: () => deleteVariant(row.original.id),
                         icon: <TrashIcon size="20" />,
                         variant: "danger",

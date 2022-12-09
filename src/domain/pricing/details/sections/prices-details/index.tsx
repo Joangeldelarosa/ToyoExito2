@@ -18,25 +18,24 @@ const Prices = ({ id }) => {
   )
   const actionables = [
     {
-      label: "Edit manually",
+      label: "Editar manualmente",
       onClick: openEdit,
       icon: <EditIcon size={20} />,
     },
     {
-      label: "Import price list",
+      label: "Importar lista de precios",
       onClick: openUpload,
       icon: <UploadIcon size={20} />,
     },
   ]
   return (
-    <BodyCard title="Prices" actionables={actionables} forceDropdown>
+    <BodyCard title="Precios" actionables={actionables} forceDropdown>
       <PricesTable id={id} selectProduct={setSelectedProduct} />
       <Fade isVisible={showEdit} isFullScreen={true}>
         <EditPrices close={closeEdit} id={id} />{" "}
       </Fade>
       {showUpload && (
         <ImportPrices priceListId={id} handleClose={() => closeUpload()} />
-
       )}
       {selectedProduct && (
         <EditPricesOverridesModal

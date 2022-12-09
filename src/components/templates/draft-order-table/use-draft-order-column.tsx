@@ -18,7 +18,7 @@ const useDraftOrderTableColumns = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Draft",
+        Header: "Borrador",
         accessor: "display_id",
         Cell: ({ cell: { value, getCellProps } }) => (
           <Table.Cell
@@ -28,7 +28,7 @@ const useDraftOrderTableColumns = () => {
         ),
       },
       {
-        Header: "Order",
+        Header: "Pedido",
         accessor: "order",
         Cell: ({ cell: { value, getCellProps } }) => {
           return (
@@ -39,7 +39,7 @@ const useDraftOrderTableColumns = () => {
         },
       },
       {
-        Header: "Date added",
+        Header: "Fecha agregado",
         accessor: "created_at",
         Cell: ({ cell: { value, getCellProps } }) => (
           <Table.Cell {...getCellProps()}>
@@ -48,7 +48,7 @@ const useDraftOrderTableColumns = () => {
         ),
       },
       {
-        Header: "Customer",
+        Header: "Cliente",
         accessor: "cart",
         Cell: ({ row, cell: { value, getCellProps } }) => (
           <Table.Cell {...getCellProps()}>
@@ -64,7 +64,7 @@ const useDraftOrderTableColumns = () => {
         ),
       },
       {
-        Header: "Status",
+        Header: "Estado",
         accessor: "status",
         Cell: ({ cell: { value, getCellProps } }) => (
           <Table.Cell {...getCellProps()} className="pr-2">

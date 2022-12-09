@@ -11,7 +11,7 @@ export const usePriceListTableColumns = () => {
   const columns = useMemo<Column<PriceList>[]>(
     () => [
       {
-        Header: "Name",
+        Header: "Nombre",
         accessor: "name",
         Cell: ({ cell: { value } }) => (
           <Table.Cell>
@@ -20,19 +20,19 @@ export const usePriceListTableColumns = () => {
         ),
       },
       {
-        Header: "Description",
+        Header: "Descripción",
         accessor: "description",
         Cell: ({ cell: { value } }) => <Table.Cell>{value}</Table.Cell>,
       },
       {
-        Header: "Status",
+        Header: "Estado",
         accessor: "status",
         Cell: ({ row: { original } }) => (
           <Table.Cell>{getPriceListStatus(original)}</Table.Cell>
         ),
       },
       {
-        Header: "Groups",
+        Header: "Grupos",
         accessor: "customer_groups",
         Cell: ({ cell: { value } }) => {
           const groups: string[] = isArray(value)
@@ -42,7 +42,7 @@ export const usePriceListTableColumns = () => {
           return (
             <Table.Cell>
               {group}
-              {other && <span className="text-grey-40"> + {other} more</span>}
+              {other && <span className="text-grey-40"> + {other} mas</span>}
             </Table.Cell>
           )
         },

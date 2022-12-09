@@ -35,9 +35,8 @@ const ReturnReasonDetail = ({ reason }: ReturnReasonDetailsProps) => {
     open: handleClosePrompt,
     close: handleOpenPrompt,
   } = useToggleState()
-  const { register, reset, handleSubmit } = useForm<
-    ReturnReasonDetailsFormData
-  >()
+  const { register, reset, handleSubmit } =
+    useForm<ReturnReasonDetailsFormData>()
   const notification = useNotification()
   const { mutate: deleteRR } = useAdminDeleteReturnReason(reason?.id)
   const { mutate: update } = useAdminUpdateReturnReason(reason?.id)
@@ -55,8 +54,8 @@ const ReturnReasonDetail = ({ reason }: ReturnReasonDetailsProps) => {
       {
         onSuccess: () => {
           notification(
-            "Success",
-            "Successfully updated return reason",
+            "Éxito",
+            "Motivo de devolución actualizado con éxito",
             "success"
           )
         },
@@ -88,12 +87,12 @@ const ReturnReasonDetail = ({ reason }: ReturnReasonDetailsProps) => {
       <BodyCard
         actionables={[
           {
-            label: "Duplicate reason",
+            label: "Duplicar razón",
             icon: <DuplicateIcon size={20} />,
             onClick: () => handleOpenDuplicateModal(),
           },
           {
-            label: "Delete reason",
+            label: "Eliminar razón",
             variant: "danger",
             icon: <TrashIcon size={20} />,
             onClick: () => handleOpenPrompt(),
@@ -101,22 +100,22 @@ const ReturnReasonDetail = ({ reason }: ReturnReasonDetailsProps) => {
         ]}
         events={[
           {
-            label: "Save",
+            label: "Guardar",
             onClick: handleSubmit(onSave),
           },
           {
-            label: "Cancel changes",
+            label: "Cancelar cambios",
             onClick: handleCancel,
           },
         ]}
-        title="Details"
+        title="Detalles"
         subtitle={reason?.value}
       >
         <form onSubmit={handleSubmit(onSave)}>
-          <Input {...register("label")} label="Label" />
+          <Input {...register("label")} label="Etiqueta" />
           <Input
             {...register("description")}
-            label="Description"
+            label="Descripción"
             className="mt-base"
             placeholder="Customer received the wrong size"
           />
@@ -130,8 +129,8 @@ const ReturnReasonDetail = ({ reason }: ReturnReasonDetailsProps) => {
       )}
       {showDanger && (
         <DeletePrompt
-          heading="Delete Return Reason"
-          text="Are you sure you want to delete this return reason?"
+          heading="Eliminar razón"
+          text="¿Estás seguro de que quieres eliminar esta razón?"
           handleClose={handleClosePrompt}
           onDelete={handleDeletion}
         />

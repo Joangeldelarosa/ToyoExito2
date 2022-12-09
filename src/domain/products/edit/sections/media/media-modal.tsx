@@ -49,14 +49,14 @@ const MediaModal = ({ product, open, onClose }: Props) => {
     try {
       preppedImages = await prepareImages(data.media.images)
     } catch (error) {
-      let errorMessage = "Something went wrong while trying to upload images."
+      let errorMessage = "Algo salió mal al intentar cargar imágenes."
       const response = (error as any).response as Response
 
       if (response.status === 500) {
         errorMessage =
           errorMessage +
           " " +
-          "You might not have a file service configured. Please contact your administrator"
+          "Es posible que no tenga configurado un servicio de archivos. Póngase en contacto con su administrador"
       }
 
       notification("Error", errorMessage, "error")
@@ -76,14 +76,14 @@ const MediaModal = ({ product, open, onClose }: Props) => {
     <Modal open={open} handleClose={onReset} isLargeModal>
       <Modal.Body>
         <Modal.Header handleClose={onReset}>
-          <h1 className="inter-xlarge-semibold m-0">Edit Media</h1>
+          <h1 className="inter-xlarge-semibold m-0">Editar medios</h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
             <div>
-              <h2 className="inter-large-semibold mb-2xsmall">Media</h2>
+              <h2 className="inter-large-semibold mb-2xsmall">Medios</h2>
               <p className="inter-base-regular text-grey-50 mb-large">
-                Add images to your product.
+                Agrega imágenes de tu producto.
               </p>
               <div>
                 <MediaForm form={nestedForm(form, "media")} />
@@ -98,7 +98,7 @@ const MediaModal = ({ product, open, onClose }: Props) => {
                 type="button"
                 onClick={onReset}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="small"
@@ -107,7 +107,7 @@ const MediaModal = ({ product, open, onClose }: Props) => {
                 disabled={!isDirty}
                 loading={updating}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

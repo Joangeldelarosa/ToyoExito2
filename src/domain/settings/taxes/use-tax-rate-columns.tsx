@@ -7,13 +7,13 @@ const useTaxRateColumns = () => {
   const columns = useMemo(
     () => [
       {
-        Header: <div className="pl-2">Name</div>,
+        Header: <div className="pl-2">Nombre</div>,
         accessor: "name",
         Cell: ({ row, cell: { value }, index }) => {
           return (
             <Table.Cell
               key={index}
-              className="text-grey-90 group-hover:text-violet-60 pl-2"
+              className="text-grey-90 group-hover:text-green-60 pl-2"
             >
               {row.original.type === "region" ? (
                 <div className="flex gap-x-xsmall text-grey-40 items-center">
@@ -27,7 +27,7 @@ const useTaxRateColumns = () => {
         },
       },
       {
-        Header: "Code",
+        Header: "Código",
         accessor: "code",
         Cell: ({ cell: { value }, index }) => (
           <Table.Cell key={index}>
@@ -36,7 +36,7 @@ const useTaxRateColumns = () => {
         ),
       },
       {
-        Header: "Tax Rate",
+        Header: "Tasa de impuesto",
         accessor: "rate",
         Cell: ({ row, cell: { value }, index }) => (
           <Table.Cell key={index}>{value} %</Table.Cell>

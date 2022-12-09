@@ -21,7 +21,7 @@ const RegionCard = ({ region }: Props) => {
     >
       <div className="flex flex-col gap-y-2xsmall inter-small-regular text-grey-50">
         <p>
-          Payment providers:{" "}
+          Proveedores de pago:{" "}
           <span className="truncate">
             {region.payment_providers?.length
               ? region.payment_providers
@@ -31,13 +31,13 @@ const RegionCard = ({ region }: Props) => {
           </span>
         </p>
         <p>
-          Fulfillment providers:{" "}
+          Proveedores de envio:{" "}
           <span className="truncate">
             {region.fulfillment_providers?.length
               ? region.fulfillment_providers
                   .map((fp) => fulfillmentProvidersMapper(fp.id).label)
                   .join(", ")
-              : "Not configured"}
+              : "No configurado"}
           </span>
         </p>
       </div>

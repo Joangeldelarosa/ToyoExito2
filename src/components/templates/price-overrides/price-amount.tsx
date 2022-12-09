@@ -29,7 +29,7 @@ const PriceAmount = ({ value, onChange }) => {
             >
               <div className="flex items-center gap-2">
                 {showRegions ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
-                <span>Show regions</span>
+                <span>Mostrar regiones</span>
               </div>
             </Button>
           ) : null}

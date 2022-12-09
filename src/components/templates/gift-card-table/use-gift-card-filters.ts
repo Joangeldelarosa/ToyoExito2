@@ -148,10 +148,10 @@ export const useGiftCardFilters = (
     existing = existing.substring(1)
   }
 
-  const initial = useMemo(() => parseQueryString(existing, defaultFilters), [
-    existing,
-    defaultFilters,
-  ])
+  const initial = useMemo(
+    () => parseQueryString(existing, defaultFilters),
+    [existing, defaultFilters]
+  )
 
   const initialTabs = useMemo(() => {
     const storageString = localStorage.getItem("GiftCards::filters")
@@ -345,11 +345,11 @@ export const useGiftCardFilters = (
   const availableTabs = useMemo(() => {
     return [
       {
-        label: "Complete",
+        label: "Completo",
         value: "complete",
       },
       {
-        label: "Incomplete",
+        label: "Incompleto",
         value: "incomplete",
       },
       ...tabs,

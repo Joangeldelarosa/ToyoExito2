@@ -24,7 +24,7 @@ export const SALES_CHANNEL_PRODUCTS_TABLE_COLUMNS = [
     },
   },
   {
-    Header: "Name",
+    Header: "Nombre",
     accessor: "title",
     Cell: ({ row: { original } }) => {
       return (
@@ -47,7 +47,7 @@ export const SALES_CHANNEL_PRODUCTS_TABLE_COLUMNS = [
     },
   },
   {
-    Header: "Collection",
+    Header: "Colección",
     accessor: "collection",
     Cell: ({ cell: { value } }) => {
       return <div>{value?.title || "-"}</div>

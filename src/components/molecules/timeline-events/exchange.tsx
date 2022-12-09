@@ -43,17 +43,17 @@ const ExchangeStatus: React.FC<ExchangeStatusProps> = ({ event }) => {
   return (
     <div className="flex items-center inter-small-regular gap-x-base">
       <div className="flex flex-col gap-y-2xsmall">
-        <span className="text-grey-50">Payment:</span>
+        <span className="text-grey-50">Pago:</span>
         <PaymentStatus paymentStatus={event.paymentStatus} />
       </div>
       {divider}
       <div className="flex flex-col gap-y-2xsmall">
-        <span className="text-grey-50">Return:</span>
+        <span className="text-grey-50">Devolucion:</span>
         <ReturnStatus returnStatus={event.returnStatus} />
       </div>
       {divider}
       <div className="flex flex-col gap-y-2xsmall">
-        <span className="text-grey-50">Fulfillment:</span>
+        <span className="text-grey-50">Envio:</span>
         <FulfillmentStatus fulfillmentStatus={event.fulfillmentStatus} />
       </div>
     </div>
@@ -93,13 +93,13 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
 
     if (store.swap_link_template?.indexOf("{cart_id}") === -1) {
       setPaymentFormatWarning(
-        "Store payment link does not have the default format, as it does not contain '{cart_id}'. Either update the payment link to include '{cart_id}' or update this method to reflect the format of your payment link."
+        "El enlace de pago de la tienda no tiene el formato predeterminado, ya que no contiene '{cart_id}'. Actualice el enlace de pago para incluir '{cart_id}' o actualice este método para reflejar el formato de su enlace de pago."
       )
     }
 
     if (!store.swap_link_template) {
       setPaymentFormatWarning(
-        "No payment link has been set for this store. Please update store settings."
+        "No se ha establecido ningún enlace de pago para esta tienda. Actualice la configuración de la tienda."
       )
     }
 
@@ -144,7 +144,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
     Medusa.orders
       .processSwapPayment(event.orderId, event.id)
       .then((_res) => {
-        notification("Success", "Payment processed successfully", "success")
+        notification("Éxito", "Pago procesado con éxito", "success")
         refetch()
       })
       .catch((err) => {
@@ -159,7 +159,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
 
   if (event.paymentStatus === "awaiting") {
     actions.push({
-      label: "Capture payment",
+      label: "Capturar pago",
       icon: <DollarSignIcon size={20} />,
       onClick: handleProcessSwapPayment,
     })
@@ -167,7 +167,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
 
   if (event.returnStatus === "requested") {
     actions.push({
-      label: "Cancel return",
+      label: "Cancelar devolucion",
       icon: <TruckIcon size={20} />,
       onClick: () => setShowCancelReturn(!showCancelReturn),
     })
@@ -180,7 +180,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
     event.fulfillmentStatus !== "shipped"
   ) {
     actions.push({
-      label: "Cancel exchange",
+      label: "Cancelar cambio",
       icon: <CancelIcon size={20} />,
       onClick: () => setShowCancel(!showCancel),
       variant: "danger",
@@ -188,7 +188,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
   }
 
   const args = {
-    title: event.canceledAt ? "Exchange Cancelled" : "Exchange Requested",
+    title: event.canceledAt ? "Cambio cancelado" : "Cambio requerido",
     icon: event.canceledAt ? (
       <CancelIcon size={20} />
     ) : (
@@ -205,7 +205,9 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
       <div className="flex flex-col gap-y-base">
         {event.canceledAt && (
           <div>
-            <span className="mr-2 inter-small-semibold">Requested on:</span>
+            <span className="mr-2 inter-small-semibold">
+              Solicitado en la fecha:
+            </span>
             <span className="text-grey-50">
               {new Date(event.time).toUTCString()}
             </span>
@@ -222,7 +224,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
               size="small"
               onClick={() => setShowReceiveReturn(true)}
             >
-              Receive Return
+              Recibir devolución
             </Button>
           )}
           {event.fulfillmentStatus === "not_fulfilled" && (
@@ -231,7 +233,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
               size="small"
               onClick={() => setShowCreateFulfillment(true)}
             >
-              Fulfill Exchange
+              IConfirmar cambio
             </Button>
           )}
         </div>
@@ -245,19 +247,19 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
         <DeletePrompt
           handleClose={() => setShowCancel(!showCancel)}
           onDelete={handleCancelExchange}
-          confirmText="Yes, cancel"
-          heading="Cancel exchange"
-          text="Are you sure you want to cancel this exchange?"
-          successText="Exchange cancelled"
+          confirmText="Si, cancelar"
+          heading="Cancelar cambio"
+          text="¿Estás segura de que deseas cancelar este cambio?"
+          successText="Cambio cancelado"
         />
       )}
       {showCancelReturn && (
         <DeletePrompt
           handleClose={() => setShowCancelReturn(!showCancelReturn)}
           onDelete={handleCancelReturn}
-          confirmText="Yes, cancel"
-          heading="Cancel return"
-          text="Are you sure you want to cancel this return?"
+          confirmText="Si cancelar"
+          heading="Cancelar devolución"
+          text="¿Estás segura de que deseas cancelar esta devolución?"
           successText="Return cancelled"
         />
       )}
@@ -283,7 +285,7 @@ const Exchange: React.FC<ExchangeProps> = ({ event, refetch }) => {
 function getNewItems(event: ExchangeEvent) {
   return (
     <div className="flex flex-col gap-y-small">
-      <span className="inter-small-regular text-grey-50">New Items</span>
+      <span className="inter-small-regular text-grey-50">Nuevos productos</span>
       <div>
         {event.newItems.map((i) => (
           <EventItemContainer item={i} />
@@ -303,7 +305,7 @@ function getPaymentLink(
     <div className="inter-small-regular text-grey-50 flex flex-col gap-y-xsmall">
       <div className="flex items-center gap-x-xsmall">
         {paymentFormatWarning && <IconTooltip content={paymentFormatWarning} />}
-        <span>Payment link:</span>
+        <span>Link de pago:</span>
       </div>
       {differenceCardId && (
         <CopyToClipboard
@@ -318,7 +320,9 @@ function getPaymentLink(
 function getReturnItems(event: ExchangeEvent) {
   return (
     <div className="flex flex-col gap-y-small">
-      <span className="inter-small-regular text-grey-50">Return Items</span>
+      <span className="inter-small-regular text-grey-50">
+        Devolver productos
+      </span>
       <div>
         {event.returnItems
           .filter((i) => !!i)

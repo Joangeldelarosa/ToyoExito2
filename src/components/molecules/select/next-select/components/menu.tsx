@@ -108,20 +108,17 @@ const SelectAllOption = <
 
   const onClick = useCallback(() => {
     if (isAllSelected) {
-      onChange(([] as unknown) as OnChangeValue<Option, IsMulti>, {
+      onChange([] as unknown as OnChangeValue<Option, IsMulti>, {
         action: "deselect-option",
-        option: ([] as unknown) as Option,
+        option: [] as unknown as Option,
       })
     } else {
       const selectableOptions = options.filter((o) => !optionIsDisabled(o))
 
-      onChange(
-        (selectableOptions as unknown) as OnChangeValue<Option, IsMulti>,
-        {
-          action: "select-option",
-          option: (selectableOptions as unknown) as Option,
-        }
-      )
+      onChange(selectableOptions as unknown as OnChangeValue<Option, IsMulti>, {
+        action: "select-option",
+        option: selectableOptions as unknown as Option,
+      })
     }
   }, [isAllSelected, options])
 
@@ -315,7 +312,7 @@ const CheckboxAdornment = ({
       className={clsx(
         `w-base h-base flex justify-center text-grey-0 border-grey-30 border rounded-base transition-colors`,
         {
-          "bg-violet-60 border-violet-60": isSelected,
+          "bg-green-60 border-green-60": isSelected,
           "bg-grey-5": isDisabled,
         }
       )}

@@ -1,6 +1,6 @@
-import { navigate } from "gatsby"
 import { useAdminRegions } from "medusa-react"
 import React, { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import Fade from "../../../../components/atoms/fade-wrapper"
 import Button from "../../../../components/fundamentals/button"
 import PlusIcon from "../../../../components/fundamentals/icons/plus-icon"
@@ -16,6 +16,7 @@ type Props = {
 }
 
 const RegionOverview = ({ id }: Props) => {
+  const navigate = useNavigate()
   const { trackRegions } = useAnalytics()
   const { regions, isLoading } = useAdminRegions(undefined, {
     onSuccess: ({ regions, count }) => {
@@ -60,7 +61,7 @@ const RegionOverview = ({ id }: Props) => {
   return (
     <>
       <Section
-        title="Regions"
+        title="Regiones"
         customActions={
           <div>
             <Button
@@ -76,7 +77,7 @@ const RegionOverview = ({ id }: Props) => {
         className="h-full"
       >
         <p className="text-base-regular text-grey-50 mt-2xsmall">
-          Manage the markets that you will operate within.
+          Administre los mercados en los que operará.
         </p>
         <div className="mt-large">
           <RadioGroup.Root value={selectedRegion} onValueChange={handleChange}>

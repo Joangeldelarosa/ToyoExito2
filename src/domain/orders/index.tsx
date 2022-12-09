@@ -1,7 +1,6 @@
-import { RouteComponentProps, Router } from "@reach/router"
-import { navigate } from "gatsby"
 import { useAdminCreateBatchJob } from "medusa-react"
 import React, { useContext, useMemo } from "react"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Button from "../../components/fundamentals/button"
 import ExportIcon from "../../components/fundamentals/icons/export-icon"
 import BodyCard from "../../components/organisms/body-card"
@@ -14,12 +13,14 @@ import { getErrorMessage } from "../../utils/error-messages"
 import Details from "./details"
 import { PollingContext } from "../../context/polling"
 
-const VIEWS = ["orders", "drafts"]
+// const VIEWS = ["pedidos", "borradores"]
+const VIEWS = ["pedidos"]
 
-const OrderIndex: React.FC<RouteComponentProps> = () => {
-  const view = "orders"
+const OrderIndex = () => {
+  const view = "pedidos"
 
   const { resetInterval } = useContext(PollingContext)
+  const navigate = useNavigate()
   const createBatchJob = useAdminCreateBatchJob()
   const notification = useNotification()
 
@@ -37,7 +38,7 @@ const OrderIndex: React.FC<RouteComponentProps> = () => {
         onClick={() => openExportModal()}
       >
         <ExportIcon size={20} />
-        Export Orders
+        Exportar Pedidos
       </Button>,
     ]
   }, [view])
@@ -52,7 +53,7 @@ const OrderIndex: React.FC<RouteComponentProps> = () => {
     createBatchJob.mutate(reqObj, {
       onSuccess: () => {
         resetInterval()
-        notification("Success", "Successfully initiated export", "success")
+        notification("Éxito", "Exportación iniciada con éxito", "success")
       },
       onError: (err) => {
         notification("Error", getErrorMessage(err), "error")
@@ -71,13 +72,14 @@ const OrderIndex: React.FC<RouteComponentProps> = () => {
               <TableViewHeader
                 views={VIEWS}
                 setActiveView={(v) => {
-                  if (v === "drafts") {
+                  if (v === "borradores") {
                     navigate(`/a/draft-orders`)
                   }
                 }}
                 activeView={view}
               />
             }
+            className="h-fit"
             customActionable={actions}
           >
             <OrderTable />
@@ -86,7 +88,7 @@ const OrderIndex: React.FC<RouteComponentProps> = () => {
       </div>
       {exportModalOpen && (
         <ExportModal
-          title="Export Orders"
+          title="Exportar Pedidos"
           handleClose={() => closeExportModal()}
           onSubmit={handleCreateExport}
           loading={createBatchJob.isLoading}
@@ -98,10 +100,10 @@ const OrderIndex: React.FC<RouteComponentProps> = () => {
 
 const Orders = () => {
   return (
-    <Router>
-      <OrderIndex path="/" />
-      <Details path=":id" />
-    </Router>
+    <Routes>
+      <Route index element={<OrderIndex />} />
+      <Route path="/:id" element={<Details />} />
+    </Routes>
   )
 }
 

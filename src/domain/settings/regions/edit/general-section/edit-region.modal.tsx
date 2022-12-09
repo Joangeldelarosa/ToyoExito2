@@ -70,7 +70,7 @@ const EditRegionModal = ({ region, onClose, open }: Props) => {
 
     mutate(payload, {
       onSuccess: () => {
-        notifcation("Success", "Region was successfully updated", "success")
+        notifcation("Éxito", "La región se actualizó con éxito", "success")
         closeAndReset()
       },
       onError: (err) => {
@@ -83,17 +83,19 @@ const EditRegionModal = ({ region, onClose, open }: Props) => {
     <Modal handleClose={closeAndReset} open={open}>
       <Modal.Body>
         <Modal.Header handleClose={closeAndReset}>
-          <h1 className="inter-xlarge-semibold">Edit Region Details</h1>
+          <h1 className="inter-xlarge-semibold">
+            Editar detalles de la región
+          </h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
             <div>
-              <h3 className="inter-base-semibold mb-base">Details</h3>
+              <h3 className="inter-base-semibold mb-base">Detalles</h3>
               <RegionDetailsForm form={nestedForm(form, "details")} />
             </div>
             <div className="w-full h-px bg-grey-20 my-xlarge" />
             <div>
-              <h3 className="inter-base-semibold mb-base">Providers</h3>
+              <h3 className="inter-base-semibold mb-base">Proveedores</h3>
               <RegionProvidersForm form={nestedForm(form, "providers")} />
             </div>
           </Modal.Content>
@@ -105,7 +107,7 @@ const EditRegionModal = ({ region, onClose, open }: Props) => {
                 type="button"
                 onClick={closeAndReset}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -114,7 +116,7 @@ const EditRegionModal = ({ region, onClose, open }: Props) => {
                 loading={isLoading}
                 disabled={isLoading || !isDirty}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

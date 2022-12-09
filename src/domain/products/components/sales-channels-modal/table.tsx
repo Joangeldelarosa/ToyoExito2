@@ -51,11 +51,11 @@ export const useSalesChannelsTableColumns = () => {
         },
       },
       {
-        Header: "Title",
+        Header: "Titulo",
         accessor: "name",
       },
       {
-        Header: "Description",
+        Header: "Descripción",
         accessor: "description",
       },
     ],
@@ -118,7 +118,7 @@ const SalesChannelTable = ({
         count: count,
         offset: offset,
         pageSize: offset + rows.length,
-        title: "Sales Channels",
+        title: "Canales de venta",
         currentPage: pageIndex + 1,
         pageCount: pageCount,
         nextPage: handleNext,
@@ -188,7 +188,7 @@ export const SalesChannelTableActions = ({
       <div className={clsx("transition-all duration-200", classes)}>
         <div className="divide-x flex items-center h-[34px] mb-2">
           <span className="mr-3 inter-small-regular text-grey-50">
-            {numberOfSelectedRows} selected
+            {numberOfSelectedRows} seleccionados
           </span>
           <div className="flex space-x-xsmall pl-3">
             <Button
@@ -197,7 +197,7 @@ export const SalesChannelTableActions = ({
               variant="ghost"
               className="border border-grey-20"
             >
-              Deselect
+              Quitar selección
             </Button>
             <Button
               onClick={onRemove}
@@ -205,7 +205,7 @@ export const SalesChannelTableActions = ({
               variant="ghost"
               className="border border-grey-20 text-rose-50"
             >
-              Remove
+              Eliminar
             </Button>
           </div>
         </div>
@@ -216,7 +216,7 @@ export const SalesChannelTableActions = ({
             className="border border-grey-20"
             onClick={() => push(addChannelModalScreen)}
           >
-            <PlusIcon size={20} /> Add Channels
+            <PlusIcon size={20} /> Agregar canales
           </Button>
         </div>
       </div>

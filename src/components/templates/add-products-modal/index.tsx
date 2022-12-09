@@ -27,12 +27,13 @@ const AddProductsModal = ({
   /* ************* Data ************  */
 
   const params = useQueryFilters(defaultQueryProps)
-  const { products, isLoading, count = 0 } = useAdminProducts(
-    params.queryObject,
-    {
-      keepPreviousData: true,
-    }
-  )
+  const {
+    products,
+    isLoading,
+    count = 0,
+  } = useAdminProducts(params.queryObject, {
+    keepPreviousData: true,
+  })
 
   /* ************* State ************  */
 
@@ -61,7 +62,7 @@ const AddProductsModal = ({
     <Modal open handleClose={close}>
       <Modal.Body>
         <Modal.Header handleClose={close}>
-          <h2 className="inter-xlarge-semibold">Add Products</h2>
+          <h2 className="inter-xlarge-semibold">Añadir productos</h2>
         </Modal.Header>
         <Modal.Content>
           <div className="w-full flex flex-col justify-between min-h-[300px] h-full ">
@@ -73,11 +74,11 @@ const AddProductsModal = ({
               onChange={(ids) => setSelectedIds(ids)}
               selectedIds={selectedIds}
               isLoading={isLoading}
-              resourceName="products"
+              resourceName="productos"
               totalCount={count}
               options={{
                 enableSearch: true,
-                searchPlaceholder: "Search by name or description...",
+                searchPlaceholder: "Buscar por nombre o descripción...",
               }}
               {...params}
             />
@@ -90,14 +91,14 @@ const AddProductsModal = ({
               className="rounded-rounded h-8 w-[128px]"
               onClick={close}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
               className="rounded-rounded h-8 w-[128px]"
               onClick={handleSave}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

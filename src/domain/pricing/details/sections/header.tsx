@@ -1,7 +1,7 @@
-import { navigate } from "gatsby"
 import { useAdminDeletePriceList } from "medusa-react"
 import moment from "moment"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import Fade from "../../../../components/atoms/fade-wrapper"
 import EditIcon from "../../../../components/fundamentals/icons/edit-icon"
 import TrashIcon from "../../../../components/fundamentals/icons/trash-icon"
@@ -24,7 +24,7 @@ const Header = ({ priceList }) => {
         {priceList.customer_groups.length ? (
           <div className="border-l border-grey-20 pl-6">
             <span className="inter-base-regular text-grey-50">
-              Customer groups
+              Grupos de clientes
             </span>
             <p className="inter-base-regular text-grey-90">
               <PriceListCustomerGroupsFormatter
@@ -34,14 +34,16 @@ const Header = ({ priceList }) => {
           </div>
         ) : null}
         <div className="border-l border-grey-20 pl-6">
-          <span className="inter-base-regular text-grey-50">Last edited</span>
+          <span className="inter-base-regular text-grey-50">
+            Ultima edición
+          </span>
           <p className="inter-base-regular text-grey-90">
             {moment(priceList.updated_at).format("ddd, D MMM YYYY")}
           </p>
         </div>
         <div className="border-l border-grey-20 pl-6">
           <span className="inter-base-regular text-grey-50">
-            Price overrides
+            Actualizar precios
           </span>
           <p className="inter-base-regular text-grey-90">
             {priceList.prices?.length}
@@ -66,25 +68,30 @@ const PriceListCustomerGroupsFormatter = ({ groups }) => {
   return (
     <>
       {group}
-      {other && <span className="text-grey-40"> + {other} more</span>}
+      {other && <span className="text-grey-40"> + {other} mas</span>}
     </>
   )
 }
 
 const HeadingBodyCard = ({ priceList, setIsOpen, ...props }) => {
   const dialog = useImperativeDialog()
+  const navigate = useNavigate()
   const notification = useNotification()
   const deletePriceList = useAdminDeletePriceList(priceList?.id)
 
   const onDelete = async () => {
     const shouldDelete = await dialog({
-      heading: "Delete Price list",
-      text: "Are you sure you want to delete this price list?",
+      heading: "Eliminar lista de precios",
+      text: "¿Está seguro de que desea eliminar esta lista de precios?",
     })
     if (shouldDelete) {
       deletePriceList.mutate(undefined, {
         onSuccess: () => {
-          notification("Success", "Price list deleted successfully", "success")
+          notification(
+            "Éxito",
+            "Lista de precios eliminada exitosamente",
+            "success"
+          )
           navigate("/a/pricing/")
         },
         onError: (err) => {
@@ -96,12 +103,12 @@ const HeadingBodyCard = ({ priceList, setIsOpen, ...props }) => {
 
   const actionables = [
     {
-      label: "Edit price list details",
+      label: "Editar detalles de la lista",
       onClick: () => setIsOpen(true),
       icon: <EditIcon size={20} />,
     },
     {
-      label: "Delete price list",
+      label: "Eliminar lista de precios",
       onClick: onDelete,
       variant: "danger" as const,
       icon: <TrashIcon size={20} />,

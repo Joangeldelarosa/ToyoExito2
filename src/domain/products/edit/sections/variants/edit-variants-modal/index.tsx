@@ -108,7 +108,7 @@ const EditVariantsModal = ({ open, onClose, product }: Props) => {
       () => {
         resetAndClose()
       },
-      "Variants were successfully updated"
+      "Las variantes han sido actualizadas"
     )
   })
 
@@ -121,20 +121,20 @@ const EditVariantsModal = ({ open, onClose, product }: Props) => {
       <LayeredModal handleClose={resetAndClose} open={open} context={context}>
         <Modal.Body>
           <Modal.Header handleClose={resetAndClose}>
-            <h1 className="inter-xlarge-semibold">Edit Variants</h1>
+            <h1 className="inter-xlarge-semibold">Editar variantes</h1>
           </Modal.Header>
           <FormProvider {...form}>
             <form onSubmit={onSubmit}>
               <Modal.Content>
                 <h2 className="inter-base-semibold mb-small">
-                  Product variants{" "}
+                  Variantes de productos{" "}
                   <span className="inter-base-regular text-grey-50">
                     ({product.variants.length})
                   </span>
                 </h2>
                 <div className="grid grid-cols-[1fr_1fr_48px] pr-base inter-small-semibold text-grey-50 mb-small">
-                  <p className="col-start-1 col-end-1 text-left">Variant</p>
-                  <p className="col-start-2 col-end-2 text-right">Inventory</p>
+                  <p className="col-start-1 col-end-1 text-left">Variante</p>
+                  <p className="col-start-2 col-end-2 text-right">Inventario</p>
                 </div>
                 <div>{fields.map((card, i) => renderCard(card, i))}</div>
               </Modal.Content>
@@ -146,7 +146,7 @@ const EditVariantsModal = ({ open, onClose, product }: Props) => {
                     type="button"
                     onClick={resetAndClose}
                   >
-                    Cancel
+                    Cancelar
                   </Button>
                   <Button
                     variant="primary"
@@ -155,7 +155,7 @@ const EditVariantsModal = ({ open, onClose, product }: Props) => {
                     loading={updating}
                     disabled={updating || !isDirty}
                   >
-                    Save and close
+                    Guardar y cerrar
                   </Button>
                 </div>
               </Modal.Footer>

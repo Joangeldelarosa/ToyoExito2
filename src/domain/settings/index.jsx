@@ -1,5 +1,4 @@
-import { Router } from "@reach/router"
-import React from "react"
+import { Route, Routes } from "react-router-dom"
 import SettingsCard from "../../components/atoms/settings-card"
 import FeatureToggle from "../../components/fundamentals/feature-toggle"
 import ChannelsIcon from "../../components/fundamentals/icons/channels-icon"
@@ -26,64 +25,64 @@ const SettingsIndex = () => {
   return (
     <SettingsOverview>
       <SettingsCard
-        heading={"Regions"}
-        description={"Manage the markets you will operate within"}
+        heading={"Regiones"}
+        description={"Administre los mercados en los que operará"}
         icon={<MapPinIcon />}
         to={`/a/settings/regions`}
       />
       <SettingsCard
-        heading={"Currencies"}
-        description={"Manage the markets you will operate within"}
+        heading={"Monedas"}
+        description={"Administra las monedas que aceptará tu tienda"}
         icon={<CoinsIcon />}
         to={`/a/settings/currencies`}
       />
       <SettingsCard
-        heading={"Store Details"}
-        description={"Manage your business details"}
+        heading={"Detalles de la tienda"}
+        description={"Administra los detalles de tu negocio"}
         icon={<CrosshairIcon />}
         to={`/a/settings/details`}
       />
-      <SettingsCard
+      {/* <SettingsCard
         heading={"Shipping"}
         description={"Manage shipping profiles"}
         icon={<TruckIcon />}
         to={`/a/settings/shipping-profiles`}
         disabled={true}
-      />
+      /> */}
       <SettingsCard
-        heading={"Return Reasons"}
-        description={"Manage Order settings"}
+        heading={"Razones de devolución"}
+        description={"Administra las razones de devolución"}
         icon={<DollarSignIcon />}
         to={`/a/settings/return-reasons`}
       />
       <SettingsCard
-        heading={"The Team"}
-        description={"Manage users of your Medusa Store"}
+        heading={"El equipo"}
+        description={"Administra los miembros de tu equipo"}
         icon={<UsersIcon />}
         to={`/a/settings/team`}
       />
       <SettingsCard
-        heading={"Personal Information"}
-        description={"Manage your Medusa profile"}
+        heading={"Información personal"}
+        description={"Administra tu perfil"}
         icon={<HappyIcon />}
         to={`/a/settings/personal-information`}
       />
-      <SettingsCard
+      {/* <SettingsCard
         heading={"hello@medusajs.com"}
         description={"Can’t find the answers you’re looking for?"}
         icon={<MailIcon />}
         externalLink={"mailto: hello@medusajs.com"}
-      />
+      /> */}
       <SettingsCard
-        heading={"Tax Settings"}
-        description={"Manage taxes across regions and products"}
+        heading={"Configuración de impuestos"}
+        description={"Administra los impuestos de tu tienda"}
         icon={<TaxesIcon />}
         to={`/a/settings/taxes`}
       />
       <FeatureToggle featureFlag="sales_channels">
         <SettingsCard
-          heading={"Sales channels"}
-          description={"Control which products are available in which channels"}
+          heading={"Canales de ventas"}
+          description={"Controla los productos que se muestran en cada canal"}
           icon={<ChannelsIcon />}
           to={`/a/sales-channels`}
         />
@@ -93,24 +92,16 @@ const SettingsIndex = () => {
 }
 
 const Settings = () => (
-  <Router className="h-full">
-    <SettingsIndex path="/" />
-
-    <Details path="details" />
-
-    <CurrencySettings path="currencies" />
-
-    <ReturnReasons path="return-reasons" />
-
-    <Regions path="regions/*" />
-    <NewRegion path="regions/new" />
-
-    <Taxes path="taxes" />
-
-    <Users path="team" />
-
-    <PersonalInformation path="personal-information" />
-  </Router>
+  <Routes className="h-full">
+    <Route index element={<SettingsIndex />} />
+    <Route path="/details" element={<Details />} />
+    <Route path="/regions/*" element={<Regions />} />
+    <Route path="/currencies" element={<CurrencySettings />} />
+    <Route path="/return-reasons" element={<ReturnReasons />} />
+    <Route path="/team" element={<Users />} />
+    <Route path="/personal-information" element={<PersonalInformation />} />
+    <Route path="/taxes" element={<Taxes />} />
+  </Routes>
 )
 
 export default Settings

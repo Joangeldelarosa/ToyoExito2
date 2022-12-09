@@ -45,9 +45,8 @@ const getInfo = (edit: OrderEdit): { type: string; user_id: string } => {
 }
 
 const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
-  const { isModalVisible, showModal, setActiveOrderEdit } = useContext(
-    OrderEditContext
-  )
+  const { isModalVisible, showModal, setActiveOrderEdit } =
+    useContext(OrderEditContext)
 
   const { order_edit: orderEdit, isFetching } = useAdminOrderEdit(event.edit.id)
 
@@ -55,7 +54,7 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
 
   const notification = useNotification()
 
-  const name = `Order Edit ${type}`
+  const name = `Edición de pedido ${type}`
 
   const { user } = useAdminUser(user_id)
 
@@ -68,7 +67,7 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
   const onDeleteOrderEditClicked = () => {
     deleteOrderEdit.mutate(undefined, {
       onSuccess: () => {
-        notification("Success", `Successfully deleted Order Edit`, "success")
+        notification("Éxito", `Edición eliminada con exito`, "success")
       },
       onError: (err) => {
         notification("Error", getErrorMessage(err), "error")
@@ -79,7 +78,7 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
   const onCancelOrderEditClicked = () => {
     cancelOrderEdit.mutate(undefined, {
       onSuccess: () => {
-        notification("Success", `Successfully canceled Order Edit`, "success")
+        notification("Éxito", `Edición cancelada con exito`, "success")
       },
       onError: (err) => {
         notification("Error", getErrorMessage(err), "error")
@@ -89,21 +88,16 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
 
   const onConfirmEditClicked = async () => {
     const shouldDelete = await forceConfirmDialog({
-      heading: "Delete Confirm",
-      text:
-        "By force confirming you allow the order edit to be fulfilled. You will still have to reconcile payments manually after confirming.",
-      confirmText: "Yes, Force Confirm",
-      cancelText: "No, Cancel",
+      heading: "Confirmación de eliminación",
+      text: "Al forzar la confirmación, permite que se complete la edición del pedido. Aún tendrá que conciliar los pagos manualmente después de confirmar..",
+      confirmText: "Si, forzar confirmación",
+      cancelText: "No, cancelar",
     })
 
     if (shouldDelete) {
       confirmOrderEdit.mutate(undefined, {
         onSuccess: () => {
-          notification(
-            "Success",
-            `Successfully confirmed Order Edit`,
-            "success"
-          )
+          notification("Éxito", `Pedido editado con exito`, "success")
         },
         onError: (err) => {
           notification("Error", getErrorMessage(err), "error")
@@ -122,7 +116,7 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
   }
 
   // hide last created edit while editing and prevent content flashing while loading
-  if ((isModalVisible && orderEdit?.status === "created") || isFetching) {
+  if ((isModalVisible && orderEdit?.status === "creada") || isFetching) {
     return null
   }
 
@@ -154,13 +148,13 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
                   variant="ghost"
                   onClick={onContinueEdit}
                 >
-                  Continue order edit
+                  Continuar editando el pedido
                 </Button>
                 <TwoStepDelete
                   onDelete={onDeleteOrderEditClicked}
                   className="w-full border border-grey-20"
                 >
-                  Delete the order edit
+                  Eliminar edición
                 </TwoStepDelete>
               </>
             ) : (
@@ -171,7 +165,7 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
                   variant="ghost"
                   onClick={onCopyConfirmationLinkClicked}
                 >
-                  Copy Confirmation-Request Link
+                  Copiar enlace de solicitud de confirmación
                 </Button>
                 <Button
                   className="w-full border border-grey-20"
@@ -179,14 +173,14 @@ const EditCreated: React.FC<EditCreatedProps> = ({ event }) => {
                   variant="ghost"
                   onClick={onConfirmEditClicked}
                 >
-                  Force Confirm
+                  Forzar confirmación
                 </Button>
 
                 <TwoStepDelete
                   onDelete={onCancelOrderEditClicked}
                   className="w-full border border-grey-20"
                 >
-                  Cancel Order Edit
+                  Cancelar edición
                 </TwoStepDelete>
               </>
             )}
@@ -223,7 +217,7 @@ const OrderEditChanges = ({ orderEdit }) => {
     <div className="flex flex-col gap-y-base">
       {added.length > 0 && (
         <div>
-          <span className="inter-small-regular text-grey-50">Added</span>
+          <span className="inter-small-regular text-grey-50">Agregada</span>
           {added.map((change) => (
             <OrderEditChangeItem change={change} key={change.id} />
           ))}
@@ -231,7 +225,7 @@ const OrderEditChanges = ({ orderEdit }) => {
       )}
       {removed.length > 0 && (
         <div>
-          <span className="inter-small-regular text-grey-50">Removed</span>
+          <span className="inter-small-regular text-grey-50">Eliminada</span>
           {removed.map((change) => (
             <OrderEditChangeItem change={change} key={change.id} />
           ))}

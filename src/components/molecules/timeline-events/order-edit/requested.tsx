@@ -29,7 +29,7 @@ const EditRequested: React.FC<RequestedProps> = ({ event }) => {
   return (
     <>
       <EventContainer
-        title={"Order Edit confirmation-request sent"}
+        title={"Solicitud de confirmación de edición de pedido enviada"}
         icon={<MailIcon size={20} />}
         time={event.time}
         isFirst={event.first}
@@ -45,7 +45,7 @@ const EditRequested: React.FC<RequestedProps> = ({ event }) => {
           variant="ghost"
           onClick={() => setShowResend(true)}
         >
-          Resend Confirmation-Request
+          Reenviar solicitud de confirmación
         </Button>
       </EventContainer>
       {showResend && (

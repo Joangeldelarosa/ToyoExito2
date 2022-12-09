@@ -1,9 +1,8 @@
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
 import { isEmpty } from "lodash"
 import { useAdminCustomers } from "medusa-react"
 import qs from "qs"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { usePagination, useTable } from "react-table"
 import DetailsIcon from "../../fundamentals/details-icon"
 import EditIcon from "../../fundamentals/icons/edit-icon"
@@ -18,7 +17,9 @@ const defaultQueryProps = {
   expand: "orders",
 }
 
-const CustomerTable: React.FC<RouteComponentProps> = () => {
+const CustomerTable = () => {
+  const navigate = useNavigate()
+
   const {
     reset,
     paginate,
@@ -138,7 +139,7 @@ const CustomerTable: React.FC<RouteComponentProps> = () => {
         count: count!,
         offset: queryObject.offset,
         pageSize: queryObject.offset + rows.length,
-        title: "Customers",
+        title: "Clientes",
         currentPage: pageIndex + 1,
         pageCount: pageCount,
         nextPage: handleNext,
@@ -173,12 +174,12 @@ const CustomerTable: React.FC<RouteComponentProps> = () => {
                 color={"inherit"}
                 actions={[
                   {
-                    label: "Edit",
+                    label: "Editar",
                     onClick: () => navigate(row.original.id),
                     icon: <EditIcon size={20} />,
                   },
                   {
-                    label: "Details",
+                    label: "Detalles",
                     onClick: () => navigate(row.original.id),
                     icon: <DetailsIcon size={20} />,
                   },

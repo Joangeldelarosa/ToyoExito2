@@ -3,7 +3,6 @@ import React, { useMemo } from "react"
 import { formatAmountWithSymbol } from "../../../utils/prices"
 import Badge from "../../fundamentals/badge"
 import StatusDot from "../../fundamentals/status-indicator"
-import Table from "../../molecules/table"
 
 enum PromotionStatus {
   SCHEDULED = "SCHEDULED",
@@ -39,15 +38,15 @@ const getPromotionStatusDot = (promotion) => {
   const status = getPromotionStatus(promotion)
   switch (status) {
     case PromotionStatus.SCHEDULED:
-      return <StatusDot title="Scheduled" variant="warning" />
+      return <StatusDot title="Programada" variant="warning" />
     case PromotionStatus.EXPIRED:
-      return <StatusDot title="Expired" variant="danger" />
+      return <StatusDot title="Expirada" variant="danger" />
     case PromotionStatus.ACTIVE:
-      return <StatusDot title="Active" variant="success" />
+      return <StatusDot title="Activa" variant="success" />
     case PromotionStatus.DISABLED:
-      return <StatusDot title="Disabled" variant="default" />
+      return <StatusDot title="Desactivada" variant="default" />
     default:
-      return <StatusDot title="Disabled" variant="default" />
+      return <StatusDot title="Desactivada" variant="default" />
   }
 }
 
@@ -74,7 +73,7 @@ const getPromotionAmount = (promotion) => {
     case "percentage":
       return `${promotion.rule.value}%`
     case "free_shipping":
-      return "Free Shipping"
+      return "Envío gratis"
     default:
       return ""
   }
@@ -84,7 +83,7 @@ export const usePromotionTableColumns = () => {
   const columns = useMemo(
     () => [
       {
-        Header: <div className="pl-2">Code</div>,
+        Header: <div className="pl-2">Código</div>,
         accessor: "code",
         Cell: ({ cell: { value } }) => (
           <div className="overflow-hidden">
@@ -95,12 +94,12 @@ export const usePromotionTableColumns = () => {
         ),
       },
       {
-        Header: "Description",
+        Header: "Descripción",
         accessor: "rule.description",
         Cell: ({ cell: { value } }) => value,
       },
       {
-        Header: <div className="text-right">Amount</div>,
+        Header: <div className="text-right">Cantidad</div>,
         id: "amount",
         Cell: ({ row: { original } }) => {
           return (
@@ -116,21 +115,19 @@ export const usePromotionTableColumns = () => {
         ),
       },
       {
-        Header: "Status",
+        Header: "Estado",
         accessor: "ends_at",
         Cell: ({ row: { original } }) => (
           <div>{getPromotionStatusDot(original)}</div>
         ),
       },
       {
-        Header: () => <div className="text-right">Redemptions</div>,
+        Header: () => <div className="text-right">Reclamos</div>,
         accessor: "usage_count",
         Cell: ({ row: { original } }) => {
           return (
             <div className="text-right">
-              {original.usage_limit > 0
-                ? getUsageCount(original.usage_count)
-                : "-"}
+              {getUsageCount(original.usage_count)}
             </div>
           )
         },

@@ -40,7 +40,7 @@ const AddVariantModal = ({ open, onClose, product }: Props) => {
     <Modal open={open} handleClose={resetAndClose}>
       <Modal.Body>
         <Modal.Header handleClose={resetAndClose}>
-          <h1 className="inter-xlarge-semibold">Add Variant</h1>
+          <h1 className="inter-xlarge-semibold">Agregar variante</h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
@@ -54,7 +54,7 @@ const AddVariantModal = ({ open, onClose, product }: Props) => {
                 type="button"
                 onClick={resetAndClose}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -62,7 +62,7 @@ const AddVariantModal = ({ open, onClose, product }: Props) => {
                 type="submit"
                 loading={addingVariant}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

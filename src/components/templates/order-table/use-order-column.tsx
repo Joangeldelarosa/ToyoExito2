@@ -13,13 +13,13 @@ const useOrderTableColums = () => {
   const decideStatus = (status) => {
     switch (status) {
       case "captured":
-        return <StatusDot variant="success" title={"Paid"} />
+        return <StatusDot variant="success" title={"Pagado"} />
       case "awaiting":
-        return <StatusDot variant="default" title={"Awaiting"} />
+        return <StatusDot variant="default" title={"En espera"} />
       case "requires_action":
-        return <StatusDot variant="danger" title={"Requires action"} />
+        return <StatusDot variant="danger" title={"Requiere revision"} />
       case "canceled":
-        return <StatusDot variant="warning" title={"Canceled"} />
+        return <StatusDot variant="warning" title={"Cancelado"} />
       default:
         return <StatusDot variant="primary" title={"N/A"} />
     }
@@ -28,14 +28,14 @@ const useOrderTableColums = () => {
   const columns = useMemo(
     () => [
       {
-        Header: <div className="pl-2">Order</div>,
+        Header: <div className="pl-2">Pedido</div>,
         accessor: "display_id",
         Cell: ({ cell: { value } }) => (
-          <p className="text-grey-90 group-hover:text-violet-60 min-w-[100px] pl-2">{`#${value}`}</p>
+          <p className="text-grey-90 group-hover:text-green-60 min-w-[100px] pl-2">{`#${value}`}</p>
         ),
       },
       {
-        Header: "Date added",
+        Header: "Fecha de creación",
         accessor: "created_at",
         Cell: ({ cell: { value } }) => (
           <div>
@@ -46,7 +46,7 @@ const useOrderTableColums = () => {
         ),
       },
       {
-        Header: "Customer",
+        Header: "Cliente",
         accessor: "customer",
         Cell: ({ row, cell: { value } }) => (
           <div>
@@ -65,17 +65,17 @@ const useOrderTableColums = () => {
         ),
       },
       {
-        Header: "Fulfillment",
+        Header: "Entrega",
         accessor: "fulfillment_status",
         Cell: ({ cell: { value } }) => value,
       },
       {
-        Header: "Payment status",
+        Header: "Pago",
         accessor: "payment_status",
         Cell: ({ cell: { value } }) => decideStatus(value),
       },
       {
-        Header: "Sales Channel",
+        Header: "Canal de ventas",
         accessor: "sales_channel",
         Cell: ({ cell: { value } }) => value?.name ?? "N/A",
       },

@@ -30,7 +30,7 @@ const ProductVariantLeaf = ({
             }`}</span>
           ) : (
             <span className="inter-small-semibold text-orange-40">
-              Add prices
+              Agregar precios
             </span>
           )}
         </div>

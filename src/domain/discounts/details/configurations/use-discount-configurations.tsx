@@ -37,17 +37,17 @@ const useDiscountConfigurations = (discount: Discount) => {
   const conditions: displaySetting[] = []
 
   conditions.push({
-    title: "Start date",
+    title: "Fecha de inicio",
     description: <DisplaySettingsDateDescription date={discount.starts_at} />,
   })
 
   if (discount.ends_at) {
     conditions.push({
-      title: "End date",
+      title: "Fecha de finalización",
       description: <DisplaySettingsDateDescription date={discount.ends_at} />,
       actions: [
         {
-          label: "Delete configuration",
+          label: "Eliminar configuración",
           icon: <TrashIcon size={20} />,
           variant: "danger",
           onClick: async () =>
@@ -57,7 +57,7 @@ const useDiscountConfigurations = (discount: Discount) => {
                 onSuccess: () => {
                   notification(
                     "Success",
-                    "Discount end date removed",
+                    "Se eliminó la fecha de finalización del descuento",
                     "success"
                   )
                 },
@@ -72,13 +72,13 @@ const useDiscountConfigurations = (discount: Discount) => {
   }
   if (discount.usage_limit) {
     conditions.push({
-      title: "Number of redemptions",
+      title: "Número de redenciones",
       description: (
         <CommonDescription text={discount.usage_limit.toLocaleString("en")} />
       ),
       actions: [
         {
-          label: "Delete configuration",
+          label: "Eliminar configuración",
           icon: <TrashIcon size={20} />,
           variant: "danger",
           onClick: async () =>
@@ -86,7 +86,11 @@ const useDiscountConfigurations = (discount: Discount) => {
               { usage_limit: null },
               {
                 onSuccess: () => {
-                  notification("Success", "Redemption limit removed", "success")
+                  notification(
+                    "Success",
+                    "Límite de redenciones eliminado",
+                    "success"
+                  )
                 },
                 onError: (error) => {
                   notification("Error", getErrorMessage(error), "error")
@@ -99,7 +103,7 @@ const useDiscountConfigurations = (discount: Discount) => {
   }
   if (discount.valid_duration) {
     conditions.push({
-      title: "Duration",
+      title: "Duración",
       description: (
         <CommonDescription
           text={Object.entries(removeNullish(parse(discount.valid_duration)))
@@ -109,7 +113,7 @@ const useDiscountConfigurations = (discount: Discount) => {
       ),
       actions: [
         {
-          label: "Delete setting",
+          label: "Eliminar configuración",
           icon: <TrashIcon size={20} />,
           variant: "danger",
           onClick: async () =>
@@ -119,7 +123,7 @@ const useDiscountConfigurations = (discount: Discount) => {
                 onSuccess: () => {
                   notification(
                     "Success",
-                    "Discount duration removed",
+                    "Configuración de duración eliminada",
                     "success"
                   )
                 },

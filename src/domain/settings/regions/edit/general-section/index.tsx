@@ -1,7 +1,7 @@
 import { Region } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import { useAdminDeleteRegion } from "medusa-react"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import Tooltip from "../../../../../components/atoms/tooltip"
 import EditIcon from "../../../../../components/fundamentals/icons/edit-icon"
 import TrashIcon from "../../../../../components/fundamentals/icons/trash-icon"
@@ -22,6 +22,7 @@ type Props = {
 const GeneralSection = ({ region }: Props) => {
   const { state, toggle, close } = useToggleState()
   const { mutate } = useAdminDeleteRegion(region.id)
+  const navigate = useNavigate()
   const notification = useNotification()
   const dialog = useImperativeDialog()
 
@@ -37,7 +38,7 @@ const GeneralSection = ({ region }: Props) => {
           navigate("/a/settings/regions", {
             replace: true,
           })
-          notification("Success", "Region has been deleted", "success")
+          notification("Éxito", "La region ha sido eliminada", "success")
           navigate(`/a/settings/regions`, { replace: true })
         },
         onError: (error) => {
@@ -53,12 +54,12 @@ const GeneralSection = ({ region }: Props) => {
         title={region.name}
         actions={[
           {
-            label: "Edit Region Details",
+            label: "Editar detalles de la region",
             onClick: toggle,
             icon: <EditIcon size={20} className="text-grey-50" />,
           },
           {
-            label: "Delete Region",
+            label: "Eliminar region",
             onClick: handleDelete,
             icon: <TrashIcon size={20} />,
             variant: "danger",
@@ -66,9 +67,9 @@ const GeneralSection = ({ region }: Props) => {
         ]}
       >
         <div className="flex flex-col gap-y-xsmall mt-large">
-          <h2 className="inter-large-semibold">Details</h2>
+          <h2 className="inter-large-semibold">Detalles</h2>
           <div className="flex flex-col gap-y-xsmall">
-            <RegionDetail title={"Currency"}>
+            <RegionDetail title={"Moneda"}>
               <div className="flex items-center gap-x-xsmall">
                 <span className="inter-base-semibold text-grey-90">
                   {region.currency_code.toUpperCase()}
@@ -78,7 +79,7 @@ const GeneralSection = ({ region }: Props) => {
                 </span>
               </div>
             </RegionDetail>
-            <RegionDetail title={"Countries"}>
+            <RegionDetail title={"Paises"}>
               <div>
                 {region.countries && region.countries.length ? (
                   <div className="flex items-center gap-x-xsmall">
@@ -100,17 +101,17 @@ const GeneralSection = ({ region }: Props) => {
                         }
                       >
                         <span className="cursor-default">
-                          + {region.countries.length - 4} more
+                          + {region.countries.length - 4} mas
                         </span>
                       </Tooltip>
                     )}
                   </div>
                 ) : (
-                  <p>No countries configured</p>
+                  <p>No hay paises configurados</p>
                 )}
               </div>
             </RegionDetail>
-            <RegionDetail title={"Payment providers"}>
+            <RegionDetail title={"Proveedores de pago"}>
               <div>
                 {region.payment_providers && region.payment_providers.length ? (
                   <div className="flex items-center gap-x-xsmall">
@@ -136,17 +137,17 @@ const GeneralSection = ({ region }: Props) => {
                         }
                       >
                         <span className="cursor-default">
-                          + {region.payment_providers.length - 4} more
+                          + {region.payment_providers.length - 4} mas
                         </span>
                       </Tooltip>
                     )}
                   </div>
                 ) : (
-                  <p>No payment providers configured</p>
+                  <p>No hay proveedores de pago configurados</p>
                 )}
               </div>
             </RegionDetail>
-            <RegionDetail title={"Fulfillment providers"}>
+            <RegionDetail title={"Proveedores de envio"}>
               <div>
                 {region.payment_providers && region.payment_providers.length ? (
                   <div className="flex items-center gap-x-xsmall">
@@ -172,13 +173,13 @@ const GeneralSection = ({ region }: Props) => {
                         }
                       >
                         <span className="cursor-default">
-                          + {region.fulfillment_providers.length - 4} more
+                          + {region.fulfillment_providers.length - 4} mas
                         </span>
                       </Tooltip>
                     )}
                   </div>
                 ) : (
-                  <p>No fulfillment providers configured</p>
+                  <p>No hay proveedores de envio configurados</p>
                 )}
               </div>
             </RegionDetail>

@@ -15,13 +15,15 @@ const StoreCurrencies = ({ store }: Props) => {
     <>
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="inter-large-semibold mb-2xsmall">Store currencies</h3>
+          <h3 className="inter-large-semibold mb-2xsmall">
+            Monedas de la tienda
+          </h3>
           <p className="inter-base-regular text-grey-50">
-            All the currencies available in your store.
+            Todas las monedas que se pueden utilizar en esta tienda
           </p>
         </div>
         <Button variant="secondary" size="small" onClick={toggle}>
-          Edit currencies
+          Editar monedas
         </Button>
       </div>
       <EditCurrenciesModal store={store} open={state} onClose={close} />

@@ -13,10 +13,10 @@ import { DateTimePickerProps } from "./types"
 
 const getDateClassname = (d, tempDate) => {
   return moment(d).format("YY,MM,DD") === moment(tempDate).format("YY,MM,DD")
-    ? "date chosen"
-    : `date ${
+    ? "fecha seleccionada"
+    : `fecha ${
         moment(d).format("YY,MM,DD") < moment(new Date()).format("YY,MM,DD")
-          ? "past"
+          ? "pasado"
           : ""
       }`
 }
@@ -24,7 +24,7 @@ const getDateClassname = (d, tempDate) => {
 const DatePicker: React.FC<DateTimePickerProps> = ({
   date,
   onSubmitDate,
-  label = "start date",
+  label = "fecha de inicio",
   required = false,
   tooltipContent,
   tooltip,
@@ -51,7 +51,7 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
         <PopoverPrimitive.Trigger asChild>
           <button
             className={clsx("w-full rounded-rounded border ", {
-              "shadow-input border-violet-60": isOpen,
+              "shadow-input border-green-60": isOpen,
               "border-grey-20": !isOpen,
             })}
           >
@@ -86,14 +86,14 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
               onClick={() => setIsOpen(false)}
               className="mr-2 w-1/3 flex justify-center border border-grey-20"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               size="medium"
               variant="primary"
               onClick={() => submitDate()}
               className="w-2/3 flex justify-center"
-            >{`Set ${label}`}</Button>
+            >{`Guardar ${label}`}</Button>
           </div>
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Root>

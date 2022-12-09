@@ -69,17 +69,17 @@ const Timeline: React.FC<TimelineProps> = ({ orderId }) => {
   const actions: ActionType[] = [
     {
       icon: <BackIcon size={20} />,
-      label: "Request Return",
+      label: "Solicitar devolución",
       onClick: () => setShowRequestReturn(true),
     },
     {
       icon: <RefreshIcon size={20} />,
-      label: "Register Exchange",
+      label: "Registrar cambio",
       onClick: () => setshowCreateSwap(true),
     },
     {
       icon: <AlertIcon size={20} />,
-      label: "Register Claim",
+      label: "Registrar reclamo",
       onClick: () => setshowCreateClaim(true),
     },
   ]
@@ -95,7 +95,7 @@ const Timeline: React.FC<TimelineProps> = ({ orderId }) => {
         value: value,
       },
       {
-        onSuccess: () => notification("Success", "Added note", "success"),
+        onSuccess: () => notification("Éxito", "Nota agregada", "success"),
         onError: (err) => notification("Error", getErrorMessage(err), "error"),
       }
     )
@@ -106,7 +106,7 @@ const Timeline: React.FC<TimelineProps> = ({ orderId }) => {
       <div className="h-full w-5/12 rounded-rounded bg-grey-0 border border-grey-20">
         <div className="py-large px-xlarge border-b border-grey-20">
           <div className="flex items-center justify-between">
-            <h3 className="inter-xlarge-semibold">Timeline</h3>
+            <h3 className="inter-xlarge-semibold">Linea de tiempo</h3>
             <div
               className={clsx({
                 "pointer-events-none opacity-50": !events,

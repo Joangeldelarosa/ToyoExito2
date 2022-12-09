@@ -1,6 +1,6 @@
 import { useAdminRegions } from "medusa-react"
-import { navigate } from "gatsby"
 import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Spinner from "../../../components/atoms/spinner"
 import GearIcon from "../../../components/fundamentals/icons/gear-icon"
 import BreadCrumb from "../../../components/molecules/breadcrumb"
@@ -10,6 +10,7 @@ import TwoSplitPane from "../../../components/templates/two-split-pane"
 import TaxDetails from "./details"
 
 const Taxes = () => {
+  const navigate = useNavigate()
   const { regions, isLoading, refetch } = useAdminRegions()
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>(
     undefined
@@ -52,18 +53,18 @@ const Taxes = () => {
       <div>
         <BreadCrumb
           previousRoute="/a/settings"
-          previousBreadcrumb="Settings"
+          previousBreadcrumb="Ajustes"
           currentPage="Taxes"
         />
         <TwoSplitPane threeCols>
           <BodyCard
             forceDropdown
-            title="Regions"
-            subtitle="Select the region you wish to manage taxes for"
+            title="Regiones"
+            subtitle="Seleccione la región para la que desea administrar los impuestos"
             actionables={[
               {
                 icon: <GearIcon />,
-                label: "Go to Region settings",
+                label: "Ir a la configuración de la región",
                 onClick: () => navigate("/a/settings/regions"),
               },
             ]}

@@ -53,8 +53,8 @@ const AddressForm = ({
             required: required ? FormValidator.required("First name") : false,
             pattern: FormValidator.whiteSpaceRule("First name"),
           })}
-          placeholder="First Name"
-          label="First Name"
+          placeholder="Primer nombre"
+          label="Primer nombre"
           required={required}
           errors={errors}
         />
@@ -63,8 +63,8 @@ const AddressForm = ({
             required: required ? FormValidator.required("Last name") : false,
             pattern: FormValidator.whiteSpaceRule("Last name"),
           })}
-          placeholder="Last Name"
-          label="Last Name"
+          placeholder="Apellido"
+          label="Apellido"
           required={required}
           errors={errors}
         />
@@ -72,24 +72,24 @@ const AddressForm = ({
           {...form.register(path("company"), {
             pattern: FormValidator.whiteSpaceRule("Company"),
           })}
-          placeholder="Company"
-          label="Company"
+          placeholder="Compañia"
+          label="Compañia"
           errors={errors}
         />
         <Input
           {...form.register(path("phone"))}
-          placeholder="Phone"
-          label="Phone"
+          placeholder="Telefono"
+          label="Telefono"
           errors={errors}
         />
       </div>
 
       <span className="inter-base-semibold">{`${
         type === AddressType.BILLING
-          ? "Billing Address"
+          ? "Dirección de facturación"
           : AddressType.SHIPPING
-          ? "Shipping Address"
-          : "Address"
+          ? "Dirección de facturación"
+          : "Dirección"
       }`}</span>
       <div className="grid grid-cols-1 gap-y-large mt-4">
         <Input
@@ -97,8 +97,8 @@ const AddressForm = ({
             required: required ? FormValidator.required("Address 1") : false,
             pattern: FormValidator.whiteSpaceRule("Address 1"),
           })}
-          placeholder="Address 1"
-          label="Address 1"
+          placeholder="Dirección 1"
+          label="Dirección 1"
           required={required}
           errors={errors}
         />
@@ -106,8 +106,8 @@ const AddressForm = ({
           {...form.register(path("address_2"), {
             pattern: FormValidator.whiteSpaceRule("Address 2"),
           })}
-          placeholder="Address 2"
-          label="Address 2"
+          placeholder="Dirección 2"
+          label="Dirección 2"
           errors={errors}
         />
         <div className="grid grid-cols-[144px_1fr] gap-large">
@@ -118,15 +118,15 @@ const AddressForm = ({
                 : false,
               pattern: FormValidator.whiteSpaceRule("Postal code"),
             })}
-            placeholder="Postal code"
-            label="Postal code"
+            placeholder="Código postal"
+            label="Código postal"
             required={required}
             autoComplete="off"
             errors={errors}
           />
           <Input
-            placeholder="City"
-            label="City"
+            placeholder="Ciudad"
+            label="Ciudad"
             {...form.register(path("city"), {
               required: required ? FormValidator.required("City") : false,
               pattern: FormValidator.whiteSpaceRule("City"),
@@ -140,8 +140,8 @@ const AddressForm = ({
             {...form.register(path("province"), {
               pattern: FormValidator.whiteSpaceRule("Province"),
             })}
-            placeholder="Province"
-            label="Province"
+            placeholder="Estado"
+            label="Estado"
             errors={errors}
           />
           <Controller
@@ -153,7 +153,7 @@ const AddressForm = ({
             render={({ field: { value, onChange } }) => {
               return (
                 <NextSelect
-                  label="Country"
+                  label="País"
                   required={required}
                   value={value}
                   options={countryOptions}

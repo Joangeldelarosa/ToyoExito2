@@ -17,11 +17,8 @@ const DiscountDetailsConditions: React.FC<DiscountDetailsConditionsProps> = ({
 }) => {
   const [show, setShow] = useState(false)
 
-  const {
-    conditions,
-    selectedCondition,
-    deSelectCondition,
-  } = useDiscountConditions(discount)
+  const { conditions, selectedCondition, deSelectCondition } =
+    useDiscountConditions(discount)
 
   return (
     <ConditionsProvider discount={discount}>
@@ -59,7 +56,7 @@ const DiscountDetailsConditions: React.FC<DiscountDetailsConditionsProps> = ({
         ) : (
           <div className="flex flex-col justify-center items-center flex-1 gap-y-small">
             <span className="inter-base-regular text-grey-50">
-              This discount has no conditions
+              Este descuento no tiene condiciones
             </span>
           </div>
         )}

@@ -70,18 +70,18 @@ function UploadSummary(props: UploadSummaryProps) {
     <div className="flex gap-6">
       <div className="flex items-center text-small text-grey-90">
         <CheckCircleIcon color="#9CA3AF" className="mr-2" />
-        <span className="font-semibold"> {creations}&nbsp;</span> new {type}
+        <span className="font-semibold"> {creations}&nbsp;</span> nuevo {type}
       </div>
       {updates && (
         <div className="flex items-center text-small text-grey-90">
           <WarningCircle fill="#9CA3AF" className="mr-2" />
-          <span className="font-semibold">{updates}&nbsp;</span> updates
+          <span className="font-semibold">{updates}&nbsp;</span> actualizaciones
         </div>
       )}
       {rejections && (
         <div className="flex items-center text-small text-grey-90">
           <XCircleIcon color="#9CA3AF" className="mr-2" />
-          <span className="font-semibold">{rejections}&nbsp;</span> rejections
+          <span className="font-semibold">{rejections}&nbsp;</span> rechazos
         </div>
       )}
     </div>
@@ -129,11 +129,11 @@ function DropArea(props: DropAreaProps) {
       )}
     >
       <span className="text-grey-50 text-small">
-        Drop your file here, or
-        <a className="text-violet-60">
+        Arrastra tu archivo aquí, o
+        <a className="text-green-60">
           <label className="cursor-pointer" htmlFor="upload-form-file">
             {" "}
-            click to browse.
+            haga clic para seleccionar uno.
           </label>
           <input
             type="file"
@@ -146,7 +146,7 @@ function DropArea(props: DropAreaProps) {
         </a>
       </span>
       <span className="text-grey-40 text-small">
-        Only .csv files are supported.
+        Solo se admiten archivos .csv.
       </span>
     </div>
   )
@@ -209,7 +209,7 @@ function UploadModal(props: UploadModalProps) {
         <Modal.Content>
           <div className="flex justify-between">
             <span className="text-2xl text-grey-90 inter-large-semibold py-4">
-              Import {fileTitle}
+              Importar {fileTitle}
             </span>
             <button onClick={onClose} className="text-grey-50 cursor-pointer">
               <CrossIcon size={20} />
@@ -217,7 +217,7 @@ function UploadModal(props: UploadModalProps) {
           </div>
 
           <div className="text-grey-90 text-base inter-large-semibold mb-1">
-            Import {fileTitle}
+            Importar {fileTitle}
           </div>
 
           <p className="text-grey-50 mb-4 text-base">{description1Text}</p>
@@ -279,7 +279,7 @@ function UploadModal(props: UploadModalProps) {
                 size="small"
                 onClick={onClose}
               >
-                Cancel
+                Cancelar
               </Button>
 
               <Button
@@ -289,7 +289,7 @@ function UploadModal(props: UploadModalProps) {
                 className="text-small"
                 onClick={onSubmit}
               >
-                Import List
+                Importar lista
               </Button>
             </div>
           </div>

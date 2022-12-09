@@ -43,11 +43,7 @@ const EditUserInformationModal = ({ user, open, onClose }: Props) => {
       data,
       {
         onSuccess: () => {
-          notification(
-            "Success",
-            "Your information was successfully updated",
-            "success"
-          )
+          notification("Éxito", "Tu información ha sido actualizada", "success")
           refetch()
           onClose()
         },
@@ -59,7 +55,7 @@ const EditUserInformationModal = ({ user, open, onClose }: Props) => {
   return (
     <Modal handleClose={onClose} open={open} isLargeModal={false}>
       <Modal.Header handleClose={onClose}>
-        <h1 className="inter-xlarge-semibold">Edit information</h1>
+        <h1 className="inter-xlarge-semibold">Editar información</h1>
       </Modal.Header>
       <Modal.Body>
         <Modal.Content>
@@ -81,7 +77,7 @@ const EditUserInformationModal = ({ user, open, onClose }: Props) => {
         <Modal.Footer className="border-t border-grey-20 pt-base">
           <div className="flex items-center justify-end gap-x-xsmall w-full">
             <Button variant="secondary" size="small">
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -90,7 +86,7 @@ const EditUserInformationModal = ({ user, open, onClose }: Props) => {
               disabled={isSubmitting}
               onClick={onSubmit}
             >
-              Submit and close
+              Guardar y cerrar
             </Button>
           </div>
         </Modal.Footer>

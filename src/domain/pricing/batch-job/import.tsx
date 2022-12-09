@@ -73,12 +73,12 @@ function ImportPrices(props: ImportPricesProps) {
     : undefined
 
   const status = hasError
-    ? "Error occurred while processing"
+    ? "Ocurrió un error durante el procesamiento"
     : isPreprocessed
     ? undefined
     : isUploaded
-    ? "Preprocessing..."
-    : "Uploading..."
+    ? "Preprocesando..."
+    : "Subiendo..."
 
   /**
    * Confirm job on submit.
@@ -86,8 +86,8 @@ function ImportPrices(props: ImportPricesProps) {
   const onSubmit = async () => {
     await confirmBatchJob()
     notification(
-      "Success",
-      "Import confirmed for processing. Progress info is available in the activity drawer.",
+      "Éxito",
+      "Importación confirmada para su procesamiento. La información de progreso está disponible en el cajón de actividades.",
       "success"
     )
     props.handleClose()
@@ -112,7 +112,7 @@ function ImportPrices(props: ImportPricesProps) {
 
       setBatchJobId(batchJob.batch_job.id)
     } catch (e) {
-      notification("Error", "Import failed.", "error")
+      notification("Error", "Importación fallida.", "error")
       if (fileKey) {
         await deleteFile({ file_key: fileKey })
       }
@@ -174,10 +174,10 @@ function ImportPrices(props: ImportPricesProps) {
   return (
     <UploadModal
       type="prices"
-      fileTitle="Price List prices"
-      description1Text="Upload a CSV file with variants and prices to update your price list. Note that any existing prices will be deleted."
-      description2Title="Unsure about how to arrange your list?"
-      description2Text="Download the template file below and update your prices"
+      fileTitle="Lista de precio"
+      description1Text="Sube un archivo CSV con variantes y precios para actualizar tu lista de precios. Tenga en cuenta que se eliminarán todos los precios existentes."
+      description2Title="¿No estás seguro de cómo organizar tu lista?"
+      description2Text="Descargue el archivo de plantilla a continuación y actualice sus precios"
       status={status}
       progress={progress}
       canImport={isPreprocessed}

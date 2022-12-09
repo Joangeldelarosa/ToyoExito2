@@ -39,12 +39,8 @@ const EditVariantModal = ({
     onClose()
   }
 
-  const {
-    onUpdateVariant,
-    onAddVariant,
-    addingVariant,
-    updatingVariant,
-  } = useEditProductActions(product.id)
+  const { onUpdateVariant, onAddVariant, addingVariant, updatingVariant } =
+    useEditProductActions(product.id)
 
   const onSubmit = handleSubmit((data) => {
     if (isDuplicate) {
@@ -59,7 +55,7 @@ const EditVariantModal = ({
     <Modal handleClose={handleClose}>
       <Modal.Header handleClose={handleClose}>
         <h1 className="inter-xlarge-semibold">
-          Edit Variant
+          Editar variante
           {variant.title && (
             <span className="text-grey-50 inter-xlarge-regular">
               {" "}
@@ -80,7 +76,7 @@ const EditVariantModal = ({
               type="button"
               onClick={handleClose}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -89,7 +85,7 @@ const EditVariantModal = ({
               disabled={!isDirty && !isDuplicate}
               loading={addingVariant || updatingVariant}
             >
-              Save and close
+              Guardar y cerrar
             </Button>
           </div>
         </Modal.Footer>

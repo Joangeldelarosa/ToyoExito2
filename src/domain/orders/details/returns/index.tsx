@@ -56,13 +56,11 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
     }
   }, [order])
 
-  const {
-    isLoading: shippingLoading,
-    shipping_options: shippingOptions,
-  } = useAdminShippingOptions({
-    region_id: order.region_id,
-    is_return: true,
-  })
+  const { isLoading: shippingLoading, shipping_options: shippingOptions } =
+    useAdminShippingOptions({
+      region_id: order.region_id,
+      is_return: true,
+    })
 
   useEffect(() => {
     const items = Object.keys(toReturn)
@@ -120,7 +118,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
       .mutateAsync(data)
       .then(() => onDismiss())
       .then(() =>
-        notification("Success", "Successfully returned order", "success")
+        notification("Éxito", "Pedido devuelto exitosamente", "success")
       )
       .catch((error) => notification("Error", getErrorMessage(error), "error"))
       .finally(() => setSubmitting(false))
@@ -161,11 +159,11 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
     <LayeredModal context={layoutmodalcontext} handleClose={onDismiss}>
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Request Return</h2>
+          <h2 className="inter-xlarge-semibold">Solicitar devolución</h2>
         </Modal.Header>
         <Modal.Content>
           <div className="mb-7">
-            <h3 className="inter-base-semibold">Items to return</h3>
+            <h3 className="inter-base-semibold">Productos a devolver</h3>
             <RMASelectProductTable
               order={order}
               allItems={allItems}
@@ -175,16 +173,16 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
           </div>
 
           <div>
-            <h3 className="inter-base-semibold ">Shipping</h3>
+            <h3 className="inter-base-semibold ">Envío</h3>
             {shippingLoading ? (
               <div className="flex justify-center">
                 <Spinner size="medium" variant="secondary" />
               </div>
             ) : (
               <Select
-                label="Shipping Method"
+                label="Método de envío"
                 className="mt-2"
-                placeholder="Add a shipping method"
+                placeholder="Agregue un método de envío"
                 value={shippingMethod}
                 onChange={handleShippingSelected}
                 options={
@@ -212,7 +210,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
             <div className="mt-10">
               {!useCustomShippingPrice && shippingMethod && (
                 <div className="flex mb-4 inter-small-regular justify-between">
-                  <span>Shipping</span>
+                  <span>Envío</span>
                   <div>
                     {displayAmount(order.currency_code, shippingPrice || 0)}{" "}
                     <span className="text-grey-40 ml-3">
@@ -222,7 +220,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
                 </div>
               )}
               <div className="flex inter-base-semibold justify-between w-full">
-                <span>Total Refund</span>
+                <span>Total a devolver</span>
                 <div className="flex items-center">
                   {!refundEdited && (
                     <>
@@ -248,7 +246,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
                   readOnly
                 >
                   <CurrencyInput.Amount
-                    label={"Amount"}
+                    label={"Cantidad"}
                     amount={refundAmount}
                     onChange={handleRefundUpdated}
                   />
@@ -265,7 +263,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
             >
               <div
                 className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                  !noNotification && "bg-violet-60"
+                  !noNotification && "bg-green-60"
                 }`}
               >
                 <span className="self-center">
@@ -281,8 +279,8 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
                 type="checkbox"
               />
               <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                Send notifications
-                <IconTooltip content="Notify customer of created return" />
+                Enviar notificaciones
+                <IconTooltip content="Notificar al cliente de la devolución creada" />
               </span>
             </div>
             <div className="flex gap-x-xsmall">
@@ -293,7 +291,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
                 size="small"
                 variant="ghost"
               >
-                Back
+                Volver
               </Button>
               <Button
                 onClick={onSubmit}
@@ -303,7 +301,7 @@ const ReturnMenu: React.FC<ReturnMenuProps> = ({ order, onDismiss }) => {
                 size="small"
                 variant="primary"
               >
-                Submit
+                Enviar
               </Button>
             </div>
           </div>

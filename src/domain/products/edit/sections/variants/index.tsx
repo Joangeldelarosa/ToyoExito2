@@ -43,17 +43,17 @@ const VariantsSection = ({ product }: Props) => {
 
   const actions: ActionType[] = [
     {
-      label: "Add Variant",
+      label: "Agregar variante",
       onClick: toggleAddVariant,
       icon: <PlusIcon size="20" />,
     },
     {
-      label: "Edit Variants",
+      label: "Editar variantes",
       onClick: toggleEditVariants,
       icon: <EditIcon size="20" />,
     },
     {
-      label: "Edit Options",
+      label: "Editar opciones",
       onClick: toggleOptions,
       icon: <GearIcon size="20" />,
     },
@@ -76,11 +76,11 @@ const VariantsSection = ({ product }: Props) => {
 
   return (
     <OptionsProvider product={product}>
-      <Section title="Variants" actions={actions}>
+      <Section title="Variantes" actions={actions}>
         <ProductOptions />
         <div className="mt-xlarge">
           <h2 className="inter-large-semibold mb-base">
-            Product variants{" "}
+            Variantes del producto{" "}
             <span className="inter-large-regular text-grey-50">
               ({product.variants.length})
             </span>

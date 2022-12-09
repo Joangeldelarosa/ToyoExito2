@@ -53,7 +53,7 @@ const EditGiftCardModal = ({
         <Modal.Body isLargeModal={true}>
           <Modal.Header handleClose={handleClose}>
             <span className="inter-xlarge-semibold">
-              Edit Gift Card Details
+              Editar detalles de la Gift Card
             </span>
           </Modal.Header>
           <Modal.Content>
@@ -89,7 +89,7 @@ const EditGiftCardModal = ({
                 className="mr-2"
                 type="button"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 loading={updating}
@@ -99,7 +99,7 @@ const EditGiftCardModal = ({
                 size="small"
                 type="submit"
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

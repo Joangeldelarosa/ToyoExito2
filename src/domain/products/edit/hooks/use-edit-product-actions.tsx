@@ -3,7 +3,6 @@ import {
   AdminPostProductsProductVariantsReq,
   AdminPostProductsProductVariantsVariantReq,
 } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import {
   useAdminCreateVariant,
   useAdminDeleteProduct,
@@ -12,12 +11,14 @@ import {
   useAdminUpdateProduct,
   useAdminUpdateVariant,
 } from "medusa-react"
+import { useNavigate } from "react-router-dom"
 import useImperativeDialog from "../../../../hooks/use-imperative-dialog"
 import useNotification from "../../../../hooks/use-notification"
 import { getErrorMessage } from "../../../../utils/error-messages"
 
 const useEditProductActions = (productId: string) => {
   const dialog = useImperativeDialog()
+  const navigate = useNavigate()
   const notification = useNotification()
   const getProduct = useAdminProduct(productId)
   const updateProduct = useAdminUpdateProduct(productId)
@@ -28,13 +29,13 @@ const useEditProductActions = (productId: string) => {
 
   const onDelete = async () => {
     const shouldDelete = await dialog({
-      heading: "Delete Product",
-      text: "Are you sure you want to delete this product",
+      heading: "Eliminar producto",
+      text: "¿Estás seguro de que quieres eliminar este producto?",
     })
     if (shouldDelete) {
       deleteProduct.mutate(undefined, {
         onSuccess: () => {
-          notification("Success", "Product deleted successfully", "success")
+          notification("Éxito", "Producto eliminado exitosamente", "success")
           navigate("/a/products/")
         },
         onError: (err) => {
@@ -47,11 +48,11 @@ const useEditProductActions = (productId: string) => {
   const onAddVariant = (
     payload: AdminPostProductsProductVariantsReq,
     onSuccess: () => void,
-    successMessage = "Variant was created successfully"
+    successMessage = "La variante se agregó correctamente"
   ) => {
     addVariant.mutate(payload, {
       onSuccess: () => {
-        notification("Success", successMessage, "success")
+        notification("Éxito", successMessage, "success")
         getProduct.refetch()
         onSuccess()
       },
@@ -65,14 +66,14 @@ const useEditProductActions = (productId: string) => {
     id: string,
     payload: Partial<AdminPostProductsProductVariantsVariantReq>,
     onSuccess: () => void,
-    successMessage = "Variant was updated successfully"
+    successMessage = "La variante se actualizó correctamente"
   ) => {
     updateVariant.mutate(
       // @ts-ignore - TODO fix type on request
       { variant_id: id, ...payload },
       {
         onSuccess: () => {
-          notification("Success", successMessage, "success")
+          notification("Éxito", successMessage, "success")
           getProduct.refetch()
           onSuccess()
         },
@@ -86,11 +87,11 @@ const useEditProductActions = (productId: string) => {
   const onDeleteVariant = (
     variantId: string,
     onSuccess?: () => void,
-    successMessage = "Variant was succesfully deleted"
+    successMessage = "La variante se eliminó correctamente"
   ) => {
     deleteVariant.mutate(variantId, {
       onSuccess: () => {
-        notification("Success", successMessage, "success")
+        notification("Éxito", successMessage, "success")
         getProduct.refetch()
         if (onSuccess) {
           onSuccess()
@@ -105,14 +106,14 @@ const useEditProductActions = (productId: string) => {
   const onUpdate = (
     payload: Partial<AdminPostProductsProductReq>,
     onSuccess: () => void,
-    successMessage = "Product was successfully updated"
+    successMessage = "El produto se actualizó correctamente"
   ) => {
     updateProduct.mutate(
       // @ts-ignore TODO fix images being required
       payload,
       {
         onSuccess: () => {
-          notification("Success", successMessage, "success")
+          notification("Éxito", successMessage, "success")
           onSuccess()
         },
         onError: (err) => {
@@ -131,10 +132,10 @@ const useEditProductActions = (productId: string) => {
       },
       {
         onSuccess: () => {
-          const pastTense = newStatus === "published" ? "published" : "drafted"
+          const pastTense = newStatus === "published" ? "publicado" : "oculto"
           notification(
-            "Success",
-            `Product ${pastTense} successfully`,
+            "Éxito",
+            `Producto ${pastTense} correctamente`,
             "success"
           )
         },

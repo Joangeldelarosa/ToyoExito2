@@ -83,14 +83,16 @@ const GeneralModal = ({ product, open, onClose }: Props) => {
       <Modal.Body>
         <Modal.Header handleClose={onReset}>
           <h1 className="inter-xlarge-semibold m-0">
-            Edit General Information
+            Editar información general
           </h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
             <GeneralForm form={nestedForm(form, "general")} />
             <div className="my-xlarge">
-              <h2 className="inter-base-semibold mb-base">Organize Product</h2>
+              <h2 className="inter-base-semibold mb-base">
+                Organizar producto
+              </h2>
               <OrganizeForm form={nestedForm(form, "organize")} />
             </div>
             <DiscountableForm form={nestedForm(form, "discountable")} />
@@ -103,7 +105,7 @@ const GeneralModal = ({ product, open, onClose }: Props) => {
                 type="button"
                 onClick={onReset}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="small"
@@ -112,7 +114,7 @@ const GeneralModal = ({ product, open, onClose }: Props) => {
                 disabled={!isDirty}
                 loading={updating}
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

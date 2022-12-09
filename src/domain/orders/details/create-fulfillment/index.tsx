@@ -68,7 +68,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
       | typeof createClaimFulfillment
 
     let action: actionType = createOrderFulfillment
-    let successText = "Successfully fulfilled order"
+    let successText = "Pedido realizado con éxito"
     let requestObj
 
     const preparedMetadata = metadata.reduce((acc, next) => {
@@ -85,7 +85,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
     switch (type) {
       case "swap":
         action = createSwapFulfillment
-        successText = "Successfully fulfilled swap"
+        successText = "Cambio realizado con éxito"
         requestObj = {
           swap_id: orderToFulfill.id,
           metadata: preparedMetadata,
@@ -95,7 +95,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
 
       case "claim":
         action = createClaimFulfillment
-        successText = "Successfully fulfilled claim"
+        successText = "Reclamo realizado con éxito"
         requestObj = {
           claim_id: orderToFulfill.id,
           metadata: preparedMetadata,
@@ -116,7 +116,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
 
     action.mutate(requestObj, {
       onSuccess: () => {
-        notification("Success", successText, "success")
+        notification("Éxito", successText, "success")
         handleCancel()
       },
       onError: (err) => notification("Error", getErrorMessage(err), "error"),
@@ -127,11 +127,11 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
     <Modal handleClose={handleCancel}>
       <Modal.Body>
         <Modal.Header handleClose={handleCancel}>
-          <span className="inter-xlarge-semibold">Create Fulfillment</span>
+          <span className="inter-xlarge-semibold">Crear envio</span>
         </Modal.Header>
         <Modal.Content>
           <div className="flex flex-col">
-            <span className="inter-base-semibold mb-2">Items</span>
+            <span className="inter-base-semibold mb-2">Productos</span>
             <CreateFulfillmentItemsTable
               items={items}
               toFulfill={toFulfill}
@@ -152,7 +152,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
             >
               <div
                 className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                  !noNotis && "bg-violet-60"
+                  !noNotis && "bg-green-60"
                 }`}
               >
                 <span className="self-center">
@@ -167,7 +167,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
                 type="checkbox"
               />
               <span className="ml-3 flex items-center text-grey-90 gap-x-xsmall">
-                Send notifications
+                Enviar notificaciones
                 <IconTooltip content="" />
               </span>
             </div>
@@ -178,7 +178,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
                 size="large"
                 onClick={handleCancel}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="large"
@@ -188,7 +188,7 @@ const CreateFulfillmentModal: React.FC<CreateFulfillmentModalProps> = ({
                 onClick={createFulfillment}
                 loading={isSubmitting}
               >
-                Complete
+                Completar
               </Button>
             </div>
           </div>

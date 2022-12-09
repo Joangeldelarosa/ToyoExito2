@@ -13,7 +13,7 @@ import { isNil } from "lodash"
 const TimePicker: React.FC<DateTimePickerProps> = ({
   date,
   onSubmitDate,
-  label = "start date",
+  label = "fecha de inicio",
   required = false,
   tooltipContent,
   tooltip,
@@ -50,7 +50,7 @@ const TimePicker: React.FC<DateTimePickerProps> = ({
         <PopoverPrimitive.Trigger asChild>
           <button
             className={clsx("w-full rounded-rounded border ", {
-              "shadow-input border-violet-60": isOpen,
+              "shadow-input border-green-60": isOpen,
               "border-grey-20": !isOpen,
             })}
           >

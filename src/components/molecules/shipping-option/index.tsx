@@ -38,14 +38,16 @@ const ShippingOption: React.FC<ShippingOptionProps> = ({
           <p className="inter-small-semibold truncate mr-xsmall">
             {option.name} {option.data.name && `(${option.data.name})`}{" "}
           </p>
-          {option.admin_only && <Badge variant="primary">Not on website</Badge>}
+          {option.admin_only && (
+            <Badge variant="primary">No esta visible en el sitio</Badge>
+          )}
         </div>
         <p className="inter-small-regular text-grey-50 truncate">
-          {option.price_type === "flat_rate" ? "Flat Rate" : "Calculated"}:{" "}
+          {option.price_type === "flat_rate" ? "Tarifa plana" : "Calculado"}:{" "}
           {option.amount !== undefined &&
             `${option.amount / 100} ${currency_code.toUpperCase()}`}
           {option.requirements.length
-            ? option.requirements.map(r => {
+            ? option.requirements.map((r) => {
                 const type =
                   r.type === "max_subtotal" ? "Max. subtotal" : "Min. subtotal"
                 return ` - ${type}: ${
@@ -56,11 +58,8 @@ const ShippingOption: React.FC<ShippingOptionProps> = ({
         </p>
       </div>
       <div>
-        <button
-          onClick={onEdit}
-          className="inter-small-semibold text-violet-60"
-        >
-          Edit
+        <button onClick={onEdit} className="inter-small-semibold text-green-60">
+          Editar
         </button>
       </div>
     </div>

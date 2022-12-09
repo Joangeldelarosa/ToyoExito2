@@ -81,7 +81,7 @@ const NewVariant = ({
     if (!saved) {
       localForm.setError("options", {
         type: "deps",
-        message: "A variant with these options already exists.",
+        message: "Ya existe una variante con estas opciones.",
       })
       return
     }
@@ -93,8 +93,8 @@ const NewVariant = ({
 
   const onDelete = async () => {
     const confirmed = await warning({
-      text: "Are you sure you want to delete this variant?",
-      heading: "Delete Variant",
+      text: "¿Está seguro de que desea eliminar esta variante?",
+      heading: "Eliminar variante",
     })
 
     if (confirmed) {
@@ -205,12 +205,12 @@ const NewVariant = ({
             forceDropdown
             actions={[
               {
-                label: "Edit",
+                label: "Editar",
                 icon: <EditIcon size={20} />,
                 onClick: toggle,
               },
               {
-                label: "Delete",
+                label: "Eliminar",
                 icon: <TrashIcon size={20} />,
                 onClick: onDelete,
                 variant: "danger",
@@ -232,7 +232,7 @@ const NewVariant = ({
         <Modal.Body>
           <Modal.Header handleClose={closeAndReset}>
             <h1 className="inter-xlarge-semibold">
-              Edit Variant
+              Editar variante
               {source.general.title && (
                 <span className="ml-xsmall inter-xlarge-regular text-grey-50">
                   ({source.general.title})
@@ -255,7 +255,7 @@ const NewVariant = ({
                 type="button"
                 onClick={closeAndReset}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -263,7 +263,7 @@ const NewVariant = ({
                 type="button"
                 onClick={onUpdate}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>
@@ -293,7 +293,7 @@ const VariantValidity = ({
         type="error"
         content={
           <div className="text-rose-50 flex flex-col gap-y-2xsmall">
-            <p>This variant has no options.</p>
+            <p>Esta variante no tiene opciones.</p>
           </div>
         }
       />
@@ -308,7 +308,7 @@ const VariantValidity = ({
         type="error"
         content={
           <div className="text-rose-50 flex flex-col gap-y-2xsmall">
-            <p>You are missing options values for the following options:</p>
+            <p>Faltan valores de opciones para las siguientes opciones:</p>
             <ul className="list-disc list-inside">
               {invalidOptions.map((io, index) => {
                 return <li key={index}>{io.title || `Option ${index + 1}`}</li>
@@ -345,16 +345,16 @@ const VariantValidity = ({
         content={
           <div className="text-orange-50 flex flex-col gap-y-2xsmall">
             <p>
-              Your variant is createable, but it's missing some important
-              fields:
+              Tu variante se puede crear, pero le faltan algunos campos
+              importantes:
             </p>
             <ul className="list-disc list-inside">
-              {!validPrices && <li>Pricing</li>}
-              {!validDimensions && <li>Dimensions</li>}
-              {!validCustoms && <li>Customs</li>}
-              {!inventory_quantity && <li>Inventory quantity</li>}
+              {!validPrices && <li>Precios</li>}
+              {!validDimensions && <li>Dimensiones</li>}
+              {!validCustoms && <li>Personalizadas</li>}
+              {!inventory_quantity && <li>Cantidad de Inventario</li>}
               {!sku && <li>SKU</li>}
-              {!barcodeValidity && <li>Barcode</li>}
+              {!barcodeValidity && <li>Código de barras</li>}
             </ul>
           </div>
         }
@@ -364,7 +364,7 @@ const VariantValidity = ({
 
   return (
     <Tooltip
-      content={title ? `${title} is valid` : "Variant is valid"}
+      content={title ? `${title} es válida` : "La variante es válida"}
       side="top"
     >
       <CheckCircleFillIcon size={20} className="text-emerald-40" />

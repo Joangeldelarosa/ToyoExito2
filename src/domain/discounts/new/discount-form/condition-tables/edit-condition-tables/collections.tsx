@@ -56,10 +56,10 @@ const EditCollectionConditionSelector = ({ onClose }) => {
           options={{
             enableSearch: true,
             immediateSearchFocus: true,
-            searchPlaceholder: "Search by title...",
+            searchPlaceholder: "Buscar por título...",
             filters: [{ title: "Title", name: "title" }],
           }}
-          resourceName="Collections"
+          resourceName="Colecciones"
           totalCount={count || 0}
           selectedIds={items?.map((c) => c.id)}
           data={collections}

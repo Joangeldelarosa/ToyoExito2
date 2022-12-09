@@ -8,7 +8,6 @@ import {
   useAdminCreateBatchJob,
   useAdminDeleteFile,
   useAdminUploadProtectedFile,
-  useAdminUploadFile,
 } from "medusa-react"
 
 import UploadModal from "../../../components/organisms/upload-modal"
@@ -55,8 +54,7 @@ function ImportProducts(props: ImportProductsProps) {
   const { resetInterval } = useContext(PollingContext)
 
   const { mutateAsync: deleteFile } = useAdminDeleteFile()
-  // const { mutateAsync: uploadFile } = useAdminUploadProtectedFile()
-  const { mutateAsync: uploadFile } = useAdminUploadFile()
+  const { mutateAsync: uploadFile } = useAdminUploadProtectedFile()
 
   const { mutateAsync: createBatchJob } = useAdminCreateBatchJob()
   const { mutateAsync: cancelBathJob } = useAdminCancelBatchJob(batchJobId!)
@@ -73,12 +71,12 @@ function ImportProducts(props: ImportProductsProps) {
     : undefined
 
   const status = hasError
-    ? "Error occurred while processing"
+    ? "Ocurrió un error durante el procesamiento"
     : isPreprocessed
     ? undefined
     : isUploaded
-    ? "Preprocessing..."
-    : "Uploading..."
+    ? "Preprocesando..."
+    : "Subiendo..."
 
   /**
    * Confirm job on submit.
@@ -86,8 +84,8 @@ function ImportProducts(props: ImportProductsProps) {
   const onSubmit = async () => {
     await confirmBatchJob()
     notification(
-      "Success",
-      "Import confirmed for processing. Progress info is available in the activity drawer.",
+      "Éxito",
+      "Importación confirmada para su procesamiento. La información de progreso está disponible en el cajón de actividades.",
       "success"
     )
     props.handleClose()
@@ -112,7 +110,7 @@ function ImportProducts(props: ImportProductsProps) {
 
       setBatchJobId(batchJob.batch_job.id)
     } catch (e) {
-      notification("Error", "Import failed.", "error")
+      notification("Error", "Importación fallida.", "error")
       if (fileKey) {
         await deleteFile({ file_key: fileKey })
       }
@@ -147,14 +145,14 @@ function ImportProducts(props: ImportProductsProps) {
       try {
         deleteFile({ file_key: fileKey })
       } catch (e) {
-        notification("Error", "Failed to delete the CSV file", "error")
+        notification("Error", "Error al eliminar el archivo CSV", "error")
       }
     }
 
     try {
       cancelBathJob()
     } catch (e) {
-      notification("Error", "Failed to cancel the batch job", "error")
+      notification("Error", "Error al cancelar el trabajo por lotes", "error")
     }
 
     setBatchJobId(undefined)
@@ -192,9 +190,9 @@ function ImportProducts(props: ImportProductsProps) {
       processUpload={processUpload}
       fileTitle={"products list"}
       templateLink="/temp/product-import-template.csv"
-      description2Title="Unsure about how to arrange your list?"
-      description2Text="Download the template below to ensure you are following the correct format."
-      description1Text="Through imports you can add or update products. To update existing products/variants you must set an existing id in the Product/Variant id columns. If the value is unset a new record will be created. You will be asked for confirmation before we import products."
+      description2Title="¿No estás segura de cómo organizar tu lista?"
+      description2Text="Descargue la plantilla a continuación para asegurarse de que está siguiendo el formato correcto."
+      description1Text="A través de las importaciones puedes agregar o actualizar productos. Para actualizar productos/variantes existentes, debe establecer una identificación existente en las columnas de identificación de producto/variante. Si el valor no se establece, se creará un nuevo registro. Se le pedirá confirmación antes de importar productos."
     />
   )
 }

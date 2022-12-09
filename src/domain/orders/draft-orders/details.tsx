@@ -1,6 +1,5 @@
 import { Address } from "@medusajs/medusa"
-import { RouteComponentProps } from "@reach/router"
-import { navigate } from "gatsby"
+import { JsonViewer } from "@textea/json-viewer"
 import {
   useAdminDeleteDraftOrder,
   useAdminDraftOrder,
@@ -9,8 +8,8 @@ import {
   useAdminUpdateDraftOrder,
 } from "medusa-react"
 import moment from "moment"
-import React, { useEffect, useState } from "react"
-import ReactJson from "react-json-view"
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import Avatar from "../../../components/atoms/avatar"
 import CopyToClipboard from "../../../components/atoms/copy-to-clipboard"
 import Spinner from "../../../components/atoms/spinner"
@@ -23,6 +22,7 @@ import ImagePlaceholder from "../../../components/fundamentals/image-placeholder
 import StatusDot from "../../../components/fundamentals/status-indicator"
 import Breadcrumb from "../../../components/molecules/breadcrumb"
 import BodyCard from "../../../components/organisms/body-card"
+import ConfirmationPrompt from "../../../components/organisms/confirmation-prompt"
 import DeletePrompt from "../../../components/organisms/delete-prompt"
 import { AddressType } from "../../../components/templates/address-form"
 import useNotification from "../../../hooks/use-notification"
@@ -32,36 +32,33 @@ import extractCustomerName from "../../../utils/extract-customer-name"
 import { formatAmountWithSymbol } from "../../../utils/prices"
 import AddressModal from "../details/address-modal"
 import { DisplayTotal, FormattedAddress } from "../details/templates"
-import ConfirmationPrompt from "../../../components/organisms/confirmation-prompt"
 
-type DraftOrderDetailsProps = RouteComponentProps<{ id: string }>
+type DeletePromptData = {
+  resource: string
+  onDelete: () => any
+  show: boolean
+}
 
-const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
-  type DeletePromptData = {
-    resource: string
-    onDelete: () => any
-    show: boolean
-  }
+const DraftOrderDetails = () => {
+  const { id } = useParams()
 
   const initDeleteState: DeletePromptData = {
     resource: "",
-    onDelete: () => Promise.resolve(console.log("Delete resource")),
+    onDelete: () => Promise.resolve(console.log("Eliminar recurso")),
     show: false,
   }
 
-  const [deletePromptData, setDeletePromptData] = useState<DeletePromptData>(
-    initDeleteState
-  )
+  const [deletePromptData, setDeletePromptData] =
+    useState<DeletePromptData>(initDeleteState)
   const [addressModal, setAddressModal] = useState<null | {
     address: Address
     type: AddressType
   }>(null)
 
-  const [showMarkAsPaidConfirmation, setShowAsPaidConfirmation] = useState(
-    false
-  )
+  const [showMarkAsPaidConfirmation, setShowAsPaidConfirmation] =
+    useState(false)
 
-  const { draft_order, isLoading } = useAdminDraftOrder(id)
+  const { draft_order, isLoading } = useAdminDraftOrder(id!)
   const { store, isLoading: isLoadingStore } = useAdminStore()
 
   const [paymentLink, setPaymentLink] = useState("")
@@ -74,18 +71,19 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
     }
   }, [isLoading, isLoadingStore])
 
-  const markPaid = useAdminDraftOrderRegisterPayment(id)
-  const cancelOrder = useAdminDeleteDraftOrder(id)
-  const updateOrder = useAdminUpdateDraftOrder(id)
+  const markPaid = useAdminDraftOrderRegisterPayment(id!)
+  const cancelOrder = useAdminDeleteDraftOrder(id!)
+  const updateOrder = useAdminUpdateDraftOrder(id!)
 
+  const navigate = useNavigate()
   const notification = useNotification()
 
   const OrderStatusComponent = () => {
     switch (draft_order?.status) {
       case "completed":
-        return <StatusDot title="Completed" variant="success" />
+        return <StatusDot title="Completeda" variant="success" />
       case "open":
-        return <StatusDot title="Open" variant="default" />
+        return <StatusDot title="Abierta" variant="default" />
       default:
         return null
     }
@@ -93,7 +91,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
 
   const PaymentActionables = () => {
     // Default label and action
-    const label = "Mark as paid"
+    const label = "Marcada como pagada"
     const action = () => setShowAsPaidConfirmation(true)
 
     return (
@@ -106,7 +104,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
   const onMarkAsPaidConfirm = async () => {
     try {
       await markPaid.mutateAsync()
-      notification("Success", "Successfully mark as paid", "success")
+      notification("Éxito", "Marcada como pagada exitosamente", "success")
     } catch (err) {
       notification("Error", getErrorMessage(err), "error")
     } finally {
@@ -117,7 +115,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
   const handleDeleteOrder = async () => {
     return cancelOrder.mutate(void {}, {
       onSuccess: () =>
-        notification("Success", "Successfully canceled order", "success"),
+        notification("Éxito", "Pedido cancelado exitosamente", "success"),
       onError: (err) => notification("Error", getErrorMessage(err), "error"),
     })
   }
@@ -128,8 +126,8 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
   return (
     <div>
       <Breadcrumb
-        currentPage={"Draft Order Details"}
-        previousBreadcrumb={"Draft Orders"}
+        currentPage={"Detalles del pedido borrador"}
+        previousBreadcrumb={"Pedidos borradores"}
         previousRoute="/a/draft-orders"
       />
       {isLoading || !draft_order ? (
@@ -155,7 +153,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                       navigate(`/a/orders/${draft_order.order_id}`)
                     }
                   >
-                    Go to Order
+                    Ir al pedido
                   </Button>
                 )
               }
@@ -164,20 +162,20 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 draft_order?.status === "completed"
                   ? [
                       {
-                        label: "Go to Order",
+                        label: "Ir al pedido",
                         icon: null,
                         onClick: () => console.log("Should not be here"),
                       },
                     ]
                   : [
                       {
-                        label: "Cancel Draft Order",
+                        label: "Cancelar pedido borrador",
                         icon: null,
                         // icon: <CancelIcon size={"20"} />,
                         variant: "danger",
                         onClick: () =>
                           setDeletePromptData({
-                            resource: "Draft Order",
+                            resource: "Pedido borrador",
                             onDelete: () => handleDeleteOrder(),
                             show: true,
                           }),
@@ -194,13 +192,13 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 </div>
                 <div className="flex flex-col pl-6">
                   <div className="inter-smaller-regular text-grey-50 mb-1">
-                    Phone
+                    Teléfono
                   </div>
                   <div>{cart?.shipping_address?.phone || "N/A"}</div>
                 </div>
                 <div className="flex flex-col pl-6">
                   <div className="inter-smaller-regular text-grey-50 mb-1">
-                    Amount ({region?.currency_code.toUpperCase()})
+                    Cantidad ({region?.currency_code.toUpperCase()})
                   </div>
                   <div>
                     {cart?.total && region?.currency_code
@@ -281,7 +279,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                     className="flex justify-between mt-4 items-center"
                   >
                     <div className="flex inter-small-regular text-grey-90 items-center">
-                      Discount:{" "}
+                      Descuento:{" "}
                       <Badge className="ml-3" variant="default">
                         {discount.code}
                       </Badge>
@@ -300,7 +298,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 <DisplayTotal
                   currency={region?.currency_code}
                   totalAmount={cart?.shipping_total}
-                  totalTitle={"Shipping"}
+                  totalTitle={"Envio"}
                 />
                 <DisplayTotal
                   currency={region?.currency_code}
@@ -317,7 +315,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
             </BodyCard>
             <BodyCard
               className={"w-full mb-4 min-h-0 h-auto"}
-              title="Payment"
+              title="Pago"
               customActionable={
                 draft_order?.status !== "completed" && <PaymentActionables />
               }
@@ -331,7 +329,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 <DisplayTotal
                   currency={region?.currency_code}
                   totalAmount={cart?.shipping_total}
-                  totalTitle={"Shipping"}
+                  totalTitle={"Envio"}
                 />
                 <DisplayTotal
                   currency={region?.currency_code}
@@ -342,11 +340,11 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                   variant="bold"
                   currency={region?.currency_code}
                   totalAmount={cart?.total}
-                  totalTitle={"Total to pay"}
+                  totalTitle={"Total a pagar"}
                 />
                 {draft_order?.status !== "completed" && (
                   <div className="text-grey-50 inter-small-regular w-full flex items-center mt-5">
-                    <span className="mr-2.5">Payment link:</span>
+                    <span className="mr-2.5">Link de pago:</span>
                     {store?.payment_link_template ? (
                       <CopyToClipboard
                         value={paymentLink}
@@ -354,7 +352,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                         successDuration={1000}
                       />
                     ) : (
-                      "Configure payment link in store settings"
+                      "Configure el link de pago en la tienda"
                     )}
                   </div>
                 )}
@@ -365,23 +363,23 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 {cart?.shipping_methods.map((method) => (
                   <div className="flex flex-col" key={method.id}>
                     <span className="inter-small-regular text-grey-50">
-                      Shipping Method
+                      Método de envío
                     </span>
                     <span className="inter-small-regular text-grey-90 mt-2">
                       {method?.shipping_option.name || ""}
                     </span>
                     <div className="flex flex-col min-h-[100px] mt-8 bg-grey-5 px-3 py-2 h-full">
                       <span className="inter-base-semibold">
-                        Data{" "}
+                        Datos{" "}
                         <span className="text-grey-50 inter-base-regular">
-                          (1 item)
+                          (1 producto)
                         </span>
                       </span>
                       <div className="flex flex-grow items-center mt-4">
-                        <ReactJson
-                          name={false}
-                          collapsed={true}
-                          src={method?.data}
+                        <JsonViewer
+                          rootName={"shipping_method"}
+                          value={method?.data}
+                          defaultInspectDepth={0}
                         />
                       </div>
                     </div>
@@ -391,10 +389,10 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
             </BodyCard>
             <BodyCard
               className={"w-full mb-4 min-h-0 h-auto"}
-              title="Customer"
+              title="Cliente"
               actionables={[
                 {
-                  label: "Edit Shipping Address",
+                  label: "Editar dirección de envío",
                   icon: <TruckIcon size={"20"} />,
                   onClick: () =>
                     setAddressModal({
@@ -403,7 +401,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                     }),
                 },
                 {
-                  label: "Edit Billing Address",
+                  label: "Editar dirección de facturación",
                   icon: <DollarSignIcon size={"20"} />,
                   onClick: () => {
                     if (cart?.billing_address) {
@@ -415,7 +413,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                   },
                 },
                 {
-                  label: "Go to Customer",
+                  label: "Ir al cliente",
                   icon: <DetailsIcon size={"20"} />, // TODO: Change to Contact icon
                   onClick: () => navigate(`/a/customers/${cart?.customer.id}`),
                 },
@@ -449,7 +447,7 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                 <div className="flex mt-6 space-x-6 divide-x">
                   <div className="flex flex-col">
                     <div className="inter-small-regular text-grey-50 mb-1">
-                      Contact
+                      Contacto
                     </div>
                     <div className="flex flex-col inter-small-regular">
                       <span>{cart?.email}</span>
@@ -457,11 +455,11 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
                     </div>
                   </div>
                   <FormattedAddress
-                    title={"Shipping"}
+                    title={"Envio"}
                     addr={cart?.shipping_address || undefined}
                   />
                   <FormattedAddress
-                    title={"Billing"}
+                    title={"Facturación"}
                     addr={cart?.billing_address || undefined}
                   />
                 </div>
@@ -469,13 +467,12 @@ const DraftOrderDetails = ({ id }: DraftOrderDetailsProps) => {
             </BodyCard>
             <BodyCard
               className={"w-full mb-4 min-h-0 h-auto"}
-              title="Raw Draft Order"
+              title="Data del pedido borraddor"
             >
-              <ReactJson
+              <JsonViewer
                 style={{ marginTop: "15px" }}
-                name={false}
-                collapsed={true}
-                src={draft_order!}
+                rootName={"draft_order"}
+                value={draft_order!}
               />
             </BodyCard>
           </div>

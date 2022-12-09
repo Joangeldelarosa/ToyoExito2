@@ -39,7 +39,7 @@ const AvailabilityDuration: React.FC<AvailabilityDurationProps> = ({
     <div>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-xsmall gap-y-base mt-xlarge">
         <InputField
-          label="Years"
+          label="Años"
           type="number"
           placeholder="0"
           value={durationYears}
@@ -47,7 +47,7 @@ const AvailabilityDuration: React.FC<AvailabilityDurationProps> = ({
           min={0}
         />
         <InputField
-          label="Months"
+          label="Meses"
           type="number"
           placeholder="0"
           value={durationMonths}
@@ -55,7 +55,7 @@ const AvailabilityDuration: React.FC<AvailabilityDurationProps> = ({
           min={0}
         />
         <InputField
-          label="Days"
+          label="Días"
           type="number"
           placeholder="0"
           value={durationDays}
@@ -63,7 +63,7 @@ const AvailabilityDuration: React.FC<AvailabilityDurationProps> = ({
           min={0}
         />
         <InputField
-          label="Hours"
+          label="Horas"
           type="number"
           placeholder="0"
           value={durationHours}
@@ -71,7 +71,7 @@ const AvailabilityDuration: React.FC<AvailabilityDurationProps> = ({
           min={0}
         />
         <InputField
-          label="Minutes"
+          label="Minutos"
           type="number"
           placeholder="0"
           value={durationMinutes}

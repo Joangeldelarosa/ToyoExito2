@@ -52,7 +52,7 @@ const EditUserInformation = ({ user }: Props) => {
           disabled={!user}
           onClick={toggle}
         >
-          Edit information
+          Editar información
         </Button>
       </div>
       {user && (

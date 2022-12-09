@@ -157,7 +157,7 @@ const AddProductsTable: React.FC<AddProductsTableProps> = ({
     <Modal handleClose={onClose}>
       <Modal.Body>
         <Modal.Header handleClose={onClose}>
-          <h3 className="inter-xlarge-semibold">Add Products</h3>
+          <h3 className="inter-xlarge-semibold">Añadir productos</h3>
         </Modal.Header>
         <Modal.Content>
           <TableContainer
@@ -168,7 +168,7 @@ const AddProductsTable: React.FC<AddProductsTableProps> = ({
               count: count!,
               offset: offset,
               pageSize: offset + rows.length,
-              title: "Products",
+              title: "Productos",
               currentPage: pageIndex + 1,
               pageCount: pageCount,
               nextPage: handleNext,
@@ -180,7 +180,7 @@ const AddProductsTable: React.FC<AddProductsTableProps> = ({
             <Table
               enableSearch
               handleSearch={handleSearch}
-              searchPlaceholder="Search Products"
+              searchPlaceholder="Buscar productos"
               {...getTableProps()}
               className="flex-grow"
             >
@@ -211,7 +211,7 @@ const AddProductsTable: React.FC<AddProductsTableProps> = ({
               className="w-eventButton"
               onClick={onClose}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -220,7 +220,7 @@ const AddProductsTable: React.FC<AddProductsTableProps> = ({
               onClick={handleSubmit}
               disabled={disabled}
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

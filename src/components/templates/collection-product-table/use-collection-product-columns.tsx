@@ -14,7 +14,7 @@ const useCollectionProductColumns = () => {
               {value ? (
                 <img
                   src={value}
-                  alt="Thumbnail"
+                  alt="Vista previa"
                   className="h-full w-full object-cover"
                 />
               ) : null}

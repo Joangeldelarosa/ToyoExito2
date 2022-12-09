@@ -1,6 +1,6 @@
-import { RouteComponentProps, useLocation } from "@reach/router"
 import { useAdminDraftOrders } from "medusa-react"
 import React, { Fragment, useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { usePagination, useTable } from "react-table"
 import Table from "../../molecules/table"
 import TableContainer from "../../organisms/table-container"
@@ -9,7 +9,7 @@ import { useDraftOrderFilters } from "./use-draft-order-filters"
 
 const DEFAULT_PAGE_SIZE = 15
 
-const DraftOrderTable: React.FC<RouteComponentProps> = () => {
+const DraftOrderTable = () => {
   const location = useLocation()
 
   const {
@@ -107,7 +107,7 @@ const DraftOrderTable: React.FC<RouteComponentProps> = () => {
         count: count!,
         offset: queryObject.offset,
         pageSize: queryObject.offset + rows.length,
-        title: "Draft Orders",
+        title: "Órdenes de borrador",
         currentPage: pageIndex + 1,
         pageCount: pageCount,
         nextPage: handleNext,

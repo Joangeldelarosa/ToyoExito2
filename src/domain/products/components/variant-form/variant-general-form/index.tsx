@@ -22,12 +22,12 @@ const VariantGeneralForm = ({ form }: Props) => {
   return (
     <div>
       <p className="inter-base-regular text-grey-50">
-        Configure the general information for this variant.
+        Configura la información general de la variante.
       </p>
       <div className="pt-large">
         <div className="grid grid-cols-2 gap-x-large">
           <InputField
-            label="Custom title"
+            label="Titulo"
             placeholder="Green / XL..."
             {...register(path("title"), {
               pattern: FormValidator.whiteSpaceRule("Title"),

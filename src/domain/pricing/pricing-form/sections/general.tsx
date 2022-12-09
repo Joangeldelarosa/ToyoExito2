@@ -14,18 +14,18 @@ const General = () => {
       forceMountContent
       required
       title="General"
-      tooltip="General information for the price list."
+      tooltip="Información general de la lista de precios"
       value="general"
     >
       <div className="flex flex-col gap-y-small group-radix-state-open:mt-5 accordion-margin-transition">
         <InputField
-          label="Name"
+          label="Nombre"
           required
           placeholder="B2B, Black Friday..."
           {...register("name", { required: "Name is required" })}
         />
         <InputField
-          label="Description"
+          label="Descripción"
           required
           placeholder="For our business partners..."
           {...register("description", { required: "Description is required" })}
@@ -33,7 +33,7 @@ const General = () => {
         <FeatureToggle featureFlag="tax_inclusive_pricing">
           <div className="mt-3">
             <div className="flex justify-between">
-              <h2 className="inter-base-semibold">Tax inclusive prices</h2>
+              <h2 className="inter-base-semibold">Tax incluida en precios</h2>
               <Controller
                 control={control}
                 name="includes_tax"
@@ -43,7 +43,8 @@ const General = () => {
               />
             </div>
             <p className="inter-base-regular text-grey-50">
-              Choose to make all prices in this list inclusive of tax.
+              Marca esta casilla para hacer que todos los precios de esta lista
+              incluyan impuestos.
             </p>
           </div>
         </FeatureToggle>

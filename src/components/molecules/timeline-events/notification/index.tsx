@@ -12,10 +12,10 @@ type NotificationProps = {
 }
 
 const notificationTitleMap = {
-  "order.items_returned": "Return Received Notice Sent",
-  "order.return_requested": "Return Request Confirmation Sent",
-  "order.placed": "Order Confirmation Sent",
-  "order.shipment_created": "Shipment Confirmation Sent",
+  "order.items_returned": "Devolución Recibida Notificación Enviada",
+  "order.return_requested": "Confirmación de solicitud de devolución enviada",
+  "order.placed": "Confirmación de pedido enviada",
+  "order.shipment_created": "Confirmación de envío enviada",
 }
 
 const Notification: React.FC<NotificationProps> = ({ event }) => {
@@ -25,7 +25,7 @@ const Notification: React.FC<NotificationProps> = ({ event }) => {
     <EventActionables
       actions={[
         {
-          label: "Re-Send Mail",
+          label: "Reenviar email",
           icon: <SendIcon size={20} />,
           onClick: () => setShowResend(true),
         },

@@ -23,14 +23,14 @@ const DiscountAllocation = () => {
             <RadioGroup.Item
               value={AllocationType.TOTAL}
               className="flex-1"
-              label="Total amount"
-              description="Apply to the total amount"
+              label="Cantidad total"
+              description="Aplicar a la cantidad total"
             />
             <RadioGroup.Item
               value={AllocationType.ITEM}
               className="flex-1"
-              label="Item specific"
-              description="Apply to every allowed item"
+              label="Producto específico"
+              description="Aplicar a cada artículo permitido"
             />
           </RadioGroup.Root>
         )

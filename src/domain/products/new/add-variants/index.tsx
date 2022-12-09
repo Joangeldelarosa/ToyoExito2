@@ -220,7 +220,7 @@ const AddVariantsForm = ({
     if (exists) {
       newVariantForm.setError("options", {
         type: "deps",
-        message: "A variant with these options already exists.",
+        message: "Ya existe una variante con estas opciones",
       })
       return
     }
@@ -258,18 +258,18 @@ const AddVariantsForm = ({
     <>
       <div>
         <div className="flex items-center gap-x-2xsmall">
-          <h3 className="inter-base-semibold">Product options</h3>
+          <h3 className="inter-base-semibold">Opciones del producto</h3>
           <IconTooltip
             type="info"
-            content="Options are used to define the color, size, etc. of the product."
+            content="Las opciones del producto son atributos que pueden tener diferentes valores, como el color o el tamaño. Las variantes del producto son combinaciones de opciones del producto."
           />
         </div>
         <div>
           {options.length > 0 && (
             <div className="mt-small">
               <div className="grid grid-cols-[230px_1fr_40px] gap-x-xsmall inter-small-semibold text-grey-50 mb-small">
-                <span>Option title</span>
-                <span>Variations (comma separated)</span>
+                <span>Título de la opción</span>
+                <span>Variaciones (separadas por coma)</span>
               </div>
               <div className="grid grid-cols-1 gap-y-xsmall">
                 {options.map((field, index) => {
@@ -295,7 +295,7 @@ const AddVariantsForm = ({
 
                                 return newVal
                               }}
-                              invalidMessage="already exists"
+                              invalidMessage="ya existe"
                               showLabel={false}
                               values={value}
                               onChange={onChange}
@@ -327,7 +327,7 @@ const AddVariantsForm = ({
             onClick={appendNewOption}
           >
             <PlusIcon size={20} />
-            <span>Add an option</span>
+            <span>Agrega una opción</span>
           </Button>
           <div className="mt-xlarge">
             <div className="flex items-center gap-x-2xsmall">
@@ -336,7 +336,7 @@ const AddVariantsForm = ({
                   "opacity-50": !options.length,
                 })}
               >
-                Product variants{" "}
+                Variantes del producto
                 <span className="inter-base-regular text-grey-50">
                   ({variants?.length || 0})
                 </span>
@@ -351,9 +351,9 @@ const AddVariantsForm = ({
             {variants?.length > 0 && (
               <div className="mt-small">
                 <div className="grid grid-cols-[1fr_90px_100px_48px] inter-small-semibold text-grey-50 pr-base">
-                  <p>Variant</p>
+                  <p>Variante</p>
                   <div className="flex justify-end mr-xlarge">
-                    <p>Inventory</p>
+                    <p>Inventario</p>
                   </div>
                 </div>
                 <div>
@@ -386,7 +386,7 @@ const AddVariantsForm = ({
               onClick={onToggleForm}
             >
               <PlusIcon size={20} />
-              <span>Add a variant</span>
+              <span>Agregar una variante</span>
             </Button>
           </div>
         </div>
@@ -395,7 +395,7 @@ const AddVariantsForm = ({
       <Modal open={state} handleClose={onToggleForm}>
         <Modal.Body>
           <Modal.Header handleClose={onToggleForm}>
-            <h1 className="inter-xlarge-semibold">Create Variant</h1>
+            <h1 className="inter-xlarge-semibold">Crear variante</h1>
           </Modal.Header>
           <Modal.Content>
             <CreateFlowVariantForm
@@ -412,7 +412,7 @@ const AddVariantsForm = ({
                 type="button"
                 onClick={onToggleForm}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -420,7 +420,7 @@ const AddVariantsForm = ({
                 type="button"
                 onClick={onAppendVariant}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

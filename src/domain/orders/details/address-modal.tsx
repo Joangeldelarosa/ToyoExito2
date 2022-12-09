@@ -82,7 +82,7 @@ const AddressModal = ({
 
     return submit(updateObj, {
       onSuccess: () => {
-        notification("Success", "Successfully updated address", "success")
+        notification("Éxito", "Dirección actualizada exitosamente", "success")
         handleClose()
       },
       onError: (err) => notification("Error", getErrorMessage(err), "error"),
@@ -95,7 +95,8 @@ const AddressModal = ({
         <Modal.Body>
           <Modal.Header handleClose={handleClose}>
             <span className="inter-xlarge-semibold">
-              {type === AddressType.BILLING ? "Billing" : "Shipping"} Address
+              Dirección de{" "}
+              {type === AddressType.BILLING ? "Facturación" : "Envío"}
             </span>
           </Modal.Header>
           <Modal.Content>
@@ -114,7 +115,7 @@ const AddressModal = ({
                 onClick={handleClose}
                 type="button"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="large"
@@ -124,7 +125,7 @@ const AddressModal = ({
                 loading={submitting}
                 disabled={submitting || !isDirty}
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

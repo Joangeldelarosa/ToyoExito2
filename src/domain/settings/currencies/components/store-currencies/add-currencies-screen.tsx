@@ -43,7 +43,7 @@ const AddCurrenciesScreen = () => {
       },
       {
         onSuccess: () => {
-          notification("Success", "Successfully updated currencies", "success")
+          notification("Éxito", "Se han actualizado las monedas", "success")
           next()
         },
         onError: (err) => {
@@ -97,7 +97,7 @@ const AddCurrenciesScreen = () => {
       <Modal.Footer>
         <div className="w-full gap-x-xsmall flex items-center justify-end">
           <Button variant="secondary" size="small" onClick={pop}>
-            Cancel
+            Cancelar
           </Button>
           <Button
             variant="primary"
@@ -108,7 +108,7 @@ const AddCurrenciesScreen = () => {
               })
             }
           >
-            Save and go back
+            Guardar y volver
           </Button>
           <Button
             variant="primary"
@@ -122,7 +122,7 @@ const AddCurrenciesScreen = () => {
               })
             }
           >
-            Save and close
+            Guardar y cerrar
           </Button>
         </div>
       </Modal.Footer>
@@ -135,7 +135,7 @@ export const useAddCurrenciesModalScreen = () => {
 
   return {
     screen: {
-      title: "Add Store Currencies",
+      title: "Agregar monedas de la tienda",
       onBack: pop,
       view: <AddCurrenciesScreen />,
     },

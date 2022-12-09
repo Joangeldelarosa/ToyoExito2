@@ -24,15 +24,15 @@ type RefundStatusProps = {
 const PaymentStatus: React.FC<PaymentStatusProps> = ({ paymentStatus }) => {
   switch (paymentStatus) {
     case "captured":
-      return <StatusIndicator title="Paid" variant="success" />
+      return <StatusIndicator title="Pagada" variant="success" />
     case "awaiting":
-      return <StatusIndicator title="Awaiting" variant="default" />
+      return <StatusIndicator title="En espera" variant="default" />
     case "not_paid":
-      return <StatusIndicator title="Not paid" variant="default" />
+      return <StatusIndicator title="Por pagar" variant="default" />
     case "canceled":
-      return <StatusIndicator title="Canceled" variant="danger" />
+      return <StatusIndicator title="Cancelada" variant="danger" />
     case "requires_action":
-      return <StatusIndicator title="Requires Action" variant="danger" />
+      return <StatusIndicator title="Requiere revision" variant="danger" />
     default:
       return null
   }
@@ -41,13 +41,13 @@ const PaymentStatus: React.FC<PaymentStatusProps> = ({ paymentStatus }) => {
 const OrderStatus: React.FC<OrderStatusProps> = ({ orderStatus }) => {
   switch (orderStatus) {
     case "completed":
-      return <StatusIndicator title="Completed" variant="success" />
+      return <StatusIndicator title="Completeda" variant="success" />
     case "pending":
-      return <StatusIndicator title="Processing" variant="default" />
+      return <StatusIndicator title="Procesando" variant="default" />
     case "canceled":
-      return <StatusIndicator title="Canceled" variant="danger" />
+      return <StatusIndicator title="Cancelada" variant="danger" />
     case "requires_action":
-      return <StatusIndicator title="Rejected" variant="danger" />
+      return <StatusIndicator title="Rechazada" variant="danger" />
     default:
       return null
   }
@@ -58,17 +58,17 @@ const FulfillmentStatus: React.FC<FulfillmentStatusProps> = ({
 }) => {
   switch (fulfillmentStatus) {
     case "shipped":
-      return <StatusIndicator title="Shipped" variant="success" />
+      return <StatusIndicator title="Entregada" variant="success" />
     case "fulfilled":
-      return <StatusIndicator title="Fulfilled" variant="warning" />
+      return <StatusIndicator title="Enviada" variant="warning" />
     case "canceled":
-      return <StatusIndicator title="Canceled" variant="danger" />
+      return <StatusIndicator title="Cancelada" variant="danger" />
     case "partially_fulfilled":
-      return <StatusIndicator title="Partially fulfilled" variant="warning" />
+      return <StatusIndicator title="Procesada" variant="warning" />
     case "not_fulfilled":
-      return <StatusIndicator title="Not fulfilled" variant="default" />
+      return <StatusIndicator title="Por enviar" variant="default" />
     case "requires_action":
-      return <StatusIndicator title="Requires Action" variant="danger" />
+      return <StatusIndicator title="Requiere revision" variant="danger" />
     default:
       return null
   }
@@ -77,13 +77,13 @@ const FulfillmentStatus: React.FC<FulfillmentStatusProps> = ({
 const ReturnStatus: React.FC<ReturnStatusProps> = ({ returnStatus }) => {
   switch (returnStatus) {
     case "received":
-      return <StatusIndicator title="Received" variant="success" />
+      return <StatusIndicator title="Recibida" variant="success" />
     case "requested":
-      return <StatusIndicator title="Requested" variant="default" />
+      return <StatusIndicator title="Solicitada" variant="default" />
     case "canceled":
-      return <StatusIndicator title="Canceled" variant="danger" />
+      return <StatusIndicator title="Cancelada" variant="danger" />
     case "requires_action":
-      return <StatusIndicator title="Requires Action" variant="danger" />
+      return <StatusIndicator title="Requiere revision" variant="danger" />
     default:
       return null
   }
@@ -94,9 +94,9 @@ const RefundStatus: React.FC<RefundStatusProps> = ({ refundStatus }) => {
     case "na":
       return <StatusIndicator title="N/A" variant="default" />
     case "not_refunded":
-      return <StatusIndicator title="Refunded" variant="default" />
+      return <StatusIndicator title="Por devolver" variant="default" />
     case "refunded":
-      return <StatusIndicator title="Refunded" variant="success" />
+      return <StatusIndicator title="Devuelta" variant="success" />
     default:
       return null
   }

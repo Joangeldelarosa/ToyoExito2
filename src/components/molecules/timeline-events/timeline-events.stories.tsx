@@ -43,7 +43,7 @@ NoteCurrentUser.args = {
   topNode: eventActions,
   time: new Date(),
   children: (
-    <div className="bg-violet-5 text-violet-90 rounded-2xl px-base py-base">
+    <div className="bg-green-5 text-green-90 rounded-2xl px-base py-base">
       Return will be shipped together with return 74421
     </div>
   ),

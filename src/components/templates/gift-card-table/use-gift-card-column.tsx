@@ -9,24 +9,24 @@ const useGiftCardTableColums = () => {
   const columns = useMemo(
     () => [
       {
-        Header: <div className="pl-2">Code</div>,
+        Header: <div className="pl-2">Código</div>,
         accessor: "code",
         Cell: ({ cell: { value }, index }) => (
           <Table.Cell
             key={index}
-            className="text-grey-90 group-hover:text-violet-60 w-[20%] pl-2"
+            className="text-grey-90 group-hover:text-green-60 w-[20%] pl-2"
           >
             {value}
           </Table.Cell>
         ),
       },
       {
-        Header: "Order",
+        Header: "Pedido",
         accessor: "order_id",
         Cell: ({ row, cell: { value }, index }) => (
           <Table.Cell
             key={index}
-            className="text-grey-90 group-hover:text-violet-60 w-[10%] pl-2"
+            className="text-grey-90 group-hover:text-green-60 w-[10%] pl-2"
           >
             {value ? (
               row.original.order?.display_id
@@ -37,7 +37,7 @@ const useGiftCardTableColums = () => {
         ),
       },
       {
-        Header: "Original Amount",
+        Header: "Monto original",
         accessor: "value",
         Cell: ({ row, cell: { value }, index }) => (
           <Table.Cell key={index}>
@@ -49,7 +49,7 @@ const useGiftCardTableColums = () => {
             ) : (
               <div className="flex items-center space-x-2">
                 <span>N / A</span>
-                <IconTooltip content={"Region has been deleted"} />
+                <IconTooltip content={"La región ha sido eliminada"} />
               </div>
             )}
           </Table.Cell>
@@ -69,7 +69,7 @@ const useGiftCardTableColums = () => {
               ) : (
                 <div className="flex items-center space-x-2">
                   <span>N / A</span>
-                  <IconTooltip content={"Region has been deleted"} />
+                  <IconTooltip content={"La región ha sido eliminada"} />
                 </div>
               )
             ) : (
@@ -81,7 +81,7 @@ const useGiftCardTableColums = () => {
       {
         Header: () => (
           <div className="pr-2 flex rounded-rounded w-full justify-end">
-            Created
+            Creado
           </div>
         ),
         accessor: "created_at",

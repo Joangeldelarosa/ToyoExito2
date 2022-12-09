@@ -38,13 +38,13 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
 
   const onSubmit = (data) => {
     if (!giftCardAmount) {
-      notification("Error", "Please enter an amount", "error")
+      notification("Error", "Ingrese una cantidad", "error")
       focusByName("amount")
       return
     }
 
     if (!validateEmail(data.metadata.email)) {
-      notification("Error", "Invalid email address", "error")
+      notification("Error", "Email inválido", "error")
       focusByName("metadata.email")
       return
     }
@@ -59,7 +59,11 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
 
     mutate(update, {
       onSuccess: () => {
-        notification("Success", "Created Custom Gift Card", "success")
+        notification(
+          "Éxito",
+          "Ha creado una Gift Card Personalizada",
+          "success"
+        )
         onDismiss()
       },
       onError: (error) => {
@@ -73,11 +77,11 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
     <Modal handleClose={onDismiss}>
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Custom Gift Card</h2>
+          <h2 className="inter-xlarge-semibold">Gift Card Personalizada</h2>
         </Modal.Header>
         <Modal.Content>
           <div className="flex flex-col">
-            <span className="inter-base-semibold">Value</span>
+            <span className="inter-base-semibold">Valor</span>
             <div className="flex gap-x-2xsmall mt-4">
               <div className="w-[267px]">
                 <Select
@@ -102,7 +106,7 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
                   currentCurrency={selectedRegion?.value?.currency_code}
                 >
                   <CurrencyInput.Amount
-                    label={"Amount"}
+                    label={"Cantidad"}
                     amount={giftCardAmount}
                     onChange={(value) => {
                       setGiftCardAmount(value || 0)
@@ -115,7 +119,7 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
             </div>
           </div>
           <div className="mt-8">
-            <span className="inter-base-semibold">Receiver</span>
+            <span className="inter-base-semibold">Receptor</span>
             <div className="grid grid-cols-1 gap-y-xsmall mt-4">
               <InputField
                 label={"Email"}
@@ -125,7 +129,7 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
                 type="email"
               />
               <TextArea
-                label={"Personal Message"}
+                label={"Mensaje personal"}
                 rows={7}
                 placeholder="Something nice to someone special"
                 {...register("metadata.personal_message")}
@@ -141,7 +145,7 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
               size="small"
               className="w-[112px]"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="primary"
@@ -152,7 +156,7 @@ const CustomGiftcard: React.FC<CustomGiftcardProps> = ({ onDismiss }) => {
               disabled={isSubmitting}
               loading={isSubmitting}
             >
-              Create & Send
+              Crear & Enviar
             </Button>
           </div>
         </Modal.Footer>

@@ -43,17 +43,16 @@ const EditPrices = ({ close, id }) => {
       <FocusModal.Main>
         <div className="flex justify-center mb-[25%]">
           <div className="medium:w-7/12 large:w-6/12 small:w-4/5 w-full pt-16">
-            <h1 className="inter-xlarge-semibold">Edit prices</h1>
+            <h1 className="inter-xlarge-semibold">Editar precios</h1>
             <div className="mt-7">
               <div className="flex items-center gap-1.5">
-                <h6 className="inter-large-semibold">Prices</h6>
+                <h6 className="inter-large-semibold">Precios</h6>
                 <Tooltip content="info tooltip">
                   <InfoIcon size={16} className="text-grey-40" />
                 </Tooltip>
               </div>
               <span className="inter-base-regular text-grey-50">
-                You will be able to override the prices for the products you add
-                here
+                Puedes sobreescribir los precios de los productos aqui
               </span>
             </div>
             <ProductPrices
@@ -74,14 +73,14 @@ const EditPrices = ({ close, id }) => {
 const VariantActions = (product: Product) => {
   return [
     {
-      label: "Edit prices",
+      label: "Editar precios",
       icon: <EditIcon size={20} />,
       onClick: () => {
         // open grid ui
       },
     },
     {
-      label: "Remove from list",
+      label: "Eliminar de la lista",
       icon: <TrashIcon size={20} />,
       onClick: () => {
         // missing core support

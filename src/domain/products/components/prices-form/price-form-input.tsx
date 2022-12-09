@@ -19,9 +19,8 @@ const PriceFormInput = ({
   amount,
   onChange,
 }: Props) => {
-  const { symbol_native, decimal_digits } = currencies[
-    currencyCode.toUpperCase()
-  ]
+  const { symbol_native, decimal_digits } =
+    currencies[currencyCode.toUpperCase()]
 
   const getFormattedValue = (value: number) => {
     return `${value / 10 ** decimal_digits}`
@@ -55,7 +54,7 @@ const PriceFormInput = ({
     <div>
       <div
         className={clsx(
-          "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-violet-60",
+          "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-green-60",
           {
             "border-rose-50": errors && name && errors[name],
           }
@@ -72,7 +71,7 @@ const PriceFormInput = ({
           allowNegativeValue={false}
           placeholder="-"
           decimalScale={decimal_digits}
-          className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-violet-60 placeholder-grey-40 text-right"
+          className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40 text-right"
         />
       </div>
       <InputError name={name} errors={errors} />

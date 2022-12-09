@@ -41,23 +41,19 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
   // passed to useValuesFieldArray so new prices are intialized with the currenct default price
   const defaultValue = watch("default_price", 10000)
 
-  const {
-    fields,
-    appendPrice,
-    deletePrice,
-    availableCurrencies,
-  } = useValuesFieldArray(
-    currencyCodes,
-    {
-      control,
-      name: "prices",
-      keyName: "indexId",
-    },
-    {
-      defaultAmount: defaultValue,
-      defaultCurrencyCode: storeCurrency,
-    }
-  )
+  const { fields, appendPrice, deletePrice, availableCurrencies } =
+    useValuesFieldArray(
+      currencyCodes,
+      {
+        control,
+        name: "prices",
+        keyName: "indexId",
+      },
+      {
+        defaultAmount: defaultValue,
+        defaultCurrencyCode: storeCurrency,
+      }
+    )
 
   const onSubmit = async (data: any) => {
     const prices = [
@@ -91,14 +87,14 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
       },
       {
         onSuccess: () => {
-          notification("Success", "Denomination added successfully", "success")
+          notification("Éxito", "Denominación añadida con éxito", "success")
           handleClose()
         },
         onError: (error) => {
           const errorMessage = () => {
             // @ts-ignore
             if (error.response?.data?.type === "duplicate_error") {
-              return `A denomination with that default value already exists`
+              return `Ya existe una denominación con ese valor por defecto`
             } else {
               return getErrorMessage(error)
             }
@@ -115,20 +111,23 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Modal.Header handleClose={handleClose}>
-            <span className="inter-xlarge-semibold">Add Denomination</span>
+            <span className="inter-xlarge-semibold">Añadir denominación</span>
           </Modal.Header>
           <Modal.Content>
             <div className="flex-1 mb-xlarge">
               <div className="flex gap-x-2 mb-base">
-                <h3 className="inter-base-semibold">Default Value</h3>
-                <IconTooltip content="This is the denomination in your store's default currency" />
+                <h3 className="inter-base-semibold">Valor por defecto</h3>
+                <IconTooltip content="Esta es la denominación en la moneda predeterminada de su tienda" />
               </div>
               <Controller
                 control={control}
                 name="default_price"
                 rules={{
-                  required: "Default value is required",
-                  max: FormValidator.maxInteger("Default value", storeCurrency),
+                  required: "Se requiere el valor predeterminado",
+                  max: FormValidator.maxInteger(
+                    "Valor por defecto",
+                    storeCurrency
+                  ),
                 }}
                 render={({ field: { onChange, value, ref } }) => {
                   return (
@@ -150,8 +149,8 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
             </div>
             <div>
               <div className="flex gap-x-2 mb-base">
-                <h3 className="inter-base-semibold">Other Values</h3>
-                <IconTooltip content="Here you can add values in other currencies" />
+                <h3 className="inter-base-semibold">Otros valores</h3>
+                <IconTooltip content="Aquí puede agregar valores en otras monedas" />
               </div>
               <div className="flex flex-col gap-y-xsmall">
                 {fields.map((field, index) => {
@@ -230,7 +229,7 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
                   disabled={availableCurrencies?.length === 0}
                 >
                   <PlusIcon size={20} />
-                  Add a price
+                  Agregar un precio
                 </Button>
               </div>
             </div>
@@ -243,7 +242,7 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
                 onClick={handleClose}
                 className="mr-2 min-w-[130px] justify-center"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 variant="primary"
@@ -253,7 +252,7 @@ const AddDenominationModal: React.FC<AddDenominationModalProps> = ({
                 loading={isLoading}
                 disabled={isLoading}
               >
-                Save
+                Guardar
               </Button>
             </div>
           </Modal.Footer>

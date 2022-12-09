@@ -64,8 +64,6 @@ const Summary = () => {
     name: "custom_shipping_price",
   })
 
-  console.log(shipping, billing)
-
   const { discount, status } = useAdminGetDiscountByCode(discountCode!, {
     enabled: !!discountCode,
   })
@@ -101,7 +99,7 @@ const Summary = () => {
     }
 
     if (!discount.regions.find((d) => d.id === regionObj.id)) {
-      setDiscError("The discount is not applicable to the selected region")
+      setDiscError("El descuento no es aplicable a la región seleccionada")
       setCode(undefined)
       form.setValue("discount_code", undefined)
       setShowAddDiscount(true)
@@ -110,7 +108,7 @@ const Summary = () => {
 
   useEffect(() => {
     if (status === "error") {
-      setDiscError("The discount code is invalid")
+      setDiscError("El código de descuento no es válido")
       setCode(undefined)
       form.setValue("discount_code", undefined)
       setShowAddDiscount(true)
@@ -129,10 +127,10 @@ const Summary = () => {
         <Table>
           <Table.Head>
             <Table.HeadRow className="text-grey-50 border-t inter-small-semibold">
-              <Table.HeadCell>Details</Table.HeadCell>
-              <Table.HeadCell className="text-right">Quantity</Table.HeadCell>
+              <Table.HeadCell>Detalles</Table.HeadCell>
+              <Table.HeadCell className="text-right">Cantidad</Table.HeadCell>
               <Table.HeadCell className="text-right">
-                Price (excl. Taxes)
+                Precio (excl. Taxes)
               </Table.HeadCell>
               <Table.HeadCell></Table.HeadCell>
             </Table.HeadRow>
@@ -188,7 +186,7 @@ const Summary = () => {
               onClick={() => setShowAddDiscount(true)}
             >
               <PlusIcon size={20} />
-              Add Discount
+              Agregar descuento
             </Button>
           </div>
         )}
@@ -228,7 +226,7 @@ const Summary = () => {
                 onClick={() => handleAddDiscount()}
               >
                 <PlusIcon size={20} />
-                Add Discount
+                Agregar descuento
               </Button>
             </div>
           </>
@@ -237,14 +235,14 @@ const Summary = () => {
           <div className="flex flex-col w-full border-b border-t border-grey-20 pt-4 mt-4 last:border-b-0 inter-small-regular ">
             <div className="flex w-full justify-between inter-base-semibold mb-4">
               <span>
-                Discount
+                Descuento
                 <span className="inter-base-regular text-grey-50 ml-0.5">
-                  (Code: {discount.code})
+                  (Código: {discount.code})
                 </span>
               </span>
               <span
                 onClick={() => onDiscountRemove()}
-                className="inter-small-semibold text-violet-60 cursor-pointer"
+                className="inter-small-semibold text-green-60 cursor-pointer"
               >
                 <CrossIcon size={20} />
               </span>
@@ -303,7 +301,7 @@ const Summary = () => {
           <div className="grid grid-cols-2 gap-x-6 w-full">
             {!isNullishObject(shipping) && shipping && (
               <div className="border-r flex flex-col border-grey-20 pr-6">
-                <span className="text-grey-50">Address</span>
+                <span className="text-grey-50">Dirección</span>
                 <span>
                   {shipping.address_1}, {shipping.address_2}
                 </span>
@@ -315,7 +313,7 @@ const Summary = () => {
             )}
             {regionObj && (
               <div className="flex flex-col">
-                <span className="text-grey-50">Shipping method</span>
+                <span className="text-grey-50">Método de envío</span>
                 <span>
                   {selectedShippingOption.name} -{" "}
                   {customShippingPrice && regionObj ? (
@@ -341,7 +339,7 @@ const Summary = () => {
 
       {!isNullishObject(billing) && billing && (
         <SummarySection title={"Billing details"} editIndex={3}>
-          <span className="text-grey-50">Address</span>
+          <span className="text-grey-50">Dirección</span>
           <span>
             {billing.address_1}, {billing.address_2}
           </span>
@@ -363,9 +361,9 @@ const SummarySection = ({ title, editIndex, children }) => {
         {title}
         <span
           onClick={() => setPage(editIndex)}
-          className="inter-small-semibold text-violet-60 cursor-pointer"
+          className="inter-small-semibold text-green-60 cursor-pointer"
         >
-          Edit
+          Editar
         </span>
       </div>
       {children}

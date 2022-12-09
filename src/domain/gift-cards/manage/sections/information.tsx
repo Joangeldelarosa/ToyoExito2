@@ -1,5 +1,4 @@
 import { Product } from "@medusajs/medusa"
-import { navigate } from "gatsby"
 import {
   useAdminDeleteProduct,
   useAdminProductTypes,
@@ -7,6 +6,7 @@ import {
 } from "medusa-react"
 import React from "react"
 import { Controller } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import TrashIcon from "../../../../components/fundamentals/icons/trash-icon"
 import UnpublishIcon from "../../../../components/fundamentals/icons/unpublish-icon"
 import Input from "../../../../components/molecules/input"
@@ -34,6 +34,7 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
       formState: { errors },
     },
   } = useGiftCardForm()
+  const navigate = useNavigate()
   const notification = useNotification()
   const { product_types } = useAdminProductTypes(undefined, {
     cacheTime: 0,
@@ -65,7 +66,7 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
       },
       {
         onSuccess: () => {
-          notification("Success", "Gift card updated successfully", "success")
+          notification("Éxito", "Gift card updated successfully", "success")
         },
         onError: (error) => {
           notification("Error", getErrorMessage(error), "error")
@@ -78,7 +79,7 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
     deleteGiftCard.mutate(undefined, {
       onSuccess: () => {
         navigate("/a/gift-cards")
-        notification("Success", "Gift card updated successfully", "success")
+        notification("Éxito", "Gift card updated successfully", "success")
       },
       onError: (error) => {
         notification("Error", getErrorMessage(error), "error")
@@ -117,8 +118,8 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
       <div className="flex flex-col space-y-6">
         <div className="grid grid-cols-2 gap-large">
           <Input
-            label="Name"
-            placeholder="Add name"
+            label="Nombre"
+            placeholder="Agrega un nombre"
             required
             defaultValue={giftCard?.title}
             {...register("title", {
@@ -129,8 +130,8 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
             errors={errors}
           />
           <Input
-            label="Subtitle"
-            placeholder="Add a subtitle"
+            label="Subtitulo"
+            placeholder="Agrega un subtitulo"
             {...register("subtitle", {
               pattern: FormValidator.whiteSpaceRule("Subtitle"),
               minLength: FormValidator.minOneCharRule("Subtitle"),
@@ -138,8 +139,8 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
             errors={errors}
           />
           <TextArea
-            label="Description"
-            placeholder="Add a description"
+            label="Descripción"
+            placeholder="Agrega una descripción"
             {...register("description", {
               pattern: FormValidator.whiteSpaceRule("Description"),
               minLength: FormValidator.minOneCharRule("Description"),
@@ -155,13 +156,13 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
         >
           <div className="grid grid-cols-2 gap-large">
             <Input
-              label="Handle"
-              placeholder="Product handle"
+              label="Identificador"
+              placeholder="Identificador del producto"
               {...register("handle", {
                 pattern: FormValidator.whiteSpaceRule("Handle"),
                 minLength: FormValidator.minOneCharRule("Handle"),
               })}
-              tooltipContent="URL of the product"
+              tooltipContent="URL del producto"
               errors={errors}
             />
             <Controller
@@ -170,8 +171,8 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
               render={({ field: { value, onChange } }) => {
                 return (
                   <Select
-                    label="Type"
-                    placeholder="Select type..."
+                    label="Tipo"
+                    placeholder="Selecciona un tipo..."
                     options={typeOptions}
                     onChange={onChange}
                     value={value}
@@ -189,7 +190,7 @@ const Information: React.FC<InformationProps> = ({ giftCard }) => {
               render={({ field: { onChange, value } }) => {
                 return (
                   <TagInput
-                    label="Tags (separated by comma)"
+                    label="Tags (separados por coma)"
                     className="w-full"
                     placeholder="Spring, Summer..."
                     onChange={onChange}
@@ -215,8 +216,8 @@ const GiftCardStatusSelector = ({
 }) => {
   return (
     <StatusSelector
-      activeState="Published"
-      draftState="Draft"
+      activeState="Publicado"
+      draftState="Borrador"
       isDraft={currentStatus === "draft"}
       onChange={onUpdate}
     />

@@ -49,10 +49,10 @@ const AddConditionsModal = ({
     <LayeredModal context={layeredModalContext} handleClose={onClose}>
       <Modal.Body className="h-[calc(100vh-134px)] flex flex-col">
         <Modal.Header handleClose={onClose}>
-          <span className="inter-xlarge-semibold">Add Conditions</span>
+          <span className="inter-xlarge-semibold">Agregar condiciones</span>
           <span className="font-semibold text-grey-90 mt-6 flex items-center gap-1">
-            Choose a condition type{" "}
-            <IconTooltip content="You can only add one of each type of condition" />
+            Selecciona un tipo de condición
+            <IconTooltip content="Solo puede agregar uno de cada tipo de condición" />
           </span>
         </Modal.Header>
 
@@ -62,7 +62,7 @@ const AddConditionsModal = ({
           ) : (
             <div className="flex flex-col items-center justify-center flex-1 h-full">
               <span className="inter-base-regular text-grey-40">
-                Can't add anymore conditions
+                No se pueden agregar más condiciones
               </span>
             </div>
           )}
@@ -76,7 +76,7 @@ const AddConditionsModal = ({
               size="small"
               onClick={onClose}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               onClick={() => {
@@ -89,7 +89,7 @@ const AddConditionsModal = ({
               className="w-32 text-small justify-center"
               variant="primary"
             >
-              Save
+              Guardar
             </Button>
           </div>
         </Modal.Footer>

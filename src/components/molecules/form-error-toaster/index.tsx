@@ -32,7 +32,7 @@ const FormErrorToaster: React.FC<FormErrorToasterProps> = ({
         <button onClick={onDismiss}>
           <CrossIcon size={20} className="text-grey-40" />
         </button>
-        <span className="sr-only">Close</span>
+        <span className="sr-only">Cerrar</span>
       </div>
     </ToasterContainer>
   )

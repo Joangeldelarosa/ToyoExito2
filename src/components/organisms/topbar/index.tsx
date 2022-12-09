@@ -1,6 +1,11 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
-import { navigate } from "gatsby"
-import React, { useContext, useState } from "react"
+import React, {
+  type MouseEvent,
+  useCallback,
+  useContext,
+  useState,
+} from "react"
+import { useNavigate } from "react-router-dom"
 import { AccountContext } from "../../../context/account"
 import { PollingContext } from "../../../context/polling"
 import useToggleState from "../../../hooks/use-toggle-state"
@@ -15,15 +20,16 @@ import ActivityDrawer from "../activity-drawer"
 import MailDialog from "../help-dialog"
 
 const Topbar: React.FC = () => {
+  const navigate = useNavigate()
+
   const {
     state: activityDrawerState,
     toggle: toggleActivityDrawer,
     close: activityDrawerClose,
   } = useToggleState(false)
 
-  const { first_name, last_name, email, handleLogout } = useContext(
-    AccountContext
-  )
+  const { first_name, last_name, email, handleLogout } =
+    useContext(AccountContext)
   const { batchJobs } = useContext(PollingContext)
 
   const [showSupportform, setShowSupportForm] = useState(false)
@@ -33,21 +39,29 @@ const Topbar: React.FC = () => {
     navigate("/login")
   }
 
+  const onNotificationBellClick = useCallback(
+    (event: MouseEvent) => {
+      event.stopPropagation()
+      toggleActivityDrawer()
+    },
+    [toggleActivityDrawer]
+  )
+
   return (
     <div className="w-full min-h-topbar max-h-topbar pr-xlarge pl-base bg-grey-0 border-b border-grey-20 sticky top-0 flex items-center justify-between z-40">
       <SearchBar />
       <div className="flex items-center">
-        <Button
+        {/* <Button
           size="small"
           variant="ghost"
           className="w-8 h-8 mr-3"
           onClick={() => setShowSupportForm(!showSupportform)}
         >
           <HelpCircleIcon size={24} />
-        </Button>
+        </Button> */}
 
         <NotificationBell
-          onClick={toggleActivityDrawer}
+          onClick={onNotificationBellClick}
           variant={"ghost"}
           hasNotifications={!!batchJobs?.length}
         />
@@ -74,7 +88,7 @@ const Topbar: React.FC = () => {
                   onClick={() => navigate("/a/settings")}
                 >
                   <GearIcon />
-                  Settings
+                  Configuración
                 </Button>
                 <Button
                   variant="ghost"
@@ -83,7 +97,7 @@ const Topbar: React.FC = () => {
                   onClick={() => logOut()}
                 >
                   <SignOutIcon size={20} />
-                  Sign out
+                  Salir
                 </Button>
               </DropdownMenu.Item>
             </DropdownMenu.Content>

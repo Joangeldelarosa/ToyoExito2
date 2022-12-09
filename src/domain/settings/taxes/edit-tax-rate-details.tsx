@@ -27,10 +27,10 @@ export const EditTaxRateDetails = ({
 
   return (
     <div>
-      <p className="inter-base-semibold mb-base">Details</p>
+      <p className="inter-base-semibold mb-base">Detalles</p>
       <Input
         disabled={lockName}
-        label="Name"
+        label="Nombre"
         prefix={
           lockName ? <LockIcon size={16} className="text-grey-40" /> : undefined
         }
@@ -48,7 +48,7 @@ export const EditTaxRateDetails = ({
         max={100}
         step={0.01}
         formNoValidate
-        label="Tax Rate"
+        label="Tasa de impuesto"
         prefix="%"
         placeholder="12"
         {...register(path("rate"), {
@@ -63,7 +63,7 @@ export const EditTaxRateDetails = ({
       />
       <Input
         placeholder="1000"
-        label="Tax Code"
+        label="Código de impuesto"
         {...register(path("code"), {
           required: FormValidator.required("Tax Code"),
         })}

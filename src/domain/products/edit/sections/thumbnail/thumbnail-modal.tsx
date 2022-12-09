@@ -51,15 +51,14 @@ const ThumbnailModal = ({ product, open, onClose }: Props) => {
     try {
       preppedImages = await prepareImages(data.thumbnail.images)
     } catch (error) {
-      let errorMessage =
-        "Something went wrong while trying to upload the thumbnail."
+      let errorMessage = "Algo salió mal al intentar cargar la vista previa."
       const response = (error as any).response as Response
 
       if (response.status === 500) {
         errorMessage =
           errorMessage +
           " " +
-          "You might not have a file service configured. Please contact your administrator"
+          "Es posible que no tenga configurado un servicio de archivos. Póngase en contacto con su administrador"
       }
 
       notification("Error", errorMessage, "error")
@@ -80,14 +79,16 @@ const ThumbnailModal = ({ product, open, onClose }: Props) => {
     <Modal open={open} handleClose={onReset} isLargeModal>
       <Modal.Body>
         <Modal.Header handleClose={onReset}>
-          <h1 className="inter-xlarge-semibold m-0">Upload Thumbnail</h1>
+          <h1 className="inter-xlarge-semibold m-0">
+            Subir imagen de vista previa
+          </h1>
         </Modal.Header>
         <form onSubmit={onSubmit}>
           <Modal.Content>
-            <h2 className="inter-large-semibold mb-2xsmall">Thumbnail</h2>
+            <h2 className="inter-large-semibold mb-2xsmall">Vista previa</h2>
             <p className="inter-base-regular text-grey-50 mb-large">
-              Used to represent your product during checkout, social sharing and
-              more.
+              Se utiliza para representar su producto durante el pago y al
+              compartir en redes sociales.
             </p>
             <ThumbnailForm form={nestedForm(form, "thumbnail")} />
           </Modal.Content>
@@ -99,7 +100,7 @@ const ThumbnailModal = ({ product, open, onClose }: Props) => {
                 type="button"
                 onClick={onReset}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="small"
@@ -108,7 +109,7 @@ const ThumbnailModal = ({ product, open, onClose }: Props) => {
                 disabled={!isDirty}
                 loading={updating}
               >
-                Save and close
+                Guardar y cerrar
               </Button>
             </div>
           </Modal.Footer>

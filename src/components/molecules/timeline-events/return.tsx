@@ -63,10 +63,10 @@ const Return: React.FC<ReturnRequestedProps> = ({ event, refetch }) => {
         <DeletePrompt
           handleClose={() => setShowCancel(false)}
           onDelete={async () => handleCancel()}
-          heading="Cancel return"
-          confirmText="Yes, cancel"
-          successText="Canceled return"
-          text="Are you sure you want to cancel this return?"
+          heading="Cancelar devolución"
+          confirmText="Si, cancelar"
+          successText="Devolución cancelada"
+          text="¿Estás seguro de que deseas cancelar esta devolución?"
         />
       )}
       {showReceive && order && (
@@ -94,7 +94,7 @@ function buildReturn(
 
   switch (event.status) {
     case "requested":
-      title = "Return Requested"
+      title = "Devolución solicitada"
       icon = <AlertIcon size={20} className="text-orange-40" />
       if (event.currentStatus === "requested") {
         button = event.currentStatus && event.currentStatus === "requested" && (
@@ -104,27 +104,27 @@ function buildReturn(
             className={clsx("mt-large")}
             onClick={onReceive}
           >
-            Receive Return
+            Recibir devolución
           </Button>
         )
         actions.push({
           icon: <TrashIcon size={20} />,
-          label: "Cancel return",
+          label: "Cancelar devolución",
           variant: "danger",
           onClick: onCancel,
         })
       }
       break
     case "received":
-      title = "Return Received"
+      title = "Devolución recibida"
       icon = <CheckCircleIcon size={20} className="text-emerald-40" />
       break
     case "canceled":
-      title = "Return Canceled"
+      title = "Devolución cancelada"
       icon = <CancelIcon size={20} className="text-grey-50" />
       break
     case "requires_action":
-      title = "Return Requires Action"
+      title = "Devolución requiere revision"
       icon = <AlertIcon size={20} className="text-rose-50" />
       break
     default:

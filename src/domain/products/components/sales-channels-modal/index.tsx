@@ -32,7 +32,7 @@ const SalesChannelsModal = ({ open, source = [], onClose, onSave }: Props) => {
       <LayeredModal open={open} handleClose={onClose} context={context}>
         <Modal.Body>
           <Modal.Header handleClose={onClose}>
-            <h1 className="inter-xlarge-semibold">Current Sales Channels</h1>
+            <h1 className="inter-xlarge-semibold">Canal de ventas actual</h1>
           </Modal.Header>
           <AvailableScreen />
           <Modal.Footer>
@@ -43,7 +43,7 @@ const SalesChannelsModal = ({ open, source = [], onClose, onSave }: Props) => {
                 type="button"
                 onClick={onClose}
               >
-                Close
+                Cerrar
               </Button>
             </div>
           </Modal.Footer>

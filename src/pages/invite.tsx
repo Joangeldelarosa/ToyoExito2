@@ -1,10 +1,10 @@
 import ConfettiGenerator from "confetti-js"
-import { Link, navigate } from "gatsby"
 import { useAdminAcceptInvite } from "medusa-react"
 import qs from "qs"
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { decodeToken } from "react-jwt"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Button from "../components/fundamentals/button"
 import LongArrowRightIcon from "../components/fundamentals/icons/long-arrow-right-icon"
 import MedusaIcon from "../components/fundamentals/icons/medusa-icon"
@@ -22,7 +22,8 @@ type formValues = {
   last_name: string
 }
 
-const InvitePage = ({ location }) => {
+const InvitePage = () => {
+  const location = useLocation()
   const parsed = qs.parse(location.search.substring(1))
   const [signUp, setSignUp] = useState(false)
 
@@ -71,6 +72,7 @@ const InvitePage = ({ location }) => {
   })
 
   const accept = useAdminAcceptInvite()
+  const navigate = useNavigate()
   const notification = useNotification()
 
   const handleAcceptInvite = (data: formValues) => {
@@ -129,27 +131,28 @@ const InvitePage = ({ location }) => {
                 {!token ? (
                   <div className="h-full flex flex-col gap-y-2 text-center items-center justify-center">
                     <span className="inter-large-semibold text-grey-90">
-                      You signup link is invalid
+                      Tu enlace de registro no es válido
                     </span>
                     <span className="inter-base-regular mt-2 text-grey-50">
-                      Contact your administrator to obtain a valid signup link
+                      Póngase en contacto con su administrador para obtener un
+                      enlace de registro válido
                     </span>
                   </div>
                 ) : (
                   <>
                     <span className="inter-2xlarge-semibold mt-4 text-grey-90">
-                      Welcome to the team!
+                      Bienvenido al equipo!
                     </span>
                     <span className="inter-base-regular text-grey-50 mt-2 mb-large">
-                      Create your account below👇🏼
+                      Crea tu cuenta a continuación👇🏼
                     </span>
                     <SigninInput
-                      placeholder="First name"
+                      placeholder="Primer nombre"
                       {...register("first_name", { required: true })}
                       autoComplete="given-name"
                     />
                     <SigninInput
-                      placeholder="Last name"
+                      placeholder="Apellido"
                       {...register("last_name", { required: true })}
                       autoComplete="family-name"
                     />
@@ -160,14 +163,14 @@ const InvitePage = ({ location }) => {
                       autoComplete="new-password"
                     />
                     <SigninInput
-                      placeholder="Repeat password"
+                      placeholder="Repetir password"
                       type={"password"}
                       {...register("repeat_password", { required: true })}
                       autoComplete="new-password"
                     />
                     {passwordMismatch && (
                       <span className="text-rose-50 w-full mt-2 inter-small-regular">
-                        The two passwords are not the same
+                        Los dos passwords no son iguales.
                       </span>
                     )}
                     <Button
@@ -178,13 +181,13 @@ const InvitePage = ({ location }) => {
                       loading={formState.isSubmitting}
                       disabled={!ready}
                     >
-                      Create account
+                      Crear cuenta
                     </Button>
                     <Link
                       to="/login"
                       className="inter-small-regular text-grey-50 mt-large"
                     >
-                      Already signed up? Log in
+                      ¿Ya te registraste? Iniciar sesión
                     </Link>
                   </>
                 )}
@@ -198,11 +201,11 @@ const InvitePage = ({ location }) => {
             <MedusaVice className="mb-3xlarge" />
             <div className="flex flex-col items-center max-w-3xl text-center">
               <h1 className="inter-3xlarge-semibold text-grey-0 mb-base">
-                You have been invited to join the team
+                Has sido invitado a unirte al equipo.
               </h1>
               <p className="inter-xlarge-regular text-grey-50">
-                You can now join the Medusa Store team. Sign up below and get
-                started with your Medusa Admin account right away.
+                Ahora puedes unirte al equipo de TOYO ÉXITO. Regístrese a
+                continuación y obtenga acceso con su cuenta de inmediato.
               </p>
             </div>
             <div className="mt-4xlarge">
@@ -212,7 +215,7 @@ const InvitePage = ({ location }) => {
                 className="w-[280px]"
                 onClick={() => setSignUp(true)}
               >
-                Sign up
+                Registrarse
                 <LongArrowRightIcon size={20} className="pt-1" />
               </Button>
             </div>

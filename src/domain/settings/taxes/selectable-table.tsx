@@ -164,7 +164,7 @@ export const SelectableTable: React.FC<SelectableTableProps> = ({
         <Table
           immediateSearchFocus={showSearch}
           enableSearch={showSearch}
-          searchPlaceholder="Search Products.."
+          searchPlaceholder="Buscar productos.."
           handleSearch={onSearch}
           {...getTableProps()}
         >

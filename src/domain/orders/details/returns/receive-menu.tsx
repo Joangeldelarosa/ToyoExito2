@@ -134,7 +134,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
       return onReceiveSwap(items)
         .then(() => onDismiss())
         .then(() =>
-          notification("Success", "Successfully received return", "success")
+          notification("Éxito", "Devolución recibida exitosamente", "success")
         )
         .catch((error) =>
           notification("Error", getErrorMessage(error), "error")
@@ -147,7 +147,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
       return onReceiveReturn(items, Math.round(refundAmount))
         .then(() => onDismiss())
         .then(() =>
-          notification("Success", "Successfully returned order", "success")
+          notification("Éxito", "Pedido devuelto exitosamente", "success")
         )
         .catch((error) =>
           notification("Error", getErrorMessage(error), "error")
@@ -171,10 +171,10 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
     <Modal handleClose={onDismiss}>
       <Modal.Body>
         <Modal.Header handleClose={onDismiss}>
-          <h2 className="inter-xlarge-semibold">Receive Return</h2>
+          <h2 className="inter-xlarge-semibold">Recibir devolución</h2>
         </Modal.Header>
         <Modal.Content>
-          <h3 className="inter-base-semibold">Items to receive</h3>
+          <h3 className="inter-base-semibold">Productos a recibir</h3>
           <RMASelectReturnProductTable
             order={order}
             allItems={allItems}
@@ -187,7 +187,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
               {returnRequest.shipping_method &&
                 returnRequest.shipping_method.price !== undefined && (
                   <div className="my-4 flex justify-between">
-                    <span className="inter-base-semibold">Shipping cost</span>
+                    <span className="inter-base-semibold">Costo de envío</span>
                     <span>
                       {(
                         (returnRequest.shipping_method.price / 100) *
@@ -202,7 +202,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
               {!refunded && (
                 <div>
                   <div className="flex inter-base-semibold justify-between w-full">
-                    <span>Total Refund</span>
+                    <span>Total a reembolsar</span>
                     <div className="flex items-center">
                       {!refundEdited && (
                         <>
@@ -228,7 +228,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
                       readOnly
                     >
                       <CurrencyInput.Amount
-                        label={"Amount"}
+                        label={"Cantidad"}
                         amount={refundAmount}
                         onChange={handleRefundUpdated}
                       />
@@ -248,7 +248,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
               size="small"
               variant="ghost"
             >
-              Back
+              Volver
             </Button>
             <Button
               onClick={onSubmit}
@@ -257,7 +257,7 @@ const ReceiveMenu: React.FC<ReceiveMenuProps> = ({
               variant="primary"
               size="small"
             >
-              Complete
+              Completar
             </Button>
           </div>
         </Modal.Footer>

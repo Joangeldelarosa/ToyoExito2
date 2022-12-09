@@ -16,9 +16,7 @@ type ConfigurationProps = {
   priceList?: PriceList
 }
 
-const checkForEnabledConfigs = (
-  config: ConfigurationFields
-): string[] => {
+const checkForEnabledConfigs = (config: ConfigurationFields): string[] => {
   const enabledConfigs: string[] = []
 
   if (config.customer_groups && config.customer_groups.length > 0) {
@@ -36,11 +34,8 @@ const checkForEnabledConfigs = (
 
 const Configuration: React.FC<ConfigurationProps> = () => {
   const { customer_groups, isLoading } = useAdminCustomerGroups()
-  const {
-    control,
-    handleConfigurationSwitch,
-    configFields,
-  } = usePriceListForm()
+  const { control, handleConfigurationSwitch, configFields } =
+    usePriceListForm()
   const [openItems, setOpenItems] = useState<string[]>(
     checkForEnabledConfigs(configFields)
   )
@@ -48,10 +43,10 @@ const Configuration: React.FC<ConfigurationProps> = () => {
   return (
     <Accordion.Item
       forceMountContent
-      title="Configuration"
-      tooltip="Optional configuration for the price list"
+      title="Ajustes"
+      tooltip="Ajustes adicionales para la lista de precios."
       value="configuration"
-      description="The price overrides apply from the time you hit the publish button and forever if left untouched."
+      description="Las actualizaciones de precios se aplican desde el momento en que presionas el botón de publicar y para siempre si no se tocan."
     >
       <Accordion
         type="multiple"
@@ -66,8 +61,8 @@ const Configuration: React.FC<ConfigurationProps> = () => {
             headingSize="medium"
             forceMountContent
             className="border-b-0"
-            title="Price overrides has a start date?"
-            subtitle="Schedule the price overrides to activate in the future."
+            title="La actualizacion tiene una fecha de inicio?"
+            subtitle="Programe las actualizaciones de precios para activarlas en el futuro."
             value="starts_at"
             customTrigger={
               <Switch checked={openItems.indexOf("starts_at") > -1} />
@@ -90,12 +85,12 @@ const Configuration: React.FC<ConfigurationProps> = () => {
                     <>
                       <DatePicker
                         date={ensuredDate}
-                        label="Start date"
+                        label="Fecha de inicio"
                         onSubmitDate={onChange}
                       />
                       <TimePicker
                         date={ensuredDate}
-                        label="Start date"
+                        label="Fecha de inicio"
                         onSubmitDate={onChange}
                       />
                     </>
@@ -108,8 +103,8 @@ const Configuration: React.FC<ConfigurationProps> = () => {
             headingSize="medium"
             forceMountContent
             className="border-b-0"
-            title="Price overrides has an expiry date?"
-            subtitle="Schedule the price overrides to deactivate in the future."
+            title="La actualizacion tiene una fecha de finalizacion?"
+            subtitle="Programe las actualizaciones de precios para desactivarlas en el futuro."
             value="ends_at"
             customTrigger={
               <Switch checked={openItems.indexOf("ends_at") > -1} />
@@ -132,12 +127,12 @@ const Configuration: React.FC<ConfigurationProps> = () => {
                     <>
                       <DatePicker
                         date={ensuredDate}
-                        label="End date"
+                        label="Fecha de finalizacion"
                         onSubmitDate={onChange}
                       />
                       <TimePicker
                         date={ensuredDate}
-                        label="End date"
+                        label="Fecha de finalizacion"
                         onSubmitDate={onChange}
                       />
                     </>
@@ -150,8 +145,8 @@ const Configuration: React.FC<ConfigurationProps> = () => {
             headingSize="medium"
             forceMountContent
             className="border-b-0"
-            title="Customer availabilty"
-            subtitle="Specifiy which customer groups the price overrides should apply for."
+            title="Clientes a aplicar"
+            subtitle="Especifique para qué grupos de clientes se deben aplicar las anulaciones de precios."
             value="customer_groups"
             customTrigger={
               <Switch checked={openItems.indexOf("customer_groups") > -1} />
@@ -160,7 +155,7 @@ const Configuration: React.FC<ConfigurationProps> = () => {
             <Controller
               name="customer_groups"
               control={control}
-              render={({ field: { value, onChange, ref }}) => {
+              render={({ field: { value, onChange, ref } }) => {
                 return (
                   <div
                     className={clsx(
@@ -172,7 +167,7 @@ const Configuration: React.FC<ConfigurationProps> = () => {
                   >
                     <Select
                       value={value}
-                      label="Customer Groups"
+                      label="Grupos de clientes"
                       onChange={onChange}
                       isMultiSelect
                       fullWidth
