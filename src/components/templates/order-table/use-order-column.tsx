@@ -7,6 +7,7 @@ import { formatAmountWithSymbol } from "../../../utils/prices"
 import Tooltip from "../../atoms/tooltip"
 import StatusDot from "../../fundamentals/status-indicator"
 import CustomerAvatarItem from "../../molecules/customer-avatar-item"
+import Table from "../../molecules/table"
 
 const useOrderTableColums = () => {
   const decideStatus = (status) => {
