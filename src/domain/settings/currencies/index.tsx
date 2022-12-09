@@ -65,13 +65,13 @@ const CurrencySettings = () => {
   return (
     <div className="pb-xlarge">
       <BackButton
-        label="Back to Settings"
+        label="Volver a ajustes"
         path="/a/settings"
         className="mb-xsmall"
       />
       <div className="grid grid-cols-3 gap-base">
         <div className="col-span-2 flex flex-col gap-y-xsmall ">
-          <Section title="Currencies">
+          <Section title="Monedas">
             <p className="text-grey-50 inter-base-regular mt-2xsmall">
               Administre los mercados en los que operará.
             </p>
