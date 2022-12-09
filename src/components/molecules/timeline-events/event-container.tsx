@@ -10,7 +10,7 @@ export enum EventIconColor {
   GREEN = "text-emerald-40",
   RED = "text-rose-50",
   ORANGE = "text-orange-40",
-  VIOLET = "text-green-60",
+  VIOLET = "text-emerald-60",
   DEFAULT = "text-grey-50",
 }
 

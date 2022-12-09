@@ -81,14 +81,14 @@ const ResetTokenCard: React.FC<ResetTokenCardProps> = ({ goBack }) => {
               </div>
             )}
             <button
-              className="text-grey-0 w-[320px] h-[48px] border rounded-rounded mt-4 bg-green-50 inter-base-regular py-3 px-4"
+              className="text-grey-0 w-[320px] h-[48px] border rounded-rounded mt-4 bg-emerald-50 inter-base-regular py-3 px-4"
               type="submit"
             >
               Enviar instrucciones de reinicio
             </button>
           </>
         ) : (
-          <div className="text-green-60 rounded-rounded bg-green-10 p-base flex gap-x-small mt-large">
+          <div className="text-emerald-60 rounded-rounded bg-emerald-10 p-base flex gap-x-small mt-large">
             <div>
               <CheckCircleIcon size={20} />
             </div>

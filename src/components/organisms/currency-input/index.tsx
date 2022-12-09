@@ -239,7 +239,7 @@ const Amount = forwardRef<HTMLInputElement, AmountInputProps>(
         <InputHeader label={label} required={required} className="mb-xsmall" />
         <div
           className={clsx(
-            "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-green-60",
+            "w-full flex items-center bg-grey-5 border border-gray-20 px-small py-xsmall rounded-rounded h-10 focus-within:shadow-input focus-within:border-emerald-60",
             {
               "border-rose-50 focus-within:shadow-cta focus-within:shadow-rose-60/10 focus-within:border-rose-50":
                 errors && name && errors[name],
@@ -258,7 +258,7 @@ const Amount = forwardRef<HTMLInputElement, AmountInputProps>(
             </Tooltip>
           )}
           <AmountField
-            className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-green-60 placeholder-grey-40"
+            className="bg-transparent outline-none outline-0 w-full remove-number-spinner leading-base text-grey-90 font-normal caret-emerald-60 placeholder-grey-40"
             decimalScale={currencyInfo?.decimal_digits}
             value={formattedValue}
             onValueChange={(value, _name, values) =>

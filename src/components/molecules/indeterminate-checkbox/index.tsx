@@ -41,7 +41,7 @@ const IndeterminateCheckbox = React.forwardRef<
     return (
       <div className="items-center h-full flex">
         <input
-          className={clsx({ "accent-green-60": checked })}
+          className={clsx({ "accent-emerald-60": checked })}
           type="radio"
           checked={checked}
           ref={innerRef}
@@ -60,7 +60,7 @@ const IndeterminateCheckbox = React.forwardRef<
             ? checked
               ? "bg-gray-300"
               : ""
-            : checked && "bg-green-60"
+            : checked && "bg-emerald-60"
         }`}
       >
         <span className="self-center">

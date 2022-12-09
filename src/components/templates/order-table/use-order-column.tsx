@@ -7,7 +7,6 @@ import { formatAmountWithSymbol } from "../../../utils/prices"
 import Tooltip from "../../atoms/tooltip"
 import StatusDot from "../../fundamentals/status-indicator"
 import CustomerAvatarItem from "../../molecules/customer-avatar-item"
-import Table from "../../molecules/table"
 
 const useOrderTableColums = () => {
   const decideStatus = (status) => {
@@ -31,7 +30,7 @@ const useOrderTableColums = () => {
         Header: <div className="pl-2">Pedido</div>,
         accessor: "display_id",
         Cell: ({ cell: { value } }) => (
-          <p className="text-grey-90 group-hover:text-green-60 min-w-[100px] pl-2">{`#${value}`}</p>
+          <p className="text-grey-90 group-hover:text-emerald-60 min-w-[100px] pl-2">{`#${value}`}</p>
         ),
       },
       {

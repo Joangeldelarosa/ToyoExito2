@@ -130,7 +130,7 @@ function DropArea(props: DropAreaProps) {
     >
       <span className="text-grey-50 text-small">
         Arrastra tu archivo aquí, o
-        <a className="text-green-60">
+        <a className="text-emerald-60">
           <label className="cursor-pointer" htmlFor="upload-form-file">
             {" "}
             haga clic para seleccionar uno.

@@ -24,7 +24,10 @@ const Input = <
             input: true,
             "input--is-disabled": props.isDisabled ? true : false,
           },
-          clsx("inter-base-regular text-grey-90 caret-green-60", inputClassName)
+          clsx(
+            "inter-base-regular text-grey-90 caret-emerald-60",
+            inputClassName
+          )
         )}
       />
     </div>

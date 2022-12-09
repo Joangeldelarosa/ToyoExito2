@@ -188,7 +188,7 @@ const OrderEditLine = ({
             </div>
             <div className="flex items-center">
               {isNew && (
-                <div className="text-small text-green-500 bg-green-10 h-[24px] w-[42px] mr-2 flex-shrink-0 flex items-center justify-center rounded-rounded">
+                <div className="text-small text-emerald-500 bg-emerald-10 h-[24px] w-[42px] mr-2 flex-shrink-0 flex items-center justify-center rounded-rounded">
                   Nuevo
                 </div>
               )}

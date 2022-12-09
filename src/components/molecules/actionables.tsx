@@ -32,7 +32,7 @@ const Actionables: React.FC<ActionablesProps> = ({
               <Button
                 variant="ghost"
                 size="small"
-                className="w-xlarge h-xlarge focus-visible:outline-none focus-visible:shadow-input focus-visible:border-green-60 focus:shadow-none"
+                className="w-xlarge h-xlarge focus-visible:outline-none focus-visible:shadow-input focus-visible:border-emerald-60 focus:shadow-none"
               >
                 <MoreHorizontalIcon size={20} />
               </Button>

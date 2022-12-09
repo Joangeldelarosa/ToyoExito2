@@ -26,7 +26,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
       {...props}
     >
       <span
-        className="text-green-60 cursor-pointer"
+        className="text-emerald-60 cursor-pointer"
         onClick={() => navigate(previousRoute)}
       >
         {previousBreadcrumb}

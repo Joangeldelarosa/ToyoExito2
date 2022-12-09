@@ -51,7 +51,7 @@ const Note: React.FC<NoteProps> = ({ event }) => {
         <div
           className={clsx("rounded-2xl px-base py-base", {
             "bg-grey-5": !isMe,
-            "bg-green-5 text-green-90": isMe,
+            "bg-emerald-5 text-emerald-90": isMe,
           })}
         >
           {event.value}

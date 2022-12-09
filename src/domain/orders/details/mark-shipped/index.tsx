@@ -181,7 +181,7 @@ const MarkShippedModal: React.FC<MarkShippedModalProps> = ({
               >
                 <div
                   className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                    !noNotis && "bg-green-60"
+                    !noNotis && "bg-emerald-60"
                   }`}
                 >
                   <span className="self-center">

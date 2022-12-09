@@ -24,7 +24,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({
 }: SidebarMenuItemProps) => {
   const styles =
     "py-1.5 px-3 my-0.5 rounded-base flex text-grey-90 hover:bg-grey-10 items-center"
-  const activeStyles = "bg-grey-10 text-green-50"
+  const activeStyles = "bg-grey-10 text-emerald-50"
   const classNameFn = useCallback(
     ({ isActive }) => (isActive ? `${styles} ${activeStyles}` : styles),
     []

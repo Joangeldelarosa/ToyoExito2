@@ -58,7 +58,10 @@ const ShippingOption: React.FC<ShippingOptionProps> = ({
         </p>
       </div>
       <div>
-        <button onClick={onEdit} className="inter-small-semibold text-green-60">
+        <button
+          onClick={onEdit}
+          className="inter-small-semibold text-emerald-60"
+        >
           Editar
         </button>
       </div>

@@ -386,13 +386,13 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 className={clsx(
                   "rounded-full w-5 h-5 flex mr-3 items-center justify-center",
                   {
-                    "border-green-60 border-2": isReplace,
+                    "border-emerald-60 border-2": isReplace,
                     "border-grey-40 border": !isReplace,
                   }
                 )}
               >
                 {isReplace && (
-                  <div className="w-3 h-3 bg-green-60 rounded-full"></div>
+                  <div className="w-3 h-3 bg-emerald-60 rounded-full"></div>
                 )}
               </div>
               Reemplazar
@@ -407,13 +407,13 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
                 className={clsx(
                   "rounded-full w-5 h-5 flex mr-3 items-center justify-center",
                   {
-                    "border-green-60 border-2": !isReplace,
+                    "border-emerald-60 border-2": !isReplace,
                     "border-grey-40 border": isReplace,
                   }
                 )}
               >
                 {!isReplace && (
-                  <div className="w-3 h-3 bg-green-60 rounded-full"></div>
+                  <div className="w-3 h-3 bg-emerald-60 rounded-full"></div>
                 )}
               </div>
               Reembolsar
@@ -625,7 +625,7 @@ const ClaimMenu: React.FC<ClaimMenuProps> = ({ order, onDismiss }) => {
             >
               <div
                 className={`w-5 h-5 flex justify-center text-grey-0 border-grey-30 border rounded-base ${
-                  !noNotification && "bg-green-60"
+                  !noNotification && "bg-emerald-60"
                 }`}
               >
                 <span className="self-center">

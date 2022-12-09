@@ -312,7 +312,7 @@ const CheckboxAdornment = ({
       className={clsx(
         `w-base h-base flex justify-center text-grey-0 border-grey-30 border rounded-base transition-colors`,
         {
-          "bg-green-60 border-green-60": isSelected,
+          "bg-emerald-60 border-emerald-60": isSelected,
           "bg-grey-5": isDisabled,
         }
       )}

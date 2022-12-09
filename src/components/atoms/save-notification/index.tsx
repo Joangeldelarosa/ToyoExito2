@@ -63,7 +63,7 @@ const SaveNotification: React.FC<SaveNotificationProps> = ({
       <div className="flex flex-col inter-small-semibold border-l border-grey-20 h-full">
         <button
           onClick={handleSave}
-          className="inter-small-semibold flex items-center justify-center h-1/2 border-b border-grey-20 px-base text-green-60"
+          className="inter-small-semibold flex items-center justify-center h-1/2 border-b border-grey-20 px-base text-emerald-60"
         >
           Publicar
         </button>
