@@ -5,7 +5,7 @@ import LoginCard from "../components/organisms/login-card"
 import ResetTokenCard from "../components/organisms/reset-token-card"
 import SEO from "../components/seo"
 import LoginLayout from "../components/templates/login-layout"
-import logo from "../images/logo.svg"
+import logo from "../images/logo.png"
 
 const LoginPage = () => {
   const [resetPassword, setResetPassword] = useState(false)
